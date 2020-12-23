@@ -95,31 +95,31 @@ public class MCRStrategy extends SchedulingStrategy {
        traceInfo.setVolatileAddresses(RVGlobalStateForInstrumentation.instance.volatilevariables);
        currentTrace = new Trace(traceInfo);
 
-//		System.out.println("------currenttrace----");
-//		System.out.println(currentTrace.getFullTrace());
-//		for (int t=0;t<=currentTrace.getFullTrace().size()-1;t++) {
-//			if (currentTrace.getFullTrace().get(t).getType() == AbstractNode.TYPE.READ ||
-//					currentTrace.getFullTrace().get(t).getType() == AbstractNode.TYPE.WRITE) {
-//				for (String add : currentTrace.getTraceInfo().getSharedAddresses()) {
-//					if (currentTrace.getFullTrace().get(t).getAddr().equals(add)) {
-//						String address = currentTrace.getFullTrace().get(t).getAddr();
-//						int index = address.indexOf(".");
-//						int SID = Integer.parseInt(address.substring(index + 1));
-////						 System.out.println("第" + trace.getFullTrace().get(t).getGID() + "个事件为：" +
-////								 " 线程Thread-" + trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid()) +
-////								 " 对" + trace.getSharedVarIdMap().get(SID) +
-////								 "在" + trace.getFullTrace().get(t).getLabel() +
-////								 "进行" + trace.getFullTrace().get(t).getType() + "操作" + "值为" + trace.getFullTrace().get(t).getValue());
-//						System.out.println(currentTrace.getFullTrace().get(t).getGID()+" "+
-//								currentTrace.getThreadIdNameMap().get(currentTrace.getFullTrace().get(t).getTid())+" "+
-//								currentTrace.getFullTrace().get(t).getLabel()+" "+
-//								currentTrace.getSharedVarIdMap().get(SID)+" "+
-//								currentTrace.getFullTrace().get(t).getType() +" "+
-//								currentTrace.getFullTrace().get(t).getValue());
-//					}
-//				}
-//			}
-//		}
+		System.out.println("------currenttrace----");
+		System.out.println(currentTrace.getFullTrace());
+		for (int t=0;t<=currentTrace.getFullTrace().size()-1;t++) {
+			if (currentTrace.getFullTrace().get(t).getType() == AbstractNode.TYPE.READ ||
+					currentTrace.getFullTrace().get(t).getType() == AbstractNode.TYPE.WRITE) {
+				for (String add : currentTrace.getTraceInfo().getSharedAddresses()) {
+					if (currentTrace.getFullTrace().get(t).getAddr().equals(add)) {
+						String address = currentTrace.getFullTrace().get(t).getAddr();
+						int index = address.indexOf(".");
+						int SID = Integer.parseInt(address.substring(index + 1));
+//						 System.out.println("第" + trace.getFullTrace().get(t).getGID() + "个事件为：" +
+//								 " 线程Thread-" + trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid()) +
+//								 " 对" + trace.getSharedVarIdMap().get(SID) +
+//								 "在" + trace.getFullTrace().get(t).getLabel() +
+//								 "进行" + trace.getFullTrace().get(t).getType() + "操作" + "值为" + trace.getFullTrace().get(t).getValue());
+						System.out.println(currentTrace.getFullTrace().get(t).getGID()+" "+
+								currentTrace.getThreadIdNameMap().get(currentTrace.getFullTrace().get(t).getTid())+" "+
+								currentTrace.getFullTrace().get(t).getLabel()+" "+
+								currentTrace.getSharedVarIdMap().get(SID)+" "+
+								currentTrace.getFullTrace().get(t).getType() +" "+
+								currentTrace.getFullTrace().get(t).getValue());
+					}
+				}
+			}
+		}
 	}
 
 	/**

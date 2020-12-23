@@ -714,7 +714,9 @@ public class  RVRunTime {
             StackTraceElement frame = Thread.currentThread().getStackTrace()[2];
             String fileName = frame.getFileName();
             int line = frame.getLineNumber();
+            String method = frame.getMethodName();
             String label = fileName+":"+Integer.toString(line);
+            String methodName = fileName+"."+method;
             
             globalEventID++;
             if (isPrim(v)) {
@@ -723,7 +725,7 @@ public class  RVRunTime {
                               ID, o == null ? "." + SID
                             : System.identityHashCode(o) + "." + SID, v + "",
                             AbstractNode.TYPE.WRITE,
-                            label);
+                            label,methodName);
                     trace.addRawNode(writeNode);
                     // db.saveEventToDB(tid, ID,
                     // o==null?"."+SID:hashcode_o+"."+SID,
@@ -734,7 +736,7 @@ public class  RVRunTime {
                              ID, o == null ? "." + SID
                             : System.identityHashCode(o) + "." + SID, v + "",
                             AbstractNode.TYPE.READ,
-                            label);
+                            label,methodName);
                     trace.addRawNode(readNode);
                 }
             } else {
@@ -744,7 +746,7 @@ public class  RVRunTime {
                             + SID : System.identityHashCode(o) + "_." + SID,
                             System.identityHashCode(v) + "_",
                             AbstractNode.TYPE.WRITE,
-                            label);
+                            label,methodName);
                     trace.addRawNode(writeNode);
                     // db.saveEventToDB(tid, ID,
                     // o==null?"_."+SID:hashcode_o+"_."+SID,
@@ -759,7 +761,7 @@ public class  RVRunTime {
                             + SID : System.identityHashCode(o) + "_." + SID,
                             System.identityHashCode(v) + "_",
                             AbstractNode.TYPE.READ,
-                            label);
+                            label,methodName);
                     trace.addRawNode(readNode);
                 }
             }
@@ -796,7 +798,9 @@ public class  RVRunTime {
 		StackTraceElement frame = Thread.currentThread().getStackTrace()[2];
         String fileName = frame.getFileName();
         int line = frame.getLineNumber();
+        String method = frame.getMethodName();
         String label = fileName+":"+Integer.toString(line);
+        String methodName = fileName+"."+method;
         
         String threadName = Thread.currentThread().getName().toString();
         String type = null;
@@ -827,7 +831,7 @@ public class  RVRunTime {
 				{
 					WriteNode writeNode = new WriteNode(globalEventID, Thread.currentThread().getId(), ID, 
 					        o == null ? "." + SID: System.identityHashCode(o) + "." + SID, 
-					        v + "",AbstractNode.TYPE.WRITE,label);
+					        v + "",AbstractNode.TYPE.WRITE,label,methodName);
 					trace.addRawNode(writeNode);
 
 				} else {	    
@@ -835,7 +839,7 @@ public class  RVRunTime {
 					        Thread.currentThread().getId(), ID, o == null ? "." + SID
 							: System.identityHashCode(o) + "." + SID, v + "",
 							AbstractNode.TYPE.READ,
-							label);
+							label,methodName);
 					trace.addRawNode(readNode);
 //					if (o==null)
 //					    System.out.println(readNode.toString());
@@ -849,7 +853,7 @@ public class  RVRunTime {
 					        o == null ? "_."+ SID : System.identityHashCode(o) + "_." + SID,
 							System.identityHashCode(v) + "_",
 							AbstractNode.TYPE.WRITE,
-							label);
+							label,methodName);
 					trace.addRawNode(writeNode);
 					// db.saveEventToDB(tid, ID,
 					// o==null?"_."+SID:hashcode_o+"_."+SID,
@@ -863,7 +867,7 @@ public class  RVRunTime {
 					        o == null ? "_."+ SID : System.identityHashCode(o) + "_." + SID,   //addr
 							System.identityHashCode(v) + "_",           //value
 							AbstractNode.TYPE.READ,
-							label);
+							label,methodName);
 					trace.addRawNode(readNode);
 //					System.out.println(readNode.toString());
 				}
@@ -1338,7 +1342,9 @@ public class  RVRunTime {
         StackTraceElement frame = Thread.currentThread().getStackTrace()[2];
         String fileName = frame.getFileName();
         int line = frame.getLineNumber();
+        String method = frame.getMethodName();
         String label = fileName+":"+Integer.toString(line);
+        String methodName = fileName+"."+method;
 
 		if (MCRStrategy.schedulePrefix.size() <= currentIndex++ || MCRStrategy.fullTrace) {
 			// Already reached the end of prefix
@@ -1350,14 +1356,14 @@ public class  RVRunTime {
 							.currentThread().getId(), ID,
 							System.identityHashCode(o) + "_." + index, v + "",
 							AbstractNode.TYPE.WRITE,
-							label);
+							label,methodName);
 					trace.addRawNode(writeNode);
 				} else {
 					ReadNode readNode = new ReadNode(globalEventID, Thread
 							.currentThread().getId(), ID,
 							System.identityHashCode(o) + "_." + index, v + "",
 							AbstractNode.TYPE.READ,
-							label);
+							label,methodName);
 					trace.addRawNode(readNode);
 				}
 			} else {
@@ -1367,7 +1373,7 @@ public class  RVRunTime {
 							System.identityHashCode(o) + "_." + index,
 							System.identityHashCode(v) + "_",
 							AbstractNode.TYPE.WRITE,
-							label);
+							label,methodName);
 					trace.addRawNode(writeNode);
 				} else {
 					ReadNode readNode = new ReadNode(globalEventID, Thread
@@ -1375,7 +1381,7 @@ public class  RVRunTime {
 							System.identityHashCode(o) + "_." + index,
 							System.identityHashCode(v) + "_",
 							AbstractNode.TYPE.READ,
-							label);
+							label,methodName);
 					trace.addRawNode(readNode);
 				}
 			}

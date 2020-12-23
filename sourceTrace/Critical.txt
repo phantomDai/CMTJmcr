@@ -1,0 +1,37 @@
+1: thread 13 5 _.1 116320123_ READ CriticalTest.java.main
+2: thread 13 17 START
+3: thread 13 18 START
+4: thread 14 1907661709 LOCK
+5: thread 14 36 1907661709.4 0 READ Section.java.run
+6: thread 14 38 1907661709_.3 1175925897_ READ Section.java.run
+7: thread 14 40 1175925897.2 0  WRITE
+8: thread 14 41 _.1 116320123_ READ Section.java.run
+9: thread 14 46 _.1 1793101887_ READ Section.java.run
+10: thread 14 49 1907661709.4 0 READ Section.java.run
+11: thread 14 63 1907661709_.3 1175925897_ READ Section.java.run
+12: thread 14 64 1175925897.2 0 READ Section.java.run
+13: thread 14 86 _.1 116320123_ READ Section.java.run
+14: thread 14 91 _.1 1680302867_ READ Section.java.run
+15: thread 14 94 1907661709.4 0 READ Section.java.run
+16: thread 14 107 1907661709_.3 1175925897_ READ Section.java.run
+17: thread 14 109 1175925897.2 1  WRITE
+18: thread 14 1907661709 UNLOCK
+19: thread 13 19 JOIN
+20: thread 15 531119261 LOCK
+21: thread 15 36 531119261.4 1 READ Section.java.run
+22: thread 15 111 531119261.4 1 READ Section.java.run
+23: thread 15 113 531119261_.3 1175925897_ READ Section.java.run
+24: thread 15 115 1175925897.2 1  WRITE
+25: thread 15 116 _.1 116320123_ READ Section.java.run
+26: thread 15 121 _.1 1723503867_ READ Section.java.run
+27: thread 15 124 531119261.4 1 READ Section.java.run
+28: thread 15 137 531119261_.3 1175925897_ READ Section.java.run
+29: thread 15 138 1175925897.2 1 READ Section.java.run
+30: thread 15 160 _.1 116320123_ READ Section.java.run
+31: thread 15 165 _.1 1753048668_ READ Section.java.run
+32: thread 15 168 531119261.4 1 READ Section.java.run
+33: thread 15 181 531119261_.3 1175925897_ READ Section.java.run
+34: thread 15 183 1175925897.2 0  WRITE
+35: thread 15 531119261 UNLOCK
+36: thread 13 20 JOIN
+37: thread 13 23 _.1 116320123_ READ CriticalTest.java.main

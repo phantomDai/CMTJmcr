@@ -34,7 +34,7 @@ public class OneBubble extends Thread {
     public void run() {
         // running on the whole array once
         /* TO RE-INTRODUCE BUG remove the block synchronization */
-        synchronized (arr) {
+//        synchronized (arr) {
             for (int i = 0; i < arr.length - 1; i++) {
                 // in case higher number is benieth
                 if (arr[i] > arr[i + 1])
@@ -42,7 +42,7 @@ public class OneBubble extends Thread {
                     // bubbling up the higher number
                     SwapConsecutives(i);
             }
-        }
+//        }
     }
 
     // swapping the i-th number with the i + 1 number in this instance array

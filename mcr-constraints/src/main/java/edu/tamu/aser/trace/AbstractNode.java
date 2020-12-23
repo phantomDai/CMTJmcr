@@ -56,6 +56,8 @@ public abstract class AbstractNode{
 	protected String value;
 	
 	protected String label;
+
+	protected String methodName;
 	
 	public AbstractNode(long GID, long tid, int ID, TYPE type)
 	{
@@ -88,6 +90,20 @@ public abstract class AbstractNode{
 		this.value = value;
 
 		this.label = label;
+	}
+
+	public AbstractNode(long GID, long tid, int ID, TYPE type, String addr,String value, String label,String methodName)
+	{
+		this.GID = GID;
+		this.tid = tid;
+		this.ID = ID;
+		this.type = type;
+
+		this.addr = addr;
+		this.value = value;
+
+		this.label = label;
+		this.methodName=methodName;
 	}
 	
 	public long getGID()
@@ -131,7 +147,11 @@ public abstract class AbstractNode{
 	public  String getLabel() {
 		return label;
 	}
-	
+
+	public String getMethodName() {
+		return methodName;
+	}
+
 	public enum TYPE
 	{
 		INIT,READ,WRITE,LOCK,UNLOCK,WAIT,NOTIFY,START,JOIN,BRANCH,BB,PROPERTY

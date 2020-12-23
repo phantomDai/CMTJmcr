@@ -74,7 +74,7 @@ public class ExplorationStatsListener extends ExplorationListenerAdapter {
         currentNumEvents = 0;
         maxNumEvents = 0;
         numThreads = 0;
-        System.out.println(EXPLORING + name + String.format(": %tT", Calendar.getInstance()));
+        System.out.println(EXPLORING + name + String.format(": %tT", Calendar.getInstance()) + " " +System.currentTimeMillis());
         failureDetected = false;
         startTimeoutTask();
         startTime = System.currentTimeMillis();

@@ -40,14 +40,16 @@ public class BubbleSort {
   public void Sort() throws Exception {
     final OneBubble[] bubbelesArr = new OneBubble[arr.length];
 
-    for (int i = 0; i < arr.length; i++){
-      bubbelesArr[i] = new OneBubble(arr);}
+    for (int i = 0; i < arr.length-1; i++){
+      bubbelesArr[i] = new OneBubble(arr);
+      bubbelesArr[i].start();
+    }
 
-    for (int i = 0; i < arr.length; i++){
-      bubbelesArr[i].start();}
-
-    for (int i = 0; i < arr.length; ++i){
-      bubbelesArr[i].join();}
+//    for (int i = 0; i < arr.length; i++){
+//      bubbelesArr[i].start();}
+//
+//    for (int i = 0; i < arr.length; ++i){
+//      bubbelesArr[i].join();}
   }
 
 }

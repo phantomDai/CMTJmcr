@@ -40,8 +40,9 @@ public class ReadNode extends AbstractNode implements IMemNode
      * @author Alan
      */
 	private String label;
+	private String methodName;
 	
-	public ReadNode(long GID, long tid, int ID, String addr, String value, TYPE type, String label)
+	public ReadNode(long GID, long tid, int ID, String addr, String value, TYPE type, String label,String methodName)
 	{
 		super(GID, tid, ID, type, label);
 		this.addr = addr;
@@ -49,6 +50,7 @@ public class ReadNode extends AbstractNode implements IMemNode
 		
 		//Alan
 		this.label = label;
+		this.methodName = methodName;
 	}
 
 	public String getLabel(){
@@ -65,10 +67,15 @@ public class ReadNode extends AbstractNode implements IMemNode
 		return addr;
 	}
 
+	public String getMethodName(){
+		return methodName;
+	}
+
+
 	public String toString()
 	{
 		
-			return GID+": thread "+tid+ " "+ID+" "+addr+" "+value+" "+type;
+			return GID+": thread "+tid+ " "+ID+" "+addr+" "+value+" "+type+" "+methodName;
 	}
 
 

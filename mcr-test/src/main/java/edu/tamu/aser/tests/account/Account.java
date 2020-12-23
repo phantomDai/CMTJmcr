@@ -1,7 +1,7 @@
 package edu.tamu.aser.tests.account;
 
 public class Account {
-    double amount;
+    static double amount;
     String name;
 
     public Account(String nm, double amnt) {

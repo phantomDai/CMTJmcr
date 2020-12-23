@@ -12,38 +12,32 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4MCRRunner.class)
 public class SimpleRWW {
 
-    static int x;
-
-    static void readAndWrite(){
-        int y = 2;
-
-        y = y + 10;
-
-        x = x + 3;
-
+    static int a;
+    static void f1(){
+        a = a + 2;
     }
 
-    static void write(){
-        x = 5;
+    static void f2(){
+        a = 3;
 
     }
 
     @Test
     public void testcase(){
 
-        x=1;
+        a=1;
 
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                readAndWrite();
+                f1();
             }
         });
 
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                write();
+                f2();
             }
         });
 

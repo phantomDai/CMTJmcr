@@ -1,7 +1,5 @@
 package edu.tamu.aser;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 import java.util.Map.Entry;
 import edu.tamu.aser.config.Configuration;
@@ -25,6 +23,7 @@ import edu.tamu.aser.trace.WriteNode;
  *
  */
 public class ExploreSeedInterleavings {
+	public static StringBuffer getString = new StringBuffer();
 	private Queue<List<String>> schedules;
 
 	private static int schedule_id;
@@ -32,6 +31,7 @@ public class ExploreSeedInterleavings {
     public static HashSet<Object> races = new HashSet<Object>();
 	private static boolean isfulltrace =false;
 	private static ConstraintsBuildEngine iEngine;
+	private static int times = 0;
 	
 	//prefix-setOfEquivalentPrefixes_map
 	static HashMap<Vector<String>, Set<Vector<String>>> mapPrefixEquivalent = new HashMap<>();
@@ -83,30 +83,117 @@ public class ExploreSeedInterleavings {
 	 */
 	private void genereteCausallyDifferentSchedules(ConstraintsBuildEngine engine, Trace trace, Vector<String> schedule_prefix)
 	{
-		System.out.println("------trace----");
-		for (int t=0;t<=trace.getFullTrace().size()-1;t++) {
-			if (trace.getFullTrace().get(t).getType() == AbstractNode.TYPE.READ ||
-					trace.getFullTrace().get(t).getType() == AbstractNode.TYPE.WRITE) {
-				for (String add : trace.getTraceInfo().getSharedAddresses()) {
-					if (trace.getFullTrace().get(t).getAddr().equals(add)) {
-						String address = trace.getFullTrace().get(t).getAddr();
-						int index = address.indexOf(".");
-						int SID = Integer.parseInt(address.substring(index + 1));
+        System.out.println("------trace----");
+        long start = System.currentTimeMillis();
+        int count=0;
+
+		System.out.println(System.currentTimeMillis());
+        for (int i=0;i<trace.getFullTrace().size();i++){
+        	if (i==0) {
+				times++;
+
+			}
+			if (times==1) {
+        		if (count==0){
+					try {
+						File file = new File("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceTrace\\Critical.txt");
+
+						FileWriter fileWriter1 =new FileWriter(file);
+						fileWriter1.write("");
+						fileWriter1.flush();
+						fileWriter1.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+					try {
+						File file1 = new File("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\Critical.txt");
+
+						FileWriter fileWriter11 =new FileWriter(file1);
+						fileWriter11.write("");
+						fileWriter11.flush();
+						fileWriter11.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				PrintStream oldAll = System.out;
+        		ByteArrayOutputStream all = new ByteArrayOutputStream();
+        		System.setOut(new PrintStream(all));
+        		System.out.println(trace.getFullTrace().get(i));
+        		System.setOut(oldAll);
+        		FileWriter fileWriter = null;
+
+        		try {
+
+
+						fileWriter = new FileWriter("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceTrace\\Critical.txt", true);
+
+							fileWriter.write(all.toString());
+							fileWriter.flush();
+        		} catch (IOException e) {
+						e.printStackTrace();
+        		} finally {
+						if (fileWriter != null) {
+							try {
+								fileWriter.close();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+        		}
+
+        		if (trace.getFullTrace().get(i).getType() == AbstractNode.TYPE.READ ||
+							trace.getFullTrace().get(i).getType() == AbstractNode.TYPE.WRITE) {
+						for (String add : trace.getTraceInfo().getSharedAddresses()) {
+							if (trace.getFullTrace().get(i).getAddr().equals(add)) {
+								String address = trace.getFullTrace().get(i).getAddr();
+								int index = address.indexOf(".");
+								int SID = Integer.parseInt(address.substring(index + 1));
 //						 System.out.println("第" + trace.getFullTrace().get(t).getGID() + "个事件为：" +
 //								 " 线程Thread-" + trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid()) +
 //								 " 对" + trace.getSharedVarIdMap().get(SID) +
 //								 "在" + trace.getFullTrace().get(t).getLabel() +
 //								 "进行" + trace.getFullTrace().get(t).getType() + "操作" + "值为" + trace.getFullTrace().get(t).getValue());
-						System.out.println(trace.getFullTrace().get(t).getGID()+" "+
-								trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid())+" "+
-								trace.getFullTrace().get(t).getLabel()+" "+
-								trace.getSharedVarIdMap().get(SID)+" "+
-								trace.getFullTrace().get(t).getType() +" "+
-								trace.getFullTrace().get(t).getValue());
+
+								PrintStream oldPrintStream = System.out;
+								ByteArrayOutputStream bos = new ByteArrayOutputStream();
+								System.setOut(new PrintStream(bos));
+								System.out.println(trace.getFullTrace().get(i).getGID()+" "+
+										trace.getThreadIdNameMap().get(trace.getFullTrace().get(i).getTid())+" "+
+										trace.getFullTrace().get(i).getLabel()+" "+
+										trace.getSharedVarIdMap().get(SID)+" "+
+										trace.getFullTrace().get(i).getType() +" "+
+										trace.getFullTrace().get(i).getMethodName()+ "\n");
+								System.setOut(oldPrintStream);
+//						traceBuffer = traceBuffer.append(bos.toString());
+
+								FileWriter fileWriter2 = null;
+								try {
+
+									fileWriter2 = new FileWriter("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\Critical.txt",true);
+
+									fileWriter2.write(bos.toString());
+									fileWriter2.flush();
+								} catch (IOException e) {
+									e.printStackTrace();
+								} finally {
+									if (fileWriter2!=null){
+										try{
+											fileWriter2.close();
+										} catch (IOException e){
+											e.printStackTrace();
+										}
+									}
+								}
+							}
+						}
 					}
 				}
-			}
+				count++;
+
 		}
+
 		//OMCR
 		Vector<HashMap<String, Set<Vector<String>>>> vReadValuePrefixes =
 				new Vector<>();

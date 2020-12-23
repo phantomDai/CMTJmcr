@@ -1,5 +1,7 @@
 package edu.tamu.aser.instrumentation;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
@@ -131,6 +133,19 @@ public class Instrumentor {
                             classfileBuffer = classWriter.toByteArray();
 
                         }
+                        File dir = new File("out");
+                        if (!dir.exists()) {
+                            dir.mkdir();
+                        }
+
+                        File classFile = new File(dir, className.replace("/", ".") + ".class");
+                        System.out.println("class file path: " + classFile.getAbsolutePath());
+                        classFile.createNewFile();
+                        System.out.println("Writing " + className);
+                        byte[] code = classWriter.toByteArray();
+                        FileOutputStream fos = new FileOutputStream(classFile);
+                        fos.write(code);
+                        fos.close();
 
                     }
                 } catch (Throwable th) {

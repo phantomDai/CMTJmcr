@@ -1,5 +1,10 @@
 package edu.tamu.aser;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Queue;
 import java.util.Vector;
@@ -76,6 +81,31 @@ public class StartExploring implements Runnable {
 //			}
 //			System.out.println("--------------shared------------");
 //			System.out.println(traceObj.getSharedVariables());
+			for (String sv : traceObj.getSharedVarIdMap().values()){
+				PrintStream oldPrintStream = System.out;
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+				System.setOut(new PrintStream(bos));
+				System.out.println(sv);
+				System.setOut(oldPrintStream);
+//						traceBuffer = traceBuffer.append(bos.toString());
+				FileWriter fileWriter = null;
+				try {
+
+					fileWriter = new FileWriter("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sharedvariable\\Critical.txt",true);
+					fileWriter.write(bos.toString());
+					fileWriter.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					if (fileWriter!=null){
+						try{
+							fileWriter.close();
+						} catch (IOException e){
+							e.printStackTrace();
+						}
+					}
+				}
+			}
 
 			//build SMT constraints over the trace and search alternative prefixes
 			explore.execute(traceObj, schedule_prefix);
@@ -86,7 +116,8 @@ public class StartExploring implements Runnable {
 		}
 		finally {
 //			if (Configuration.DEBUG) {
-				System.out.println("  Exploration Done with this trace! >>\n\n");
+
+				System.out.println(System.currentTimeMillis()+String.format(" %tT", Calendar.getInstance())+"  Exploration Done with this trace! >>\n\n" );
 //			}
 		}
 	}

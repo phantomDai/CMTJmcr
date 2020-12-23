@@ -112,7 +112,6 @@ public class JUnit4MCRRunner extends BlockJUnit4ClassRunner {
      */
     @Override
     protected void runChild(final FrameworkMethod method, RunNotifier notifier) {
-        
         this.currentTestMethod = method;
         this.currentTestNotifier = notifier;
         Trace.appname = method.getMethod().getDeclaringClass().getName();
