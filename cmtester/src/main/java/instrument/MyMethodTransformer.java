@@ -108,7 +108,7 @@ public class MyMethodTransformer extends AdviceAdapter implements Opcodes {
         mv.visitLdcInsn(new Integer(lineNumber));
         if (isBefore) {
             mv.visitMethodInsn(Opcodes.INVOKESTATIC,
-                    Instrumentor.EVENT_RECIEVER,
+                    Instrumentor.EVENT_RECIEVER, //只需要根据Instrumentor中的常量修改
                     "beforeFieldRead",
                     BOOL_3STRINGS_INT_VOID);
         } else {

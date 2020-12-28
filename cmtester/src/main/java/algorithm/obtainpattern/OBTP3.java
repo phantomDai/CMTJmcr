@@ -119,7 +119,6 @@ public class OBTP3 extends OBTP implements ObtainPattern{
     }
 
     public static void main(String[] args){
-
         ObtainPattern obtp = new OBTP3();
         List<String> sourceSeq = obtp.getTrace("F:\\gengning\\workplace\\CMT\\SE\\Critical.txt");
         String info = obtp.obtainPattern(sourceSeq);

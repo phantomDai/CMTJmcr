@@ -1,18 +1,19 @@
 package algorithm.obtainpattern;
 
 
+import constants.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author GN
- * @description
+ * @description 匹配蜕变模式组
  * @date 2020/10/30
  */
 public class Test {
     public static void main(String[] args){
             long start = System.currentTimeMillis();
-            String path = "G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\critical.txt";
             ObtainPattern obtpg1 = new OBTP1();
             ObtainPattern obtpg2 = new OBTP2();
             ObtainPattern obtpg3 = new OBTP3();
@@ -21,12 +22,12 @@ public class Test {
             ObtainPattern obtpg6 = new OBTP6();
             List<String> groups = new ArrayList<>();
 
-            String isMatchg1 = obtpg1.obtainPattern(obtpg1.getTrace(path));
-            String isMatchg2 = obtpg2.obtainPattern(obtpg2.getTrace(path));
-            String isMatchg3 = obtpg3.obtainPattern(obtpg3.getTrace(path));
-            String isMatchg4 = obtpg4.obtainPattern(obtpg4.getTrace(path));
-            String isMatchg5 = obtpg5.obtainPattern(obtpg5.getTrace(path));
-            String isMatchg6 = obtpg6.obtainPattern(obtpg6.getTrace(path));
+            String isMatchg1 = obtpg1.obtainPattern(obtpg1.getTrace(Constants.SOURCEEVENT_PATH));
+            String isMatchg2 = obtpg2.obtainPattern(obtpg2.getTrace(Constants.SOURCEEVENT_PATH));
+            String isMatchg3 = obtpg3.obtainPattern(obtpg3.getTrace(Constants.SOURCEEVENT_PATH));
+            String isMatchg4 = obtpg4.obtainPattern(obtpg4.getTrace(Constants.SOURCEEVENT_PATH));
+            String isMatchg5 = obtpg5.obtainPattern(obtpg5.getTrace(Constants.SOURCEEVENT_PATH));
+            String isMatchg6 = obtpg6.obtainPattern(obtpg6.getTrace(Constants.SOURCEEVENT_PATH));
 
             groups.add(isMatchg1);
             groups.add(isMatchg2);

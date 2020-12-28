@@ -18,6 +18,11 @@ public class MP34Cri extends MP implements MetamorphicPattern {
         return sortSeq(followSeq);
     }
 
+    /**
+     * 生成衍生测试用例要执行的序列
+     * @param sourceSeq：原始测试用例的读写事件
+     * @return
+     */
     public List<String> followUpSeqWithoutSort(List<String> sourceSeq){
 
         List<String> followSeq = new ArrayList<>();
@@ -203,16 +208,6 @@ public class MP34Cri extends MP implements MetamorphicPattern {
                             String event = tempList.get(k).split(" ")[4];
                             String unite = tempList.get(k).split(BLANK)[5];
                             if (Tid.equals(T2) && event.equals("WRITE")&& unite.equals(myunite)) {
-//                            System.out.println(tempList.get(k-1));
-//                                if (tempList.get(k - 1).split(BLANK)[1].equals(Tid)
-//                                        && tempList.get(k - 1).split(BLANK)[4].equals(READ)
-//                                        && tempList.get(k - 1).split(BLANK)[5].equals(myunite)) {
-//                                    followSeq.add(tempList.get(k - 1));
-//                                    followSeq.add(tempList.get(k));
-//                                    tempList.remove(k - 1);
-//                                    tempList.remove(k - 1);
-//                                    break;
-//                                } else {
                                 followSeq.add(tempList.get(k));
                                 tempList.remove(tempList.get(k));
                                 break;
@@ -244,7 +239,7 @@ public class MP34Cri extends MP implements MetamorphicPattern {
 
     public static void main(String[] args){
         MetamorphicPattern mp = new MP34Cri();
-        List<String> sourceSeq = getsourceSeq("F:\\gengning\\workplace\\CMT\\SE\\Critical.txt");
+        List<String> sourceSeq = getsourceSeq("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\Critical.txt");
         List<String> follSeq = mp.followUpSeqWithoutSort(sourceSeq);
         List<String> followUpSeq = mp.followUpSeq(follSeq);
 //        System.out.println(followUpSeq);

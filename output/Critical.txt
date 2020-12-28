@@ -13,22 +13,18 @@ In critical section,thread number:0
 Out critical section,thread number:0
 In critical section,thread number:1
 Out critical section,thread number:1
+In critical section,thread number:1
 source output:
 In critical section,thread number:0
+Out critical section,thread number:0
+Out critical section,thread number:1
+In critical section,thread number:1
+In critical section,thread number:0
+source output:
+Out critical section,thread number:1
+Out critical section,thread number:0
 source output:
 In critical section,thread number:0
 Out critical section,thread number:0
 In critical section,thread number:1
 Out critical section,thread number:1
-source output:
-In critical section,thread number:0
-Out critical section,thread number:0
-In critical section,thread number:1
-Out critical section,thread number:1
-source output:
-In critical section,thread number:0
-Out critical section,thread number:0
-In critical section,thread number:1
-Out critical section,thread number:1
-source output:
-In critical section,thread number:0

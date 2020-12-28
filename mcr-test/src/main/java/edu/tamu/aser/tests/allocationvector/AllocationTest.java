@@ -9,46 +9,46 @@ public class AllocationTest {
 
     public static void main(String[] args) throws Exception {
         AllocationTest allocationTest = new AllocationTest();
-        allocationTest.testOneTenthAllocation();
-        allocationTest.testOneTenthFreeing();
-        allocationTest.testOneTenthAllocationAndFree();
-        allocationTest.testHalfAllocation();
-        allocationTest.testHalfFreeing();
-        allocationTest.testHalfAllocationAndFree();
+//        allocationTest.testOneTenthAllocation();
+//        allocationTest.testOneTenthFreeing();
+//        allocationTest.testOneTenthAllocationAndFree();
+//        allocationTest.testHalfAllocation();
+//        allocationTest.testHalfFreeing();
+//        allocationTest.testHalfAllocationAndFree();
         allocationTest.testFullAllocation();
         allocationTest.testFullFreeing();
         allocationTest.testFullAllocationAndFree();
     }
 
-    @Test
-    public void testOneTenthAllocation() throws Exception {
-        allocateAndEnsureNoErrors(40, 2, 2);
-    }
-
-    @Test
-    public void testOneTenthFreeing() throws Exception {
-        freeAndEnsureNoErrors(40, 2, 2);
-    }
-
-    @Test
-    public void testOneTenthAllocationAndFree() throws Exception {
-        allocateAndFreeAndEnsureNoErrors(40, 2, 2);
-    }
-
-    @Test
-    public void testHalfAllocation() throws Exception {
-        allocateAndEnsureNoErrors(8, 2, 2);
-    }
-
-    @Test
-    public void testHalfFreeing() throws Exception {
-        freeAndEnsureNoErrors(8, 2, 2);
-    }
-
-    @Test
-    public void testHalfAllocationAndFree() throws Exception {
-        allocateAndFreeAndEnsureNoErrors(8, 2, 2);
-    }
+//    @Test
+//    public void testOneTenthAllocation() throws Exception {
+//        allocateAndEnsureNoErrors(40, 2, 2);
+//    }
+//
+//    @Test
+//    public void testOneTenthFreeing() throws Exception {
+//        freeAndEnsureNoErrors(40, 2, 2);
+//    }
+//
+//    @Test
+//    public void testOneTenthAllocationAndFree() throws Exception {
+//        allocateAndFreeAndEnsureNoErrors(40, 2, 2);
+//    }
+//
+//    @Test
+//    public void testHalfAllocation() throws Exception {
+//        allocateAndEnsureNoErrors(8, 2, 2);
+//    }
+//
+//    @Test
+//    public void testHalfFreeing() throws Exception {
+//        freeAndEnsureNoErrors(8, 2, 2);
+//    }
+//
+//    @Test
+//    public void testHalfAllocationAndFree() throws Exception {
+//        allocateAndFreeAndEnsureNoErrors(8, 2, 2);
+//    }
 
     @Test
     public void testFullAllocation() throws Exception {

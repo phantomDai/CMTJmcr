@@ -14,6 +14,8 @@ public class Instrumentor {
     public static String EVENT_RECIEVER = "scheduler/Scheduler";
     public static String EVENT_RECIEVER2 = "scheduler/Scheduler4Acc";
     public static String EVENT_RECIEVER3 = "scheduler/Scheduler4Air";
+    public static String EVENT_RECIEVER4 = "scheduler/Scheduler4PingPong";
+    //每测一个程序都需要在这里创建一个新的常量，然后再下面的逻辑中进行配置（根据不同的程序名字调用不同的ClassTransformer）
 
     /**
      * 拦截字节码
@@ -78,6 +80,31 @@ public class Instrumentor {
                 ClassVisitor myClassTransformer = new MyClassTransformer4Air(classWriter4Air);
                 classReader4Air.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
                 classfileBuffer = classWriter4Air.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/pingpong")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4PingPong(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
                 File dir = new File("out");
                 if (!dir.exists()) {
                     dir.mkdir();

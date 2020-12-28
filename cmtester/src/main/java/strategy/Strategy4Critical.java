@@ -35,6 +35,12 @@ public class Strategy4Critical implements Strategy{
     private static List<String> followUpSeq4 = mp4.followUpSeq(mp4.followUpSeqWithoutSort(MP.getsourceSeq(path)));
     private static List<String> followUpSeq5 = mp5.followUpSeq(mp5.followUpSeqWithoutSort(MP.getsourceSeq(path)));
 
+    /**
+     * 根据蜕变模式执行
+     * @param MPName
+     * @param pausedThreadInfos
+     * @return
+     */
     public  ThreadInfo choose(String MPName, Set<ThreadInfo> pausedThreadInfos){
         //选择的线程
         ThreadInfo choice=null;

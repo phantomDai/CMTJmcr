@@ -14,11 +14,6 @@ import java.util.List;
  */
 public class MP14Air extends MP implements MetamorphicPattern {
 
-//    @Override
-//    public List<String> getsourceSeq(String path) {
-//        OBTP1 obtp = new OBTP1();
-//        return obtp.getTrace(path);
-//    }
 
     @Override
     public List<String> followUpSeq(List<String> followSeq) {
@@ -50,7 +45,7 @@ public class MP14Air extends MP implements MetamorphicPattern {
         HashSet<String> threadSet = new HashSet<>();
 
         for (String infote:sourceSeq){
-            source.add(infote.split(BLANK)[1]+infote.split(BLANK)[4]+infote.split(BLANK)[5]+infote.split(BLANK)[3]);
+//            source.add(infote.split(BLANK)[1]+infote.split(BLANK)[4]+infote.split(BLANK)[5]+infote.split(BLANK)[3]);
             threadSet.add(infote.split(" ")[1]);
         }
 
@@ -73,12 +68,6 @@ public class MP14Air extends MP implements MetamorphicPattern {
                 //如果当前事件是一个读事件，就把它加到衍生序列中
                 if (myevent.equals("READ") && sourceSeq.get(i+1).split(BLANK)[4].equals(WRITE)
                         && sourceSeq.get(i+1).split(BLANK)[3].equals(myvar)) {
-                    //为了保证happens-before
-//                    followSeq.add(sourceSeq.get(i-1));
-//                    added.add(T1 + myunite + myevent + myvar);
-//                    followSeq.add(sourceSeq.get(i));
-//                    added.add(T1 + myunite + myevent+myvar);
-//                    thSet.add(T1);
                     //第二次遍历原始序列中的每个事件
                     for (int j = followSeq.size(); j < sourceSeq.size(); j++) {
                         //第二次遍历到的事件的线程、事件类型

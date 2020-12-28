@@ -56,6 +56,7 @@ public class OBTP4 extends OBTP implements ObtainPattern{
 
         /*
         特征4：涉及一个共享变量两个线程，包含一个线程对变量的两次写操作和另一个线程对变量的一次写操作
+        另外需要写操作后面需要有读操作
          */
         boolean isMatchg4 = false;
         if (threadSet.size() > 1 && variableSet.size() == 1 ) {
@@ -63,33 +64,20 @@ public class OBTP4 extends OBTP implements ObtainPattern{
                 ArrayList<ArrayList<String>> arrayLists = new ArrayList<>(theveMap.values());
                 for (int i = 0; i < arrayLists.size(); i++) {
                     List<String> sublist = arrayLists.get(i);
-//                    System.out.println("1----"+arrayLists);
-//                    System.out.println("1-----"+sublist);
-
-//                    System.out.println(sublist.indexOf("WRITE"+sharedVariable)!=sublist.lastIndexOf("WRITE"+sharedVariable));
 
                     if (sublist.indexOf("WRITE "+sharedVariable)!=sublist.lastIndexOf("WRITE "+sharedVariable)){
-//                  sublist.remove("WRITE" + sharedVariable);
-//                        System.out.println("2.1-----"+arrayLists);
-//                        System.out.println("2.1-----"+sublist);
-//                        if (sublist.contains("WRITE" + sharedVariable)) {
                             for (int j = 0; j < arrayLists.size(); j++) {
                                 if (j != i) {
                                     for (String sv2:variableSet) {
-//                                        if (!sv2.equals(sharedVariable)) {
-//                                    System.out.println("3.1-----------"+arrayLists.get(j));
                                             if (arrayLists.get(j).contains("WRITE " + sv2)) {
-
                                                 isMatchg4 = true;
                                                 break firstoutter;
                                             }
-//                                        }
                                     }
                                 }
                             }
 //                        }
                     }
-
                 }
             }
 

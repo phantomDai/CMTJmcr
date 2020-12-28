@@ -20,6 +20,7 @@ public class Scheduler {
 
     private static int count=0;
 
+    // 这个类初次被调用这个守护进程就开启，并顺序执行
     static {
         //声明变量的过程
         initState();
@@ -57,7 +58,7 @@ public class Scheduler {
                 }
             }
         });
-        thread.setDaemon(true);
+        thread.setDaemon(true); //设置守护进程
         thread.start();
     }
 
@@ -77,6 +78,13 @@ public class Scheduler {
         beforeEvent(isRead, methodName, fieldName, desc);
     }
 
+    /**
+     * 线程到一个点暂停
+     * @param isRead
+     * @param methodName
+     * @param name
+     * @param desc
+     */
     public static void beforeEvent(boolean isRead, String methodName, String name, String desc) {
 //
         String action = isRead ? "READ" : "WRITE";

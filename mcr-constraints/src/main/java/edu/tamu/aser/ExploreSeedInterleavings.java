@@ -23,6 +23,10 @@ import edu.tamu.aser.trace.WriteNode;
  *
  */
 public class ExploreSeedInterleavings {
+
+	private static String SOURCETRACE = "G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceTrace\\sourceTrace.txt";
+	private static String SOURCEEVENT = "G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\sourceEvent.txt";
+
 	public static StringBuffer getString = new StringBuffer();
 	private Queue<List<String>> schedules;
 
@@ -83,20 +87,34 @@ public class ExploreSeedInterleavings {
 	 */
 	private void genereteCausallyDifferentSchedules(ConstraintsBuildEngine engine, Trace trace, Vector<String> schedule_prefix)
 	{
-        System.out.println("------trace----");
-        long start = System.currentTimeMillis();
+		File file11 = new File(SOURCETRACE);
+		if (file11.exists()){
+			file11.delete();
+		}
+
+		File file22 = new File(SOURCEEVENT);
+		if (file22.exists()){
+			file22.delete();
+		}
+
+
+
+
+
+
+//        System.out.println("------trace----");
+//        long start = System.currentTimeMillis();
         int count=0;
 
-		System.out.println(System.currentTimeMillis());
+//		System.out.println(System.currentTimeMillis());
         for (int i=0;i<trace.getFullTrace().size();i++){
         	if (i==0) {
 				times++;
-
 			}
 			if (times==1) {
         		if (count==0){
 					try {
-						File file = new File("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceTrace\\Critical.txt");
+						File file = new File(SOURCETRACE);
 
 						FileWriter fileWriter1 =new FileWriter(file);
 						fileWriter1.write("");
@@ -107,7 +125,7 @@ public class ExploreSeedInterleavings {
 					}
 
 					try {
-						File file1 = new File("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\Critical.txt");
+						File file1 = new File(SOURCETRACE);
 
 						FileWriter fileWriter11 =new FileWriter(file1);
 						fileWriter11.write("");
@@ -127,7 +145,7 @@ public class ExploreSeedInterleavings {
         		try {
 
 
-						fileWriter = new FileWriter("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceTrace\\Critical.txt", true);
+						fileWriter = new FileWriter(SOURCETRACE, true);
 
 							fileWriter.write(all.toString());
 							fileWriter.flush();
@@ -143,6 +161,7 @@ public class ExploreSeedInterleavings {
 						}
         		}
 
+        		// 从原始测试用例的执行轨迹中识别读写事件
         		if (trace.getFullTrace().get(i).getType() == AbstractNode.TYPE.READ ||
 							trace.getFullTrace().get(i).getType() == AbstractNode.TYPE.WRITE) {
 						for (String add : trace.getTraceInfo().getSharedAddresses()) {
@@ -150,12 +169,6 @@ public class ExploreSeedInterleavings {
 								String address = trace.getFullTrace().get(i).getAddr();
 								int index = address.indexOf(".");
 								int SID = Integer.parseInt(address.substring(index + 1));
-//						 System.out.println("第" + trace.getFullTrace().get(t).getGID() + "个事件为：" +
-//								 " 线程Thread-" + trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid()) +
-//								 " 对" + trace.getSharedVarIdMap().get(SID) +
-//								 "在" + trace.getFullTrace().get(t).getLabel() +
-//								 "进行" + trace.getFullTrace().get(t).getType() + "操作" + "值为" + trace.getFullTrace().get(t).getValue());
-
 								PrintStream oldPrintStream = System.out;
 								ByteArrayOutputStream bos = new ByteArrayOutputStream();
 								System.setOut(new PrintStream(bos));
@@ -166,13 +179,11 @@ public class ExploreSeedInterleavings {
 										trace.getFullTrace().get(i).getType() +" "+
 										trace.getFullTrace().get(i).getMethodName()+ "\n");
 								System.setOut(oldPrintStream);
-//						traceBuffer = traceBuffer.append(bos.toString());
 
 								FileWriter fileWriter2 = null;
 								try {
 
-									fileWriter2 = new FileWriter("G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\Critical.txt",true);
-
+									fileWriter2 = new FileWriter(SOURCEEVENT,true);
 									fileWriter2.write(bos.toString());
 									fileWriter2.flush();
 								} catch (IOException e) {
@@ -194,152 +205,152 @@ public class ExploreSeedInterleavings {
 
 		}
 
-		//OMCR
-		Vector<HashMap<String, Set<Vector<String>>>> vReadValuePrefixes =
-				new Vector<>();
-		/*
-		 * for each shared variable, find all the reads and writes to this variable
-		 * group the writes based on the value written to this variable
-		 * consider each read to check if it can see a different value
-		 */
-		for (String addr : trace.getIndexedThreadReadWriteNodes().keySet()) {
-
-			//the dynamic memory location
-			//get the initial value on this address
-			final String initVal = trace.getInitialWriteValueMap().get(addr);
-
-			//get all read nodes on the address
-			Vector<ReadNode> readnodes = trace.getIndexedReadNodes().get(addr);
-
-			//get all write nodes on the address
-			Vector<WriteNode> writenodes = trace.getIndexedWriteNodes().get(addr);
-
-			//skip if there is no write events to the address
-			if (writenodes == null || writenodes.size() < 1)
-				continue;
-
-			//check if local variable
-			if (trace.isLocalAddress(addr))
-				continue;
-
-			HashMap<String, ArrayList<WriteNode>> valueMap = new HashMap<String, ArrayList<WriteNode>>();
-			//group writes by their value
-			for (WriteNode wnode : writenodes) {
-				String v = wnode.getValue();
-				ArrayList<WriteNode> list = valueMap.get(v);
-				if (list == null) {
-					list = new ArrayList<>();
-					valueMap.put(v, list);
-				}
-				list.add(wnode);
-			}
-
-			//check read-write
-			if (readnodes != null) {
-				for (ReadNode readnode : readnodes) {
-
-					HashMap<String, Set<Vector<String>>> mValuesPrefixes = new HashMap<>();
-					//if isfulltrace, only consider the read nodes that happen after the prefix
-					if (isfulltrace && readnode.getGID() <= schedule_prefix.size())
-						continue;
-
-					String rValue = readnode.getValue();
-					//1. first check if the rnode can read from the initial value which is different from rValue
-					boolean success = false;
-					if (initVal == null && !rValue.equals("0")
-							|| initVal != null && !initVal.equals(rValue)) {
-						success = checkInitial(engine, trace, schedule_prefix, writenodes,
-								readnode, initVal, mValuesPrefixes);
-					}
-
-					//2. then check if it can read from a particular write
-					for (final String wValue : valueMap.keySet()) {
-						if (!wValue.equals(rValue)) {
-							//if it already reads from the initial value, then skip it
-							if (wValue.equals(initVal) && success) {
-								continue;
-							}
-							checkReadWrite(engine, trace, schedule_prefix, valueMap, readnode, wValue, mValuesPrefixes);
-						}
-					}
-					//for each read, add the values and the corresponding prefixes to the vector
-					if (!mValuesPrefixes.isEmpty()) {
-						vReadValuePrefixes.add(mValuesPrefixes);
-					}
-				} //end for check read write
-			}
-		}  //end while
-		
-		memUsed += memSize(vReadValuePrefixes);
-		
-		if (Configuration.OMCR) {
-			//local
-			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass =
-					new HashMap<>();
-			//compute the equivalent prefixes
-			computeEquPrefixes(vReadValuePrefixes,trace, localMapPrefixEquClass);
-			memUsed += memSize(localMapPrefixEquClass);
-			//
-			Set<Vector<String>> equPrefixes = null;
-			if (mapPrefixEquivalent.containsKey(schedule_prefix)) {
-				equPrefixes = mapPrefixEquivalent.get(schedule_prefix);
-			}		
-			//check each new prefix
-			//for each read
-            for (HashMap<String, Set<Vector<String>>> valuePrefixes : vReadValuePrefixes) {
-                //for each value
-                for (Set<Vector<String>> setPrefixes : valuePrefixes.values()) {
-                    //choose the prefix with max equivalent prefixes
-                    int num = 0;
-                    Iterator<Vector<String>> itPrefix = setPrefixes.iterator();
-                    Vector<String> prefix = null;
-
-                    //for each prefix that make the read return the value
-                    while (itPrefix.hasNext()) {
-                        Vector<String> tmp = itPrefix.next();
-                        Vector<String> prefix1 = new Vector<>();
-                        for (String xi : tmp) {
-                            long gid = Long.valueOf(xi.substring(1));
-                            long tid = trace.getNodeGIDTIdMap().get(gid);
-                            String name = trace.getThreadIdNameMap().get(tid);
-                            prefix1.add(name);
-                        }
-
-                        int flag = 0;
-                        if (equPrefixes != null) {
-                            //it may not in the same order
-                            for (Vector<String> p : equPrefixes) {
-                                Vector<String> copy = new Vector<>(p);
-                                Collections.sort(copy);
-                                Collections.sort(prefix1);
-                                if (copy.equals(prefix1)) {
-//									System.err.println("test");
-                                    flag = 1;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (flag == 1) {
-                            continue;
-                        }
-
-                        if (localMapPrefixEquClass.containsKey(tmp)) {
-                            if (localMapPrefixEquClass.get(tmp).size() > num) {
-                                num = localMapPrefixEquClass.get(tmp).size();
-                                prefix = tmp;
-                            }
-                        } else if (prefix == null) {
-                            prefix = tmp;
-                        }
-                    }
-
-                    if (prefix != null) {
-                        omcrGenSchedule(trace, prefix, schedule_prefix, localMapPrefixEquClass);
-                    }
-                }
-            }
-		}
+//		//OMCR
+//		Vector<HashMap<String, Set<Vector<String>>>> vReadValuePrefixes =
+//				new Vector<>();
+//		/*
+//		 * for each shared variable, find all the reads and writes to this variable
+//		 * group the writes based on the value written to this variable
+//		 * consider each read to check if it can see a different value
+//		 */
+//		for (String addr : trace.getIndexedThreadReadWriteNodes().keySet()) {
+//
+//			//the dynamic memory location
+//			//get the initial value on this address
+//			final String initVal = trace.getInitialWriteValueMap().get(addr);
+//
+//			//get all read nodes on the address
+//			Vector<ReadNode> readnodes = trace.getIndexedReadNodes().get(addr);
+//
+//			//get all write nodes on the address
+//			Vector<WriteNode> writenodes = trace.getIndexedWriteNodes().get(addr);
+//
+//			//skip if there is no write events to the address
+//			if (writenodes == null || writenodes.size() < 1)
+//				continue;
+//
+//			//check if local variable
+//			if (trace.isLocalAddress(addr))
+//				continue;
+//
+//			HashMap<String, ArrayList<WriteNode>> valueMap = new HashMap<String, ArrayList<WriteNode>>();
+//			//group writes by their value
+//			for (WriteNode wnode : writenodes) {
+//				String v = wnode.getValue();
+//				ArrayList<WriteNode> list = valueMap.get(v);
+//				if (list == null) {
+//					list = new ArrayList<>();
+//					valueMap.put(v, list);
+//				}
+//				list.add(wnode);
+//			}
+//
+//			//check read-write
+//			if (readnodes != null) {
+//				for (ReadNode readnode : readnodes) {
+//
+//					HashMap<String, Set<Vector<String>>> mValuesPrefixes = new HashMap<>();
+//					//if isfulltrace, only consider the read nodes that happen after the prefix
+//					if (isfulltrace && readnode.getGID() <= schedule_prefix.size())
+//						continue;
+//
+//					String rValue = readnode.getValue();
+//					//1. first check if the rnode can read from the initial value which is different from rValue
+//					boolean success = false;
+//					if (initVal == null && !rValue.equals("0")
+//							|| initVal != null && !initVal.equals(rValue)) {
+//						success = checkInitial(engine, trace, schedule_prefix, writenodes,
+//								readnode, initVal, mValuesPrefixes);
+//					}
+//
+//					//2. then check if it can read from a particular write
+//					for (final String wValue : valueMap.keySet()) {
+//						if (!wValue.equals(rValue)) {
+//							//if it already reads from the initial value, then skip it
+//							if (wValue.equals(initVal) && success) {
+//								continue;
+//							}
+//							checkReadWrite(engine, trace, schedule_prefix, valueMap, readnode, wValue, mValuesPrefixes);
+//						}
+//					}
+//					//for each read, add the values and the corresponding prefixes to the vector
+//					if (!mValuesPrefixes.isEmpty()) {
+//						vReadValuePrefixes.add(mValuesPrefixes);
+//					}
+//				} //end for check read write
+//			}
+//		}  //end while
+//
+//		memUsed += memSize(vReadValuePrefixes);
+//
+//		if (Configuration.OMCR) {
+//			//local
+//			HashMap<Vector<String>, Set<Vector<String>>> localMapPrefixEquClass =
+//					new HashMap<>();
+//			//compute the equivalent prefixes
+//			computeEquPrefixes(vReadValuePrefixes,trace, localMapPrefixEquClass);
+//			memUsed += memSize(localMapPrefixEquClass);
+//			//
+//			Set<Vector<String>> equPrefixes = null;
+//			if (mapPrefixEquivalent.containsKey(schedule_prefix)) {
+//				equPrefixes = mapPrefixEquivalent.get(schedule_prefix);
+//			}
+//			//check each new prefix
+//			//for each read
+//            for (HashMap<String, Set<Vector<String>>> valuePrefixes : vReadValuePrefixes) {
+//                //for each value
+//                for (Set<Vector<String>> setPrefixes : valuePrefixes.values()) {
+//                    //choose the prefix with max equivalent prefixes
+//                    int num = 0;
+//                    Iterator<Vector<String>> itPrefix = setPrefixes.iterator();
+//                    Vector<String> prefix = null;
+//
+//                    //for each prefix that make the read return the value
+//                    while (itPrefix.hasNext()) {
+//                        Vector<String> tmp = itPrefix.next();
+//                        Vector<String> prefix1 = new Vector<>();
+//                        for (String xi : tmp) {
+//                            long gid = Long.valueOf(xi.substring(1));
+//                            long tid = trace.getNodeGIDTIdMap().get(gid);
+//                            String name = trace.getThreadIdNameMap().get(tid);
+//                            prefix1.add(name);
+//                        }
+//
+//                        int flag = 0;
+//                        if (equPrefixes != null) {
+//                            //it may not in the same order
+//                            for (Vector<String> p : equPrefixes) {
+//                                Vector<String> copy = new Vector<>(p);
+//                                Collections.sort(copy);
+//                                Collections.sort(prefix1);
+//                                if (copy.equals(prefix1)) {
+////									System.err.println("test");
+//                                    flag = 1;
+//                                    break;
+//                                }
+//                            }
+//                        }
+//
+//                        if (flag == 1) {
+//                            continue;
+//                        }
+//
+//                        if (localMapPrefixEquClass.containsKey(tmp)) {
+//                            if (localMapPrefixEquClass.get(tmp).size() > num) {
+//                                num = localMapPrefixEquClass.get(tmp).size();
+//                                prefix = tmp;
+//                            }
+//                        } else if (prefix == null) {
+//                            prefix = tmp;
+//                        }
+//                    }
+//
+//                    if (prefix != null) {
+//                        omcrGenSchedule(trace, prefix, schedule_prefix, localMapPrefixEquClass);
+//                    }
+//                }
+//            }
+//		}
 	}
 	
 	
@@ -361,38 +372,6 @@ public class ExploreSeedInterleavings {
 		
 		depNodes.add(rnode);
 		readDepNodes.add(rnode);
-
-//		System.out.println("------trace----");
-//		for (int t=0;t<=trace.getFullTrace().size()-1;t++){
-//			if (trace.getFullTrace().get(t).getType() == AbstractNode.TYPE.READ ||
-//					trace.getFullTrace().get(t).getType() == AbstractNode.TYPE.WRITE) {
-//				for (String add : trace.getTraceInfo().getSharedAddresses()) {
-//					if (trace.getFullTrace().get(t).getAddr().equals(add)) {
-//						String address = trace.getFullTrace().get(t).getAddr();
-//						int index = address.indexOf(".");
-//						int SID = Integer.parseInt(address.substring(index + 1));
-//						System.out.println("第" + trace.getFullTrace().get(t).getGID() + "个事件为：" +
-//								" 线程Thread-" + trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid()) +
-//								" 对" + trace.getSharedVarIdMap().get(SID) +
-//								"在" + trace.getFullTrace().get(t).getLabel() +
-//								"进行" + trace.getFullTrace().get(t).getType() + "操作"+"值为"+trace.getFullTrace().get(t).getValue());
-////				System.out.println(trace.getFullTrace().get(t));
-//			System.out.println(trace.getFullTrace().get(t).getLabel());
-//			System.out.println(trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid()));
-//			System.out.println(trace.getFullTrace().get(t).getAddr().substring(1));
-//			int SID = Integer.parseInt(trace.getFullTrace().get(t).getAddr().substring(1));
-//			System.out.println(getObject(SID).toString());
-//			System.out.println(trace.getSharedVarIdMap().get(SID));
-//					}
-//				}
-//			}
-//		}
-//		System.out.println("--------------shared------------");
-//		System.out.println(trace.getSharedVariables());
-//		System.out.println(trace.getTraceInfo().getTraceSharedVariableNumber());
-//		for (String add : trace.getTraceInfo().getSharedAddresses()){
-//			System.out.println(add);
-//		}
 
         StringBuilder sb;
         sb = engine.constructFeasibilityConstraints(trace,depNodes,readDepNodes, rnode, null);
@@ -847,39 +826,7 @@ public class ExploreSeedInterleavings {
 		Configuration.numReads = 0;
 		Configuration.rwConstraints = 0;
 		Configuration.solveTime = 0;
-//		 System.out.println("------trace----");
-//		 for (int t=0;t<=trace.getFullTrace().size()-1;t++) {
-//			 if (trace.getFullTrace().get(t).getType() == AbstractNode.TYPE.READ ||
-//					 trace.getFullTrace().get(t).getType() == AbstractNode.TYPE.WRITE) {
-//				 for (String add : trace.getTraceInfo().getSharedAddresses()) {
-//					 if (trace.getFullTrace().get(t).getAddr().equals(add)) {
-//						 String address = trace.getFullTrace().get(t).getAddr();
-//						 int index = address.indexOf(".");
-//						 int SID = Integer.parseInt(address.substring(index + 1));
-////						 System.out.println("第" + trace.getFullTrace().get(t).getGID() + "个事件为：" +
-////								 " 线程Thread-" + trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid()) +
-////								 " 对" + trace.getSharedVarIdMap().get(SID) +
-////								 "在" + trace.getFullTrace().get(t).getLabel() +
-////								 "进行" + trace.getFullTrace().get(t).getType() + "操作" + "值为" + trace.getFullTrace().get(t).getValue());
-//						 System.out.println(trace.getFullTrace().get(t).getGID()+" "+
-//								 trace.getThreadIdNameMap().get(trace.getFullTrace().get(t).getTid())+" "+
-//								 trace.getFullTrace().get(t).getLabel()+" "+
-//								 trace.getSharedVarIdMap().get(SID)+" "+
-//								 trace.getFullTrace().get(t).getType() +" "+
-//								 trace.getFullTrace().get(t).getValue());
-//					 }
-//				 }
-//			 }
-//		 }
-//				System.out.println(trace.getFullTrace().get(t));t
 
-//		 System.out.println("------trace----");
-//		 for (int t=0;t<=trace.getFullTrace().size()-1;t++){
-//			 System.out.println(trace.getFullTrace().get(t));
-//			 System.out.println(trace.getFullTrace().get(t).getLabel());
-//		 }
-//		 System.out.println("--------------shared------------");
-//		 System.out.println(trace.getSharedVariables());
 
 		 //OPT: if #sv==0 or #shared rw ==0 continue
 		if(trace.hasSharedVariable())
@@ -914,4 +861,7 @@ public class ExploreSeedInterleavings {
         
         
 	}
+
+
+
 }

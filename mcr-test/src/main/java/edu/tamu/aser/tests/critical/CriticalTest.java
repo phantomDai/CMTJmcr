@@ -18,9 +18,7 @@ public class CriticalTest {
      */
     public static void main(String[] args) {
         System.out.println(System.currentTimeMillis());
-
         Thread t1, t2;
-
         Critical t = new Critical();
         Section s1 = new Section(t, 0);
         Section s2 = new Section(t, 1);
@@ -38,6 +36,7 @@ public class CriticalTest {
             e.printStackTrace();
         }
 
+        System.out.println("i am here!");
         System.out.println(System.currentTimeMillis());
 
     }
