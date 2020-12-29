@@ -86,10 +86,6 @@ public class MP1 extends MP implements MetamorphicPattern{
                 foundFlagReadT1 = false;
             }
         }
-        //找到target variable 的T2线程的写事件，并记录所在的行
-        for (String line : sourceSeq) {
-
-        }
 
         for (int i = 0; i <sourceSeq.size(); i++) {
             if (sourceSeq.get(i).split(BLANK)[1].equals(T2) &&

@@ -129,7 +129,7 @@ public class Scheduler4PingPong {
     public static ThreadInfo choose() {
         ThreadInfo choice = null;
         Strategy strategy4PingPong = new Strategy4PingPong();
-        choice = strategy4PingPong.choose("MP1", pausedThreadInfos);
+        choice = strategy4PingPong.choose("MP2", pausedThreadInfos);
         return choice;
     }
 }

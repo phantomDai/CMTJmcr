@@ -45,6 +45,11 @@
             <artifactId>mcr-constraints</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>aser</groupId>
+            <artifactId>cmtester</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>log4j</groupId>

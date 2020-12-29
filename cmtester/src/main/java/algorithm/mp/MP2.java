@@ -1,8 +1,11 @@
 package algorithm.mp;
 
+import constants.Constants;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * describe:
@@ -18,85 +21,112 @@ public class MP2 extends MP implements MetamorphicPattern{
 
     @Override
     public List<String> followUpSeqWithoutSort(List<String> sourceSeq){
-        List<String> followSeq = new ArrayList<>();
+        //存放衍生测试用例的执行序列
+        List<String> followUpEvent = new ArrayList<>();
 
-        List<String> tempList = new ArrayList<>();
-        List<String> temp = new ArrayList<>();
+        //存放所有的共享变量
+        Set<String> allSheeredVar = new HashSet<String>();
 
-        String T1=null;
-
-        String T2;
-        String sharedvar = null;
-
-        List<String> source = new ArrayList<>();
-
-        HashSet<String> threadSet = new HashSet<>();
-
-        //存储被使用的两个线程
-        HashSet<String> thSet = new HashSet<>();
-
-        for (String infote:sourceSeq){
-            source.add(infote.split(BLANK)[1]+infote.split(BLANK)[4]+infote.split(BLANK)[5]+infote.split(BLANK)[3]);
-            threadSet.add(infote.split(BLANK)[1]);
+        for (String line : sourceSeq){
+            allSheeredVar.add(line.split(BLANK)[3]);
         }
 
-        List<String> added = new ArrayList<>();
-        //遍历原始序列中的事件
-        for (int i=0;i<sourceSeq.size();i++) {
+        //改蜕变模式涉及到两个线程
+        String T1 = "1";
+        String T2 = "2";
 
-            String T = sourceSeq.get(i).split(" ")[1];
+        //记录线程1和2的事件的关键未知
+        int countT1 = -1; //紧邻写事件的读事件索引
+        int countT2 = -1;
 
-            String myevent = sourceSeq.get(i).split(" ")[4];
-            String myunite = sourceSeq.get(i).split(BLANK)[5];
-            String myvar = sourceSeq.get(i).split(BLANK)[3];
-            String myLine = sourceSeq.get(i).split(BLANK)[2];
+        //观察线程1和2的读写事件是否包含先读后写的情况
+        boolean foundFlagRead1T1 = false;
+        boolean foundFlagRead2T1 = false;
+        boolean foundFlagWriteT2 = false;
+        boolean foundFlagTargetVar = false;
+        String targetSheeredVar = ""; //具有读写事件的变量
 
-            if (Integer.valueOf(T) < threadSet.size() - 2 && !T.equals("0")) {
+        for (String var : allSheeredVar){
+            //首先遍历第一个线程的读写事件，观察是否存在先读后写的情况
+            for (int i = 0; i < sourceSeq.size(); i++) {
+                String tempTID = sourceSeq.get(i).split(BLANK)[1];
+                String sheeredVar = sourceSeq.get(i).split(BLANK)[3];
+                String tempEvent = sourceSeq.get(i).split(BLANK)[4];
 
-                followSeq.add(sourceSeq.get(i));
-            } else {
-
-                //把事件按顺序添加进来，遇到第一个写事件，添加后开始第二次循环
-                if (added.size()<2) {
-                    followSeq.add(sourceSeq.get(i));
-                    added.add(T + myevent + myvar);
-                    T1 = T;
+                if (tempTID.equals(T1) && sheeredVar.equals(var)
+                        && tempEvent.equals(READ)){
+                    //找到线程1的第一个读事件，然后判断下一个事件是否为读事件
+                    foundFlagRead1T1 = true;
+                    countT1 = i;
+                    for (int j = (countT1 + 1); j < sourceSeq.size(); j++) {
+                        if (foundFlagRead1T1 == true && foundFlagRead2T1 == true){
+                            break;
+                        }
+                        if (sourceSeq.get(j).split(BLANK)[1].equals(T1) &&
+                                sourceSeq.get(j).split(BLANK)[3].equals(var) &&
+                                sourceSeq.get(j).split(BLANK)[4].equals(READ)){
+                            countT2 = j;
+                            foundFlagRead2T1 = true;
+                        }
+                    }
+                }else {
+                    continue;
                 }
-                else {
-                    tempList.add(sourceSeq.get(i));
-                    temp.add(T + myevent + myvar);
-
-                    sharedvar = myvar;
-                }
-            }
-        }
-
-
-        //第二次
-        for (int i=followSeq.size();i<sourceSeq.size();i++){
-            String T = sourceSeq.get(i).split(BLANK)[1];
-            String yourevent = sourceSeq.get(i).split(BLANK)[4];
-            String yourvar = sourceSeq.get(i).split(BLANK)[3];
-            if (!T.equals(T1)){
-                T2=T;
-                followSeq.add(sourceSeq.get(i));
-                added.add(T + yourevent + yourvar);
-                if (yourevent.equals(READ) && yourvar.equals(sharedvar)
-                        && added.contains(T2+WRITE+yourvar)){
+                if (foundFlagRead1T1 == true && foundFlagRead2T1 == true){
                     break;
                 }
             }
+            if (foundFlagRead1T1 == true && foundFlagRead2T1 == true){
+                targetSheeredVar = var;
+                foundFlagTargetVar = true;
+                break;
+            }else {
+                foundFlagRead1T1 = false;
+                foundFlagRead2T1 = false;
+            }
+        }
+        for (int i = 0; i <sourceSeq.size(); i++) {
+            if (sourceSeq.get(i).split(BLANK)[1].equals(T2) &&
+                    sourceSeq.get(i).split(BLANK)[3].equals(targetSheeredVar) &&
+                    sourceSeq.get(i).split(BLANK)[4].equals(WRITE)){
+                countT2 = i;
+                break;
+            }else {
+                continue;
+            }
+        }
+        //将countT1之前的事件加入到衍生事件中，将countT2之前的T2线程的事件加入到衍生事件中
+        for (int i = 0; i <= countT1; i++) {
+            followUpEvent.add(sourceSeq.get(i));
         }
 
-        //将tempList加进来
-        for (int i=0;i<tempList.size();i++){
-            if (!followSeq.contains(tempList.get(i))){
-                followSeq.add(tempList.get(i));
+        for (int i = 0; i <= countT2; i++) {
+            if (sourceSeq.get(i).split(BLANK)[1].equals(T2)){
+                followUpEvent.add(sourceSeq.get(i));
             }
         }
 
+        for (int i = (countT1 + 1); i < sourceSeq.size(); i++) {
+            if (i <= countT2){
+                if (!sourceSeq.get(i).split(BLANK)[1].equals(T2)){
+                    followUpEvent.add(sourceSeq.get(i));
+                }else {
+                    continue;
+                }
+            }else {
+                followUpEvent.add(sourceSeq.get(i));
+            }
+        }
+        return followUpEvent;
+    }
 
-        return followSeq;
-
+    public static void main(String[] args){
+        MetamorphicPattern mp = new MP2();
+        List<String> sourceSeq = getsourceSeq(Constants.SOURCEEVENT_PATH);
+        List<String> follSeq = mp.followUpSeqWithoutSort(sourceSeq);
+        List<String> followUpSeq = mp.followUpSeq(follSeq);
+        for (String info:followUpSeq){
+            System.out.println(info);
+        }
     }
 }

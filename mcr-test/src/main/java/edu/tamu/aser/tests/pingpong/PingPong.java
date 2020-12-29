@@ -7,6 +7,7 @@ package edu.tamu.aser.tests.pingpong;
  */
 
 
+import log.RecordTimeInfo;
 import edu.tamu.aser.reex.JUnit4MCRRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -103,7 +104,12 @@ public class PingPong {
 
 	@Test
   	public void test() {
-  	   PingPong.main(new String[]{});
+        long star = System.currentTimeMillis();
+        PingPong.main(new String[]{});
+        long end = System.currentTimeMillis();
+        String timeInfo = "执行原始测试用例的时间是:" + String.valueOf(end - star);
+        RecordTimeInfo.recordInfo("PingPong", timeInfo, false);
+
     }
 
 }

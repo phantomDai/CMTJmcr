@@ -17,8 +17,6 @@ import java.util.Set;
  */
 public class Strategy4PingPong implements Strategy{
 
-    private static String path = "G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\Critical.txt";
-
     //生成衍生执行轨迹
     private static MPFactory4PUT mpFactory4PUT = new MPFactory4PUT();
 

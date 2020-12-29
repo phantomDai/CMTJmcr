@@ -35,6 +35,9 @@
     <orderEntry type="module" module-name="mcr-constraints" />
     <orderEntry type="library" name="Maven: org.w3c.jigsaw:jigsaw:2.2.6" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.69" level="project" />
+    <orderEntry type="module" module-name="cmtester" />
+    <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.5.13" level="project" />
+    <orderEntry type="library" name="Maven: com.itextpdf:itext-asian:5.2.0" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.12" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: weblech:weblech:1.0">

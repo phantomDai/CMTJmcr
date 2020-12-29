@@ -17,6 +17,12 @@ public class Constants {
     public static String SOURCETRACE_PATH = System.getProperty("user.dir") + separator +
             separator + "sourceTrace"+ separator + "sourceTrace.txt";
 
+//    public static String LOG_PATH = System.getProperty("user.dir") + separator + "log";
+
+    public static String LOG_PATH = "/Users/phantom/javaDir/CMTJmcr/log/";
+
+
+
     /**
      * 根据待测程序的名字获取共享变量的名字
      * @param SUTName 待测程序的名字

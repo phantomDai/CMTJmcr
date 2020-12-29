@@ -24,8 +24,8 @@ import edu.tamu.aser.trace.WriteNode;
  */
 public class ExploreSeedInterleavings {
 
-	private static String SOURCETRACE = "G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceTrace\\sourceTrace.txt";
-	private static String SOURCEEVENT = "G:\\PROJECT_IDEA\\CMT\\CMTJmcr\\sourceEvent\\sourceEvent.txt";
+	private static String SOURCETRACE = "//Users//phantom//javaDir//CMTJmcr//sourceTrace//sourceTrace.txt";
+	private static String SOURCEEVENT = "/Users/phantom/javaDir/CMTJmcr/sourceEvent/sourceEvent.txt";
 
 	public static StringBuffer getString = new StringBuffer();
 	private Queue<List<String>> schedules;

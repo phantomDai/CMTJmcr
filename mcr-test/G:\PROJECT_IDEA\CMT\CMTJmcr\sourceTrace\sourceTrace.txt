@@ -1,0 +1,56 @@
+1: thread 13 180 _.11 1794840510_  WRITE
+2: thread 13 181 .12 5  WRITE
+3: thread 13 183 _.11 1794840510_ READ PingPong.java.setup
+4: thread 13 184 .12 5 READ PingPong.java.setup
+5: thread 13 186 _.10 225453011_  WRITE
+6: thread 13 10 _.11 1794840510_ READ PingPong.java.doWork
+7: thread 13 23 .12 5 READ PingPong.java.doWork
+8: thread 13 38 _.10 225453011_ READ PingPong.java.doWork
+9: thread 13 209 225453011.32 5 READ BuggedProgram.java.doWork
+10: thread 13 212 START
+11: thread 13 209 225453011.32 5 READ BuggedProgram.java.doWork
+12: thread 13 212 START
+13: thread 13 209 225453011.32 5 READ BuggedProgram.java.doWork
+14: thread 13 212 START
+15: thread 13 209 225453011.32 5 READ BuggedProgram.java.doWork
+16: thread 13 212 START
+17: thread 13 209 225453011.32 5 READ BuggedProgram.java.doWork
+18: thread 13 212 START
+19: thread 13 209 225453011.32 5 READ BuggedProgram.java.doWork
+20: thread 14 250 786442429_.36 225453011_ READ BugThread.java.ping
+21: thread 14 229 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+22: thread 14 241 876761985.35 0 READ PP.java.getI
+23: thread 14 232 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+24: thread 14 234 225453011_.33 0_  WRITE
+25: thread 14 235 225453011_.33 876761985_  WRITE
+26: thread 13 219 JOIN
+27: thread 15 250 1484075517_.36 225453011_ READ BugThread.java.ping
+28: thread 15 229 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+29: thread 15 241 876761985.35 0 READ PP.java.getI
+30: thread 15 232 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+31: thread 15 234 225453011_.33 0_  WRITE
+32: thread 15 235 225453011_.33 876761985_  WRITE
+33: thread 13 219 JOIN
+34: thread 16 250 1288044033_.36 225453011_ READ BugThread.java.ping
+35: thread 16 229 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+36: thread 16 241 876761985.35 0 READ PP.java.getI
+37: thread 16 232 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+38: thread 16 234 225453011_.33 0_  WRITE
+39: thread 16 235 225453011_.33 876761985_  WRITE
+40: thread 13 219 JOIN
+41: thread 17 250 564453194_.36 225453011_ READ BugThread.java.ping
+42: thread 17 229 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+43: thread 17 241 876761985.35 0 READ PP.java.getI
+44: thread 17 232 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+45: thread 17 234 225453011_.33 0_  WRITE
+46: thread 17 235 225453011_.33 876761985_  WRITE
+47: thread 13 219 JOIN
+48: thread 18 250 246332931_.36 225453011_ READ BugThread.java.ping
+49: thread 18 229 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+50: thread 18 241 876761985.35 0 READ PP.java.getI
+51: thread 18 232 225453011_.33 876761985_ READ BuggedProgram.java.pingPong
+52: thread 18 234 225453011_.33 0_  WRITE
+53: thread 18 235 225453011_.33 876761985_  WRITE
+54: thread 13 219 JOIN
+55: thread 13 273 _.37 1545111156_ READ RecordTimeInfo.java.recordInfo
+56: thread 13 274 _.38 1323144489_ READ RecordTimeInfo.java.recordInfo
