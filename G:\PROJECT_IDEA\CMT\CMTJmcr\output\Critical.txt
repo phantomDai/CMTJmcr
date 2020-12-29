@@ -1,0 +1,5 @@
+source output:
+In critical section,thread number:0
+In critical section,thread number:1
+Out critical section,thread number:1
+Out critical section,thread number:0
