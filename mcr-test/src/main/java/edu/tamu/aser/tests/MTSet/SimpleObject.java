@@ -28,6 +28,6 @@ public class SimpleObject implements Comparable {
     }
 
     public int compareTo(Object o) {
-        return ((SimpleObject)this).v - ((SimpleObject)o).v;
+        return this.v - ((SimpleObject)o).v;
     }
 }

@@ -95,7 +95,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
         return (V) (value == NULL ? null : value);
     }
 
-    private static Enum[] ZERO_LENGTH_ENUM_ARRAY = new Enum[0];
+    private static final Enum[] ZERO_LENGTH_ENUM_ARRAY = new Enum[0];
 
     /**
      * Creates an empty enum map with the specified key type.
@@ -119,7 +119,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
     public EnumMap(EnumMap<K, ? extends V> m) {
         keyType = m.keyType;
         keyUniverse = m.keyUniverse;
-        vals = (Object[]) m.vals.clone();
+        vals = m.vals.clone();
         size = m.size;
     }
 
@@ -140,7 +140,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
             EnumMap<K, ? extends V> em = (EnumMap<K, ? extends V>) m;
             keyType = em.keyType;
             keyUniverse = em.keyUniverse;
-            vals = (Object[]) em.vals.clone();
+            vals = em.vals.clone();
             size = em.size;
         } else {
             if (m.isEmpty())
@@ -229,7 +229,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
     public V put(K key, V value) {
         typeCheck(key);
 
-        int index = ((Enum)key).ordinal();
+        int index = key.ordinal();
         Object oldValue = vals[index];
         vals[index] = maskNull(value);
         if (oldValue == null)
@@ -629,7 +629,7 @@ public class EnumMap<K extends Enum<K>, V> extends AbstractMap<K, V>
         } catch(CloneNotSupportedException e) {
             throw new AssertionError();
         }
-        result.vals = (Object[]) result.vals.clone();
+        result.vals = result.vals.clone();
         return result;
     }
 

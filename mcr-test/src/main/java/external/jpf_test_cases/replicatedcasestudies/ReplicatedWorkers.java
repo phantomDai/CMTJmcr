@@ -49,7 +49,7 @@ import external.jpf_test_cases.MyRandom;
 //import java.util.Vector;
 
 final public class ReplicatedWorkers {
-  private Vector workers;
+  private final Vector workers;
   protected boolean stop;
   protected boolean done;
   protected StandardCountingSemaphore resultLock;
@@ -149,7 +149,7 @@ final public class ReplicatedWorkers {
 final class Coordinator 
 {
   private int blockedTakers;
-  private ReplicatedWorkers memberOf;
+  private final ReplicatedWorkers memberOf;
 
   public Coordinator(ReplicatedWorkers instance)
   {
@@ -244,8 +244,8 @@ final class Coordinator
 
 
 final class Worker implements Runnable {
-  private ReplicatedWorkers memberOf; 
-  private Thread thisThread;
+  private final ReplicatedWorkers memberOf;
+  private final Thread thisThread;
 
   public Worker(ReplicatedWorkers rwInstance)
   {

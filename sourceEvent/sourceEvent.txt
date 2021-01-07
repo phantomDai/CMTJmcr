@@ -1,40 +1,48 @@
-21 1 BuggedProgram.java:82 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+46 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
 
-23 1 BuggedProgram.java:84 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+47 1 Bank.java:84 null READ Bank.java.Service
 
-24 1 BuggedProgram.java:85 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+48 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
 
-25 1 BuggedProgram.java:86 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+49 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
 
-28 2 BuggedProgram.java:82 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+50 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
 
-30 2 BuggedProgram.java:84 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+51 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
 
-31 2 BuggedProgram.java:85 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+55 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
 
-32 2 BuggedProgram.java:86 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+56 1 Bank.java:84 null READ Bank.java.Service
 
-35 3 BuggedProgram.java:82 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+57 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
 
-37 3 BuggedProgram.java:84 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+58 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
 
-38 3 BuggedProgram.java:85 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+59 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
 
-39 3 BuggedProgram.java:86 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+60 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
 
-42 4 BuggedProgram.java:82 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+66 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
 
-44 4 BuggedProgram.java:84 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+67 2 Bank.java:84 jdk.net.ExtendedSocketOptions.SO_FLOW_SLA READ Bank.java.Service
 
-45 4 BuggedProgram.java:85 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+68 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
 
-46 4 BuggedProgram.java:86 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+69 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
 
-49 5 BuggedProgram.java:82 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+70 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
 
-51 5 BuggedProgram.java:84 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer READ BuggedProgram.java.pingPong
+71 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
 
-52 5 BuggedProgram.java:85 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+75 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
 
-53 5 BuggedProgram.java:86 edu.tamu.aser.tests.pingpong.BuggedProgram.pingPongPlayer WRITE BuggedProgram.java.pingPong
+76 2 Bank.java:84 jdk.net.ExtendedSocketOptions.SO_FLOW_SLA READ Bank.java.Service
+
+77 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
+
+78 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
+
+79 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
+
+80 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
 

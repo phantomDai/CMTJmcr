@@ -56,9 +56,9 @@ public class Account2ThreadDandWTest extends Failable {
         boolean less = false, more = false;
         for (int i = 0; i < ManageAccount.num; i++) {
             Account account = ManageAccount.accounts[i];
-            if (account.amount < 300) {
+            if (Account.amount < 300) {
                 less = true;
-            } else if (account.amount > 300) {
+            } else if (Account.amount > 300) {
                 more = true;
             }
         }
@@ -105,7 +105,7 @@ public class Account2ThreadDandWTest extends Failable {
             depositThread.join();
         }
 
-        if (account.amount != 100 * (numThreads + 1)) {
+        if (Account.amount != 100 * (numThreads + 1)) {
             fail("Multi-threaded deposits caused incorrect account state!");
         }
 
@@ -146,7 +146,7 @@ public class Account2ThreadDandWTest extends Failable {
     private void performTransferAndCheckInvariant(int numThreads) throws Exception {
         Account account = new Account("account", 0);
         Thread[] transferThread = new Thread[numThreads];
-        Account accounts[] = new Account[numThreads];
+        Account[] accounts = new Account[numThreads];
 
         for (int i = 0; i < transferThread.length; i++) {
             accounts[i] = new Account("src", 110);
@@ -161,11 +161,11 @@ public class Account2ThreadDandWTest extends Failable {
         }
 
         for (int i = 0; i < accounts.length; i++)
-            if (accounts[i].amount != 10)
+            if (Account.amount != 10)
                 fail("Multi-threaded transfer caused incorrect account state!");
 
-        if (account.amount != numThreads * 100) {
-        	System.out.println(account.amount);
+        if (Account.amount != numThreads * 100) {
+        	System.out.println(Account.amount);
             fail("Multi-threaded transfer caused incorrect account state!");
         }
     }
@@ -185,7 +185,7 @@ public class Account2ThreadDandWTest extends Failable {
             withdrawalThread.join();
         }
 
-        if (account.amount != 100) {
+        if (Account.amount != 100) {
             fail("Multi-threaded withdrawals caused incorrect account state!");
         }
 
@@ -218,7 +218,7 @@ public class Account2ThreadDandWTest extends Failable {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos)); //设置新的out
 //
-        System.out.println(account.amount);
+        System.out.println(Account.amount);
 //
         System.setOut(oldPrintStream);
 

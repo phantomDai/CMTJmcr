@@ -51,7 +51,7 @@ public abstract class BaseObjectPool implements ObjectPool {
     /**
      * Not supported in this base implementation.
      */
-    public void clear() throws Exception, UnsupportedOperationException {
+    public void clear() throws Exception {
         throw new UnsupportedOperationException();
     }
 
@@ -60,7 +60,7 @@ public abstract class BaseObjectPool implements ObjectPool {
      * Always throws an {@link UnsupportedOperationException},
      * subclasses should override this behavior.
      */
-    public void addObject() throws Exception, UnsupportedOperationException {
+    public void addObject() throws Exception {
         throw new UnsupportedOperationException();
     }
 

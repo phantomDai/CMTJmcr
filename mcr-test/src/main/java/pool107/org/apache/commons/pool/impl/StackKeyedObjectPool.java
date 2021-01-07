@@ -56,7 +56,7 @@ public class StackKeyedObjectPool extends BaseKeyedObjectPool implements KeyedOb
      * @see #setFactory(KeyedPoolableObjectFactory)
      */
     public StackKeyedObjectPool() {
-        this((KeyedPoolableObjectFactory)null,DEFAULT_MAX_SLEEPING,DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,DEFAULT_MAX_SLEEPING,DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -70,7 +70,7 @@ public class StackKeyedObjectPool extends BaseKeyedObjectPool implements KeyedOb
      * @see #setFactory(KeyedPoolableObjectFactory)
      */
     public StackKeyedObjectPool(int max) {
-        this((KeyedPoolableObjectFactory)null,max,DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,max,DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -86,7 +86,7 @@ public class StackKeyedObjectPool extends BaseKeyedObjectPool implements KeyedOb
      * @see #setFactory(KeyedPoolableObjectFactory)
      */
     public StackKeyedObjectPool(int max, int init) {
-        this((KeyedPoolableObjectFactory)null,max,init);
+        this(null,max,init);
     }
 
     /**

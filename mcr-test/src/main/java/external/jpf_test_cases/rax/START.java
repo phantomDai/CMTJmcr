@@ -3,7 +3,7 @@ package external.jpf_test_cases.rax;
 class Event{
   int count=0;
   public synchronized void wait_for_event(){
-    try{wait();}catch(InterruptedException e){};
+    try{wait();}catch(InterruptedException e){}
   }
   public synchronized void signal_event(){
     count = count + 1;

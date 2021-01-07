@@ -25,7 +25,7 @@ void transfer(Account ac, double mn) {
         amount -= mn;
         synchronized (ac) 
         {
-        	ac.amount += mn; // now yes. no acquire for the other lock!!
+        	amount += mn; // now yes. no acquire for the other lock!!
 		}
             
     }

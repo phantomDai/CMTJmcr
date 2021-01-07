@@ -3,7 +3,7 @@ package external.jpf_test_cases.replicatedcasestudies;
 //package util;
 
 public final class StandardBarrier {
-  private long participants;
+  private final long participants;
   private long numBlocked, numReleased;
   private boolean allBlocked, allReleased;
 
@@ -16,8 +16,8 @@ public final class StandardBarrier {
     ++numBlocked;
     allBlocked = false;
     while ( numBlocked < participants && !allBlocked )
-      try { wait(); } catch (InterruptedException ex) {};
-    allBlocked = true; 
+      try { wait(); } catch (InterruptedException ex) {}
+      allBlocked = true;
     numBlocked = 0;
     notifyAll();
   }
@@ -26,8 +26,8 @@ public final class StandardBarrier {
     ++numReleased;
     allReleased = false;
     while ( numReleased < participants && !allReleased )
-      try { wait(); } catch (InterruptedException ex) {};
-    allReleased = true; 
+      try { wait(); } catch (InterruptedException ex) {}
+      allReleased = true;
     numReleased = 0;
     notifyAll();
   }
@@ -36,14 +36,14 @@ public final class StandardBarrier {
       ++numBlocked;
           allBlocked = false;
           while ( numBlocked < participants && !allBlocked )
-            try { wait(); } catch (InterruptedException ex) {};
-          allBlocked = true;
+            try { wait(); } catch (InterruptedException ex) {}
+      allBlocked = true;
           numBlocked = 0;
           notifyAll();
       ++numReleased;
       allReleased = false;
       while ( numReleased < participants && !allReleased )
-        try { wait(); } catch (InterruptedException ex) {};
+        try { wait(); } catch (InterruptedException ex) {}
       allReleased = true;
       numReleased = 0;
       notifyAll();

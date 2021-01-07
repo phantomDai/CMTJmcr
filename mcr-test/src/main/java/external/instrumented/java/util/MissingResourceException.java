@@ -70,11 +70,11 @@ class MissingResourceException extends RuntimeException {
      * The class name of the resource bundle requested by the user.
      * @serial
      */
-    private String className;
+    private final String className;
 
     /**
      * The name of the specific resource requested by the user.
      * @serial
      */
-    private String key;
+    private final String key;
 }

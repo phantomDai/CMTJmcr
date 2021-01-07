@@ -179,7 +179,7 @@ public class Vector<E>
 	modCount++;
 	int oldCapacity = elementData.length;
 	if (elementCount < oldCapacity) {
-	    Object oldData[] = elementData;
+	    Object[] oldData = elementData;
 	    elementData = new Object[elementCount];
 	    System.arraycopy(oldData, 0, elementData, 0, elementCount);
 	}

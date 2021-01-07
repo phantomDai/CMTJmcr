@@ -38,7 +38,7 @@ public class StackKeyedObjectPoolFactory implements KeyedObjectPoolFactory {
      * @see StackKeyedObjectPool#StackKeyedObjectPool()
      */
     public StackKeyedObjectPoolFactory() {
-        this((KeyedPoolableObjectFactory)null,StackKeyedObjectPool.DEFAULT_MAX_SLEEPING,StackKeyedObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,StackKeyedObjectPool.DEFAULT_MAX_SLEEPING,StackKeyedObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -48,7 +48,7 @@ public class StackKeyedObjectPoolFactory implements KeyedObjectPoolFactory {
      * @see StackKeyedObjectPool#StackKeyedObjectPool(int)
      */
     public StackKeyedObjectPoolFactory(int max) {
-        this((KeyedPoolableObjectFactory)null,max,StackKeyedObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,max,StackKeyedObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -59,7 +59,7 @@ public class StackKeyedObjectPoolFactory implements KeyedObjectPoolFactory {
      * @see StackKeyedObjectPool#StackKeyedObjectPool(int, int)
      */
     public StackKeyedObjectPoolFactory(int max, int init) {
-        this((KeyedPoolableObjectFactory)null,max,init);
+        this(null,max,init);
     }
 
     /**

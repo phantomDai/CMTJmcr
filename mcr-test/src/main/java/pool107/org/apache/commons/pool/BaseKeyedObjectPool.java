@@ -37,7 +37,7 @@ public abstract class BaseKeyedObjectPool implements KeyedObjectPool {
      * Always throws an {@link UnsupportedOperationException},
      * subclasses should override this behavior.
      */
-    public void addObject(Object key) throws Exception, UnsupportedOperationException {
+    public void addObject(Object key) throws Exception {
         throw new UnsupportedOperationException();
     }
 
@@ -76,14 +76,14 @@ public abstract class BaseKeyedObjectPool implements KeyedObjectPool {
     /**
      * Not supported in this base implementation.
      */
-    public void clear() throws Exception, UnsupportedOperationException {
+    public void clear() throws Exception {
         throw new UnsupportedOperationException();
     }
 
     /**
      * Not supported in this base implementation.
      */
-    public void clear(Object key) throws Exception, UnsupportedOperationException {
+    public void clear(Object key) throws Exception {
         throw new UnsupportedOperationException();
     }
 

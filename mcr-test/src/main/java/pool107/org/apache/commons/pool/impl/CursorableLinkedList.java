@@ -95,7 +95,7 @@ class CursorableLinkedList implements List, Serializable {
             add(element);
         } else {
             if(index < 0 || index > _size) {
-                throw new IndexOutOfBoundsException(String.valueOf(index) + " < 0 or " + String.valueOf(index) + " > " + _size);
+                throw new IndexOutOfBoundsException(index + " < 0 or " + index + " > " + _size);
             }
             Listable succ = (isEmpty() ? null : getListableAt(index));
             Listable pred = (null == succ ? null : succ.prev());
@@ -675,7 +675,7 @@ class CursorableLinkedList implements List, Serializable {
      *                   is not a supertype of the runtime type of every element in
      *                   this list.
      */
-    public Object[] toArray(Object a[]) {
+    public Object[] toArray(Object[] a) {
         if(a.length < _size) {
             a = (Object[])Array.newInstance(a.getClass().getComponentType(), _size);
         }
@@ -782,7 +782,7 @@ class CursorableLinkedList implements List, Serializable {
      */
     protected Listable getListableAt(int index) {
         if(index < 0 || index >= _size) {
-            throw new IndexOutOfBoundsException(String.valueOf(index) + " < 0 or " + String.valueOf(index) + " >= " + _size);
+            throw new IndexOutOfBoundsException(index + " < 0 or " + index + " >= " + _size);
         }
         if(index <=_size/2) {
             Listable elt = _head.next();
@@ -1265,7 +1265,7 @@ class CursorableSubList extends CursorableLinkedList implements List {
         return super.toArray();
     }
 
-    public Object[] toArray(Object a[]) {
+    public Object[] toArray(Object[] a) {
         checkForComod();
         return super.toArray(a);
     }

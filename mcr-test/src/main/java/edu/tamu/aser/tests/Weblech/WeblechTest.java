@@ -45,7 +45,7 @@ import java.io.IOException;
 public class WeblechTest implements Constants
 {
     /** For class-related messages */
-    private static Category _logClass = Category.getInstance(WeblechTest.class);
+    private static final Category _logClass = Category.getInstance(WeblechTest.class);
     
     public static void main(String[] args)
     {

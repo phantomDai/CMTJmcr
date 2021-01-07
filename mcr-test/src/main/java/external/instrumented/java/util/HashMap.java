@@ -597,7 +597,7 @@ public class HashMap extends AbstractMap implements Map, Cloneable,
      */
     public void clear() {
         modCount++;
-        Entry tab[] = table;
+        Entry[] tab = table;
         for (int i = 0; i < tab.length; i++) 
             tab[i] = null;
         size = 0;
@@ -615,7 +615,7 @@ public class HashMap extends AbstractMap implements Map, Cloneable,
 	if (value == null) 
             return containsNullValue();
 
-	Entry tab[] = table;
+	Entry[] tab = table;
         for (int i = 0; i < tab.length ; i++)
             for (Entry e = tab[i] ; e != null ; e = e.next)
                 if (value.equals(e.value))
@@ -627,7 +627,7 @@ public class HashMap extends AbstractMap implements Map, Cloneable,
      * Special-case code for containsValue with null argument
      **/
     private boolean containsNullValue() {
-	Entry tab[] = table;
+	Entry[] tab = table;
         for (int i = 0; i < tab.length ; i++)
             for (Entry e = tab[i] ; e != null ; e = e.next)
                 if (e.value == null)
@@ -697,8 +697,7 @@ public class HashMap extends AbstractMap implements Map, Cloneable,
             if (k1 == k2 || (k1 != null && k1.equals(k2))) {
                 Object v1 = getValue();
                 Object v2 = e.getValue();
-                if (v1 == v2 || (v1 != null && v1.equals(v2))) 
-                    return true;
+                return v1 == v2 || (v1 != null && v1.equals(v2));
             }
             return false;
         }

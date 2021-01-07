@@ -117,5 +117,5 @@ public class PropertyResourceBundle extends ResourceBundle {
 
     // ==================privates====================
 
-    private Map lookup;
+    private final Map lookup;
 }

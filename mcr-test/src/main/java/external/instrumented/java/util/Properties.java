@@ -289,8 +289,8 @@ class Properties extends Hashtable {
                         for (startIndex=0; startIndex<nextLine.length(); startIndex++)
                             if (whiteSpaceChars.indexOf(nextLine.charAt(startIndex)) == -1)
                                 break;
-                        nextLine = nextLine.substring(startIndex,nextLine.length());
-                        line = new String(loppedLine+nextLine);
+                        nextLine = nextLine.substring(startIndex);
+                        line = loppedLine + nextLine;
                         len = line.length();
                     }
 

@@ -1,11 +1,15 @@
 package edu.tamu.aser.tests.stringbuffer;
 
 import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.RVExample.RVExample;
+import log.RecordTimeInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 
 import java.lang.*;
+
+import static org.junit.Assert.fail;
 
 
 /**
@@ -19,7 +23,7 @@ public class StringBufferTest {
 
 	static java.lang.StringBuffer al1;
     static java.lang.StringBuffer al2;
-    public static void main(String args[]) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
     	
     	al1 = new java.lang.StringBuffer("H");
     	al2 = new java.lang.StringBuffer("W");
@@ -38,7 +42,19 @@ public class StringBufferTest {
     
     @Test
 	public void test() throws InterruptedException {
-    	StringBufferTest.main(null);
+//        RecordTimeInfo.recordInfo("StringBuffer","记录原始测试用例生成和执行的时间:",true);
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            StringBufferTest.main(null);
+            long end = System.currentTimeMillis();
+            String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+            if (i != 29){
+                RecordTimeInfo.recordInfo("StringBuffer", timeInfo, true);
+            }else {
+                RecordTimeInfo.recordInfo("StringBuffer", timeInfo, true);
+            }
+        }
+
     }
     
     static class WorkThread extends Thread

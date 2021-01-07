@@ -18,7 +18,7 @@ import java.io.PrintStream;
 @RunWith(JUnit4MCRRunner.class)
 public class AirlineTicketsTest {
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         AirlineTicketsTest airlineTest = new AirlineTicketsTest();
 
         airlineTest.test2ThreadsNotTooMany();

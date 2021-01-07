@@ -60,12 +60,12 @@ public class Timer {
      * and the timer thread consumes, executing timer tasks as appropriate,
      * and removing them from the queue when they're obsolete.
      */
-    private TaskQueue queue = new TaskQueue();
+    private final TaskQueue queue = new TaskQueue();
 
     /**
      * The timer thread.
      */
-    private TimerThread thread = new TimerThread(queue);
+    private final TimerThread thread = new TimerThread(queue);
 
     /**
      * This object causes the timer's task execution thread to exit
@@ -74,7 +74,7 @@ public class Timer {
      * Timer as such a finalizer would be susceptible to a subclass's
      * finalizer forgetting to call it.
      */
-    private Object threadReaper = new Object() {
+    private final Object threadReaper = new Object() {
         protected void finalize() throws Throwable {
             synchronized(queue) {
                 thread.newTasksMayBeScheduled = false;
@@ -370,7 +370,7 @@ class TimerThread extends Thread {
      * Otherwise, the Timer would never be garbage-collected and this
      * thread would never go away.
      */
-    private TaskQueue queue;
+    private final TaskQueue queue;
 
     TimerThread(TaskQueue queue) {
         this.queue = queue;

@@ -7,6 +7,8 @@ package test.pingpong;
  */
 
 
+import log.RecordTimeInfo;
+
 import java.io.*;
 
 /**
@@ -47,44 +49,36 @@ public class PingPong {
         }
         this.bug.doWork();
     }
-
-
     public static void main(String[] args) {
-        File output = new File("output.txt");
+        RecordTimeInfo.recordInfo("PingPong", "开始记录在MP5指导下衍生测试用例生成和执行的时间:",true);
+        for (int i = 0; i < 30; i++) {
+            File output = new File("output.txt");
+            long start = System.currentTimeMillis();
+            DataOutputStream out = null;
+            try {
+                FileOutputStream os = new FileOutputStream(output);
+                out = new DataOutputStream(os);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace(System.err);
+            }
+            try {
 
-        DataOutputStream out = null;
-        try {
-            FileOutputStream os = new FileOutputStream(output);
-            out = new DataOutputStream(os);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace(System.err);
+                String newLine = System.getProperty("line.separator");
+                out.writeBytes("In this file you will find the number of the bug appearances " +
+                        "accordingly to the number of threads that the " +
+                        "bugged program utilized with:" + newLine + newLine);
+
+                out.writeBytes("Few Threads: " + newLine + newLine);
+                PingPong fewThreads = new PingPong();
+                setup(out, 5);
+                fewThreads.doWork();
+            } catch (IOException e) {
+                e.printStackTrace(System.err);
+            }
+            long end = System.currentTimeMillis();
+            String timeInfo = "执行MP1的时间:" + String.valueOf(end - start);
+            RecordTimeInfo.recordInfo("PingPong", timeInfo, true);
         }
-        try {
-
-            String newLine = System.getProperty("line.separator");
-            out.writeBytes("In this file you will find the number of the bug appearances " +
-                    "accordingly to the number of threads that the " +
-                    "bugged program utilized with:" + newLine + newLine);
-
-            out.writeBytes("Few Threads: " + newLine + newLine);
-            PingPong fewThreads = new PingPong();
-            setup(out, 5); //initialize the value since it can't have constructor
-            fewThreads.doWork();
-//            out.writeBytes(newLine + "************************************" + newLine + newLine);
-//            out.writeBytes("Average Threads: " + newLine + newLine);
-//            ProgramRunner averageThreads = new ProgramRunner(out, 40);
-//            averageThreads.doWork();
-//            out.writeBytes(newLine + "************************************" + newLine + newLine);
-//            out.writeBytes("A Lot Of Threads: " + newLine + newLine);
-//            ProgramRunner aLotOfThreads = new ProgramRunner(out, 120);
-//            aLotOfThreads.doWork();
-//            out.writeBytes(newLine + "************************************" + newLine + newLine);
-
-        } catch (IOException e) {
-            e.printStackTrace(System.err);
-        }
-
-
     }
     private static void setup(DataOutputStream out2, int i) {
 		// TODO Auto-generated method stub

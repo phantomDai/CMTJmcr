@@ -72,7 +72,7 @@ public class Vector extends AbstractList
      *
      * @serial
      */
-    protected Object elementData[];
+    protected Object[] elementData;
 
     /**
      * The number of valid components in this <tt>Vector</tt> object. 
@@ -164,7 +164,7 @@ public class Vector extends AbstractList
      * @param   anArray   the array into which the components get copied.
      * @throws  NullPointerException if the given array is null.
      */
-    public synchronized void copyInto(Object anArray[]) {
+    public synchronized void copyInto(Object[] anArray) {
     System.arraycopy(elementData, 0, anArray, 0, elementCount);
     }
 
@@ -180,7 +180,7 @@ public class Vector extends AbstractList
     modCount++;
     int oldCapacity = elementData.length;
     if (elementCount < oldCapacity) {
-        Object oldData[] = elementData;
+        Object[] oldData = elementData;
         elementData = new Object[elementCount];
         System.arraycopy(oldData, 0, elementData, 0, elementCount);
     }
@@ -219,7 +219,7 @@ public class Vector extends AbstractList
     private void ensureCapacityHelper(int minCapacity) {
     int oldCapacity = elementData.length;
     if (minCapacity > oldCapacity) {
-        Object oldData[] = elementData;
+        Object[] oldData = elementData;
         int newCapacity = (capacityIncrement > 0) ?
         (oldCapacity + capacityIncrement) : (oldCapacity * 2);
             if (newCapacity < minCapacity) {
@@ -682,7 +682,7 @@ public class Vector extends AbstractList
      * @throws NullPointerException if the given array is null.
      * @since 1.2
      */
-    public synchronized Object[] toArray(Object a[]) {
+    public synchronized Object[] toArray(Object[] a) {
         if (a.length < elementCount)
             a = (Object[])java.lang.reflect.Array.newInstance(
                                 a.getClass().getComponentType(), elementCount);

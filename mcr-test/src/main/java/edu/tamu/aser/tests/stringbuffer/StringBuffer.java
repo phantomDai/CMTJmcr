@@ -10,7 +10,7 @@ public final class StringBuffer
 //        implements java.io.Serializable, CharSequence
 {
 
-    private char value[];
+    private char[] value;
 
     private int count;
 
@@ -22,7 +22,7 @@ public final class StringBuffer
     }
 
     private final void copy() {
-        char newValue[] = new char[value.length];
+        char[] newValue = new char[value.length];
         System.arraycopy(value, 0, newValue, 0, count);
         value = newValue;
         shared = false;
@@ -37,7 +37,7 @@ public final class StringBuffer
             newCapacity = minimumCapacity;
         }
 
-        char newValue[] = new char[newCapacity];
+        char[] newValue = new char[newCapacity];
         System.arraycopy(value, 0, newValue, 0, count);
         value = newValue;
         shared = false;
@@ -45,7 +45,7 @@ public final class StringBuffer
 
   
     //synchronized
-    public synchronized void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
+    public synchronized void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) {
         System.arraycopy(value, srcBegin, dst, dstBegin, srcEnd - srcBegin);
     }
     

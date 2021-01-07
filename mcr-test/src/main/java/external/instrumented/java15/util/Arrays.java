@@ -376,7 +376,7 @@ public class Arrays {
 	sort2(a, fromIndex, toIndex);
     }
 
-    private static void sort2(double a[], int fromIndex, int toIndex) {
+    private static void sort2(double[] a, int fromIndex, int toIndex) {
         final long NEG_ZERO_BITS = Double.doubleToLongBits(-0.0d);
         /*
          * The sort is done in three phases to avoid the expense of using
@@ -420,7 +420,7 @@ public class Arrays {
     }
 
 
-    private static void sort2(float a[], int fromIndex, int toIndex) {
+    private static void sort2(float[] a, int fromIndex, int toIndex) {
         final int NEG_ZERO_BITS = Float.floatToIntBits(-0.0f);
         /*
          * The sort is done in three phases to avoid the expense of using
@@ -472,7 +472,7 @@ public class Arrays {
     /**
      * Sorts the specified sub-array of longs into ascending order.
      */
-    private static void sort1(long x[], int off, int len) {
+    private static void sort1(long[] x, int off, int len) {
 	// Insertion sort on smallest arrays
 	if (len < 7) {
 	    for (int i=off; i<len+off; i++)
@@ -529,7 +529,7 @@ public class Arrays {
     /**
      * Swaps x[a] with x[b].
      */
-    private static void swap(long x[], int a, int b) {
+    private static void swap(long[] x, int a, int b) {
 	long t = x[a];
 	x[a] = x[b];
 	x[b] = t;
@@ -538,7 +538,7 @@ public class Arrays {
     /**
      * Swaps x[a .. (a+n-1)] with x[b .. (b+n-1)].
      */
-    private static void vecswap(long x[], int a, int b, int n) {
+    private static void vecswap(long[] x, int a, int b, int n) {
 	for (int i=0; i<n; i++, a++, b++)
 	    swap(x, a, b);
     }
@@ -546,7 +546,7 @@ public class Arrays {
     /**
      * Returns the index of the median of the three indexed longs.
      */
-    private static int med3(long x[], int a, int b, int c) {
+    private static int med3(long[] x, int a, int b, int c) {
 	return (x[a] < x[b] ?
 		(x[b] < x[c] ? b : x[a] < x[c] ? c : a) :
 		(x[b] > x[c] ? b : x[a] > x[c] ? c : a));
@@ -555,7 +555,7 @@ public class Arrays {
     /**
      * Sorts the specified sub-array of integers into ascending order.
      */
-    private static void sort1(int x[], int off, int len) {
+    private static void sort1(int[] x, int off, int len) {
 	// Insertion sort on smallest arrays
 	if (len < 7) {
 	    for (int i=off; i<len+off; i++)
@@ -612,7 +612,7 @@ public class Arrays {
     /**
      * Swaps x[a] with x[b].
      */
-    private static void swap(int x[], int a, int b) {
+    private static void swap(int[] x, int a, int b) {
 	int t = x[a];
 	x[a] = x[b];
 	x[b] = t;
@@ -621,7 +621,7 @@ public class Arrays {
     /**
      * Swaps x[a .. (a+n-1)] with x[b .. (b+n-1)].
      */
-    private static void vecswap(int x[], int a, int b, int n) {
+    private static void vecswap(int[] x, int a, int b, int n) {
 	for (int i=0; i<n; i++, a++, b++)
 	    swap(x, a, b);
     }
@@ -629,7 +629,7 @@ public class Arrays {
     /**
      * Returns the index of the median of the three indexed integers.
      */
-    private static int med3(int x[], int a, int b, int c) {
+    private static int med3(int[] x, int a, int b, int c) {
 	return (x[a] < x[b] ?
 		(x[b] < x[c] ? b : x[a] < x[c] ? c : a) :
 		(x[b] > x[c] ? b : x[a] > x[c] ? c : a));
@@ -638,7 +638,7 @@ public class Arrays {
     /**
      * Sorts the specified sub-array of shorts into ascending order.
      */
-    private static void sort1(short x[], int off, int len) {
+    private static void sort1(short[] x, int off, int len) {
 	// Insertion sort on smallest arrays
 	if (len < 7) {
 	    for (int i=off; i<len+off; i++)
@@ -695,7 +695,7 @@ public class Arrays {
     /**
      * Swaps x[a] with x[b].
      */
-    private static void swap(short x[], int a, int b) {
+    private static void swap(short[] x, int a, int b) {
 	short t = x[a];
 	x[a] = x[b];
 	x[b] = t;
@@ -704,7 +704,7 @@ public class Arrays {
     /**
      * Swaps x[a .. (a+n-1)] with x[b .. (b+n-1)].
      */
-    private static void vecswap(short x[], int a, int b, int n) {
+    private static void vecswap(short[] x, int a, int b, int n) {
 	for (int i=0; i<n; i++, a++, b++)
 	    swap(x, a, b);
     }
@@ -712,7 +712,7 @@ public class Arrays {
     /**
      * Returns the index of the median of the three indexed shorts.
      */
-    private static int med3(short x[], int a, int b, int c) {
+    private static int med3(short[] x, int a, int b, int c) {
 	return (x[a] < x[b] ?
 		(x[b] < x[c] ? b : x[a] < x[c] ? c : a) :
 		(x[b] > x[c] ? b : x[a] > x[c] ? c : a));
@@ -722,7 +722,7 @@ public class Arrays {
     /**
      * Sorts the specified sub-array of chars into ascending order.
      */
-    private static void sort1(char x[], int off, int len) {
+    private static void sort1(char[] x, int off, int len) {
 	// Insertion sort on smallest arrays
 	if (len < 7) {
 	    for (int i=off; i<len+off; i++)
@@ -779,7 +779,7 @@ public class Arrays {
     /**
      * Swaps x[a] with x[b].
      */
-    private static void swap(char x[], int a, int b) {
+    private static void swap(char[] x, int a, int b) {
 	char t = x[a];
 	x[a] = x[b];
 	x[b] = t;
@@ -788,7 +788,7 @@ public class Arrays {
     /**
      * Swaps x[a .. (a+n-1)] with x[b .. (b+n-1)].
      */
-    private static void vecswap(char x[], int a, int b, int n) {
+    private static void vecswap(char[] x, int a, int b, int n) {
 	for (int i=0; i<n; i++, a++, b++)
 	    swap(x, a, b);
     }
@@ -796,7 +796,7 @@ public class Arrays {
     /**
      * Returns the index of the median of the three indexed chars.
      */
-    private static int med3(char x[], int a, int b, int c) {
+    private static int med3(char[] x, int a, int b, int c) {
 	return (x[a] < x[b] ?
 		(x[b] < x[c] ? b : x[a] < x[c] ? c : a) :
 		(x[b] > x[c] ? b : x[a] > x[c] ? c : a));
@@ -806,7 +806,7 @@ public class Arrays {
     /**
      * Sorts the specified sub-array of bytes into ascending order.
      */
-    private static void sort1(byte x[], int off, int len) {
+    private static void sort1(byte[] x, int off, int len) {
 	// Insertion sort on smallest arrays
 	if (len < 7) {
 	    for (int i=off; i<len+off; i++)
@@ -863,7 +863,7 @@ public class Arrays {
     /**
      * Swaps x[a] with x[b].
      */
-    private static void swap(byte x[], int a, int b) {
+    private static void swap(byte[] x, int a, int b) {
 	byte t = x[a];
 	x[a] = x[b];
 	x[b] = t;
@@ -872,7 +872,7 @@ public class Arrays {
     /**
      * Swaps x[a .. (a+n-1)] with x[b .. (b+n-1)].
      */
-    private static void vecswap(byte x[], int a, int b, int n) {
+    private static void vecswap(byte[] x, int a, int b, int n) {
 	for (int i=0; i<n; i++, a++, b++)
 	    swap(x, a, b);
     }
@@ -880,7 +880,7 @@ public class Arrays {
     /**
      * Returns the index of the median of the three indexed bytes.
      */
-    private static int med3(byte x[], int a, int b, int c) {
+    private static int med3(byte[] x, int a, int b, int c) {
 	return (x[a] < x[b] ?
 		(x[b] < x[c] ? b : x[a] < x[c] ? c : a) :
 		(x[b] > x[c] ? b : x[a] > x[c] ? c : a));
@@ -890,7 +890,7 @@ public class Arrays {
     /**
      * Sorts the specified sub-array of doubles into ascending order.
      */
-    private static void sort1(double x[], int off, int len) {
+    private static void sort1(double[] x, int off, int len) {
 	// Insertion sort on smallest arrays
 	if (len < 7) {
 	    for (int i=off; i<len+off; i++)
@@ -947,7 +947,7 @@ public class Arrays {
     /**
      * Swaps x[a] with x[b].
      */
-    private static void swap(double x[], int a, int b) {
+    private static void swap(double[] x, int a, int b) {
 	double t = x[a];
 	x[a] = x[b];
 	x[b] = t;
@@ -956,7 +956,7 @@ public class Arrays {
     /**
      * Swaps x[a .. (a+n-1)] with x[b .. (b+n-1)].
      */
-    private static void vecswap(double x[], int a, int b, int n) {
+    private static void vecswap(double[] x, int a, int b, int n) {
 	for (int i=0; i<n; i++, a++, b++)
 	    swap(x, a, b);
     }
@@ -964,7 +964,7 @@ public class Arrays {
     /**
      * Returns the index of the median of the three indexed doubles.
      */
-    private static int med3(double x[], int a, int b, int c) {
+    private static int med3(double[] x, int a, int b, int c) {
 	return (x[a] < x[b] ?
 		(x[b] < x[c] ? b : x[a] < x[c] ? c : a) :
 		(x[b] > x[c] ? b : x[a] > x[c] ? c : a));
@@ -974,7 +974,7 @@ public class Arrays {
     /**
      * Sorts the specified sub-array of floats into ascending order.
      */
-    private static void sort1(float x[], int off, int len) {
+    private static void sort1(float[] x, int off, int len) {
 	// Insertion sort on smallest arrays
 	if (len < 7) {
 	    for (int i=off; i<len+off; i++)
@@ -1031,7 +1031,7 @@ public class Arrays {
     /**
      * Swaps x[a] with x[b].
      */
-    private static void swap(float x[], int a, int b) {
+    private static void swap(float[] x, int a, int b) {
 	float t = x[a];
 	x[a] = x[b];
 	x[b] = t;
@@ -1040,7 +1040,7 @@ public class Arrays {
     /**
      * Swaps x[a .. (a+n-1)] with x[b .. (b+n-1)].
      */
-    private static void vecswap(float x[], int a, int b, int n) {
+    private static void vecswap(float[] x, int a, int b, int n) {
 	for (int i=0; i<n; i++, a++, b++)
 	    swap(x, a, b);
     }
@@ -1048,7 +1048,7 @@ public class Arrays {
     /**
      * Returns the index of the median of the three indexed floats.
      */
-    private static int med3(float x[], int a, int b, int c) {
+    private static int med3(float[] x, int a, int b, int c) {
 	return (x[a] < x[b] ?
 		(x[b] < x[c] ? b : x[a] < x[c] ? c : a) :
 		(x[b] > x[c] ? b : x[a] > x[c] ? c : a));
@@ -1077,7 +1077,7 @@ public class Arrays {
      * @see Comparable
      */
     public static void sort(Object[] a) {
-        Object[] aux = (Object[])a.clone();
+        Object[] aux = a.clone();
         mergeSort(aux, a, 0, a.length, 0);
     }
 
@@ -1217,7 +1217,7 @@ public class Arrays {
      * @see Comparator
      */
     public static <T> void sort(T[] a, Comparator<? super T> c) {
-	T[] aux = (T[])a.clone();
+	T[] aux = a.clone();
         if (c==null)
             mergeSort(aux, a, 0, a.length, 0);
         else
@@ -1259,7 +1259,7 @@ public class Arrays {
     public static <T> void sort(T[] a, int fromIndex, int toIndex,
 				Comparator<? super T> c) {
         rangeCheck(a.length, fromIndex, toIndex);
-	T[] aux = (T[])cloneSubarray(a, fromIndex, toIndex);
+	T[] aux = cloneSubarray(a, fromIndex, toIndex);
         if (c==null)
             mergeSort(aux, a, fromIndex, toIndex, -fromIndex);
         else
@@ -1799,7 +1799,7 @@ public class Arrays {
      * @param a2 the other array to be tested for equality.
      * @return <tt>true</tt> if the two arrays are equal.
      */
-    public static boolean equals(short[] a, short a2[]) {
+    public static boolean equals(short[] a, short[] a2) {
         if (a==a2)
             return true;
         if (a==null || a2==null)
@@ -2349,7 +2349,7 @@ public class Arrays {
 	implements RandomAccess, java.io.Serializable
     {
         private static final long serialVersionUID = -2764017481108945198L;
-	private Object[] a;
+	private final Object[] a;
 
 	ArrayList(E[] array) {
             if (array==null)
@@ -2362,7 +2362,7 @@ public class Arrays {
 	}
 
 	public Object[] toArray() {
-	    return (Object[])a.clone();
+	    return a.clone();
 	}
 
 	public E get(int index) {
@@ -2409,7 +2409,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(long a[]) {
+    public static int hashCode(long[] a) {
         if (a == null)
             return 0;
  
@@ -2438,7 +2438,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(int a[]) {
+    public static int hashCode(int[] a) {
         if (a == null)
             return 0;
  
@@ -2465,7 +2465,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(short a[]) {
+    public static int hashCode(short[] a) {
         if (a == null)
             return 0;
  
@@ -2492,7 +2492,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(char a[]) {
+    public static int hashCode(char[] a) {
         if (a == null)
             return 0;
  
@@ -2519,7 +2519,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(byte a[]) {
+    public static int hashCode(byte[] a) {
         if (a == null)
             return 0;
  
@@ -2546,7 +2546,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(boolean a[]) {
+    public static int hashCode(boolean[] a) {
         if (a == null)
             return 0;
  
@@ -2573,7 +2573,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(float a[]) {
+    public static int hashCode(float[] a) {
         if (a == null)
             return 0;
  
@@ -2600,7 +2600,7 @@ public class Arrays {
      * @return a content-based hash code for <tt>a</tt>
      * @since 1.5
      */
-    public static int hashCode(double a[]) {
+    public static int hashCode(double[] a) {
         if (a == null)
             return 0;
  
@@ -2633,7 +2633,7 @@ public class Arrays {
      * @see #deepHashCode(Object[])
      * @since 1.5
      */
-    public static int hashCode(Object a[]) {
+    public static int hashCode(Object[] a) {
         if (a == null)
             return 0;
  
@@ -2674,7 +2674,7 @@ public class Arrays {
      * @see #hashCode(Object[])
      * @since 1.5
      */
-    public static int deepHashCode(Object a[]) {
+    public static int deepHashCode(Object[] a) {
         if (a == null)
             return 0;
  
@@ -3076,7 +3076,7 @@ public class Arrays {
             else
                 buf.append(", ");
  
-            buf.append(String.valueOf(a[i]));
+            buf.append(a[i]);
         }
  
         buf.append("]");

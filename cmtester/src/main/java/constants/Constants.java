@@ -13,13 +13,22 @@ public class Constants {
     public static String SOURCEEVENT_PATH = System.getProperty("user.dir") + separator  +
             separator + "sourceEvent" + separator + "sourceEvent.txt";
 
+    //存放衍生测试用例的执行轨迹
+    public static String FOLLOWEVENT_PATH = System.getProperty("user.dir") + separator  +
+            separator + "followEvent" + separator + "followEvent.txt";
+
     // 存放原始测试用例的执行轨迹
     public static String SOURCETRACE_PATH = System.getProperty("user.dir") + separator +
             separator + "sourceTrace"+ separator + "sourceTrace.txt";
 
-//    public static String LOG_PATH = System.getProperty("user.dir") + separator + "log";
+    // public static String LOG_PATH = System.getProperty("user.dir") + separator + "log";
 
     public static String LOG_PATH = "/Users/phantom/javaDir/CMTJmcr/log/";
+
+    public static String OUTPUTROFSUT = "/Users/phantom/javaDir/CMTJmcr/output/output";
+
+
+
 
 
 

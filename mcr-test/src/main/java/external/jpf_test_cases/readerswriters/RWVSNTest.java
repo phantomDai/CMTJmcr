@@ -8,7 +8,7 @@ package external.jpf_test_cases.readerswriters;
 public class RWVSNTest {
     static RWPrinter rwp;
 
-    public static void main (String argv[]) {
+    public static void main (String[] argv) {
         rwp = new RWPrinter();
         
         new Writer(rwp).start();

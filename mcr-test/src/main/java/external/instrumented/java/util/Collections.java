@@ -110,7 +110,7 @@ public class Collections {
      * @see Comparable
      */
     public static void sort(List list) {
-    Object a[] = list.toArray();
+    Object[] a = list.toArray();
     Arrays.sort(a);
     ListIterator i = list.listIterator();
     for (int j=0; j<a.length; j++) {
@@ -152,7 +152,7 @@ public class Collections {
      * @see Comparator
      */
     public static void sort(List list, Comparator c) {
-    Object a[] = list.toArray();
+    Object[] a = list.toArray();
     Arrays.sort(a, c);
     ListIterator i = list.listIterator();
     for (int j=0; j<a.length; j++) {
@@ -399,7 +399,7 @@ public class Collections {
     public static void shuffle(List list) {
         shuffle(list, r);
     }
-    private static Random r = new Random();
+    private static final Random r = new Random();
 
     /**
      * Randomly permute the specified list using the specified source of
@@ -430,7 +430,7 @@ public class Collections {
             for (int i=size; i>1; i--)
                 swap(list, i-1, rnd.nextInt(i));
         } else {
-            Object arr[] = list.toArray();
+            Object[] arr = list.toArray();
 
             // Shuffle array
             for (int i=size; i>1; i--)
@@ -991,7 +991,7 @@ public class Collections {
 
     public Iterator iterator() {
         return new Iterator() {
-        Iterator i = c.iterator();
+        final Iterator i = c.iterator();
 
         public boolean hasNext() {return i.hasNext();}
         public Object next() 	 {return i.next();}
@@ -1079,7 +1079,7 @@ public class Collections {
      */
     static class UnmodifiableSortedSet extends UnmodifiableSet
                      implements SortedSet, Serializable {
-        private SortedSet ss;
+        private final SortedSet ss;
 
     UnmodifiableSortedSet(SortedSet s) {super(s); ss = s;}
 
@@ -1157,7 +1157,7 @@ public class Collections {
 
     public ListIterator listIterator(final int index) {
         return new ListIterator() {
-        ListIterator i = list.listIterator(index);
+        final ListIterator i = list.listIterator(index);
 
         public boolean hasNext()     {return i.hasNext();}
         public Object next()         {return i.next();}
@@ -1321,7 +1321,7 @@ public class Collections {
 
             public Iterator iterator() {
                 return new Iterator() {
-                    Iterator i = c.iterator();
+                    final Iterator i = c.iterator();
 
                     public boolean hasNext() {
                         return i.hasNext();
@@ -1342,7 +1342,7 @@ public class Collections {
                 return a;
             }
 
-            public Object[] toArray(Object a[]) {
+            public Object[] toArray(Object[] a) {
                 // We don't pass a to c.toArray, to avoid window of
                 // vulnerability wherein an unscrupulous multithreaded client
                 // could get his hands on raw (unwrapped) Entries from c.
@@ -1405,7 +1405,7 @@ public class Collections {
              * Map Entry when asked to perform an equality check.
              */
             private static class UnmodifiableEntry implements Map.Entry {
-                private Map.Entry e;
+                private final Map.Entry e;
 
                 UnmodifiableEntry(Map.Entry e) {this.e = e;}
 
@@ -1452,7 +1452,7 @@ public class Collections {
      */
     static class UnmodifiableSortedMap extends UnmodifiableMap
                      implements SortedMap, Serializable {
-        private SortedMap sm;
+        private final SortedMap sm;
 
     UnmodifiableSortedMap(SortedMap m) {super(m); sm = m;}
 
@@ -1682,7 +1682,7 @@ public class Collections {
     static class SynchronizedSortedSet extends SynchronizedSet
                      implements SortedSet
     {
-        private SortedSet ss;
+        private final SortedSet ss;
 
     SynchronizedSortedSet(SortedSet s) {
             super(s);
@@ -1911,7 +1911,7 @@ public class Collections {
     // use serialVersionUID from JDK 1.2.2 for interoperability
     private static final long serialVersionUID = 1978198479659022715L;
 
-    private Map m;	        // Backing Map
+    private final Map m;	        // Backing Map
         Object      mutex;	// Object on which to synchronize
 
     SynchronizedMap(Map m) {
@@ -2047,7 +2047,7 @@ public class Collections {
     static class SynchronizedSortedMap extends SynchronizedMap
                      implements SortedMap
     {
-        private SortedMap sm;
+        private final SortedMap sm;
 
     SynchronizedSortedMap(SortedMap m) {
             super(m);
@@ -2211,7 +2211,7 @@ public class Collections {
     // use serialVersionUID from JDK 1.2.2 for interoperability
     private static final long serialVersionUID = 3193687207550431679L;
 
-        private Object element;
+        private final Object element;
 
         SingletonSet(Object o) {element = o;}
 
@@ -2469,7 +2469,7 @@ public class Collections {
      */
     public static Enumeration enumeration(final Collection c) {
     return new Enumeration() {
-        Iterator i = c.iterator();
+        final Iterator i = c.iterator();
 
         public boolean hasMoreElements() {
         return i.hasNext();

@@ -87,10 +87,10 @@ public
 class StringTokenizer implements Enumeration {
     private int currentPosition;
     private int newPosition;
-    private int maxPosition;
-    private String str;
+    private final int maxPosition;
+    private final String str;
     private String delimiters;
-    private boolean retDelims;
+    private final boolean retDelims;
     private boolean delimsChanged;
 
     /**

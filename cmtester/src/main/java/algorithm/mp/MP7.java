@@ -13,6 +13,7 @@ import java.util.List;
 public class MP7 extends MP implements MetamorphicPattern{
     @Override
     public List<String> followUpSeq(List<String> followSeq) {
+
         return sortSeq(followSeq);
     }
 

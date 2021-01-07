@@ -195,7 +195,7 @@ public interface KeyedObjectPool {
      *
      * @throws UnsupportedOperationException when this implementation doesn't support the operation
      */
-    void clear() throws Exception, UnsupportedOperationException;
+    void clear() throws Exception;
 
     /**
      * Clears the specified pool, removing all
@@ -206,7 +206,7 @@ public interface KeyedObjectPool {
      * @param key the key to clear
      * @throws UnsupportedOperationException when this implementation doesn't support the operation
      */
-    void clear(Object key) throws Exception, UnsupportedOperationException;
+    void clear(Object key) throws Exception;
 
     /**
      * Close this pool, and free any resources associated with it.

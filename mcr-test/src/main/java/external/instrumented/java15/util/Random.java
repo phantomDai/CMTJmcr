@@ -483,7 +483,7 @@ public class Random implements java.io.Serializable {
         ObjectInputStream.GetField fields = s.readFields();
         long seedVal;
 
-        seedVal = (long) fields.get("seed", -1L);
+        seedVal = fields.get("seed", -1L);
         if (seedVal < 0)
             throw new java.io.StreamCorruptedException(
                     "Random: invalid seed");

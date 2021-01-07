@@ -38,7 +38,7 @@ public class StackObjectPoolFactory implements ObjectPoolFactory {
      * @see StackObjectPool#StackObjectPool()
      */
     public StackObjectPoolFactory() {
-        this((PoolableObjectFactory)null,StackObjectPool.DEFAULT_MAX_SLEEPING,StackObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,StackObjectPool.DEFAULT_MAX_SLEEPING,StackObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -48,7 +48,7 @@ public class StackObjectPoolFactory implements ObjectPoolFactory {
      * @see StackObjectPool#StackObjectPool(int)
      */
     public StackObjectPoolFactory(int maxIdle) {
-        this((PoolableObjectFactory)null,maxIdle,StackObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,maxIdle,StackObjectPool.DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -59,7 +59,7 @@ public class StackObjectPoolFactory implements ObjectPoolFactory {
      * @see StackObjectPool#StackObjectPool(int, int)
      */
     public StackObjectPoolFactory(int maxIdle, int initIdleCapacity) {
-        this((PoolableObjectFactory)null,maxIdle,initIdleCapacity);
+        this(null,maxIdle,initIdleCapacity);
     }
 
     /**

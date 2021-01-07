@@ -230,7 +230,7 @@ public class Hashtable<K,V>
      * @see	Map
      */
     public synchronized Enumeration<K> keys() {
-	return this.<K>getEnumeration(KEYS);
+	return this.getEnumeration(KEYS);
     }
 
     /**
@@ -245,7 +245,7 @@ public class Hashtable<K,V>
      * @see	Map
      */
     public synchronized Enumeration<V> elements() {
-	return this.<V>getEnumeration(VALUES);
+	return this.getEnumeration(VALUES);
     }
 
     /**
@@ -271,7 +271,7 @@ public class Hashtable<K,V>
 	    throw new NullPointerException();
 	}
 
-	Entry tab[] = table;
+	Entry[] tab = table;
 	for (int i = tab.length ; i-- > 0 ;) {
 	    for (Entry<K,V> e = tab[i] ; e != null ; e = e.next) {
 		if (e.value.equals(value)) {
@@ -310,7 +310,7 @@ public class Hashtable<K,V>
      * @see     #contains(Object)
      */
     public synchronized boolean containsKey(Object key) {
-	Entry tab[] = table;
+	Entry[] tab = table;
 	int hash = key.hashCode();
 	int index = (hash & 0x7FFFFFFF) % tab.length;
 	for (Entry<K,V> e = tab[index] ; e != null ; e = e.next) {
@@ -332,7 +332,7 @@ public class Hashtable<K,V>
      * @see     #put(Object, Object)
      */
     public synchronized V get(Object key) {
-	Entry tab[] = table;
+	Entry[] tab = table;
 	int hash = key.hashCode();
 	int index = (hash & 0x7FFFFFFF) % tab.length;
 	for (Entry<K,V> e = tab[index] ; e != null ; e = e.next) {
@@ -397,7 +397,7 @@ public class Hashtable<K,V>
 	}
 
 	// Makes sure the key is not already in the hashtable.
-	Entry tab[] = table;
+	Entry[] tab = table;
 	int hash = key.hashCode();
 	int index = (hash & 0x7FFFFFFF) % tab.length;
 	for (Entry<K,V> e = tab[index] ; e != null ; e = e.next) {
@@ -434,7 +434,7 @@ public class Hashtable<K,V>
      * @throws  NullPointerException  if the key is <code>null</code>.
      */
     public synchronized V remove(Object key) {
-	Entry tab[] = table;
+	Entry[] tab = table;
 	int hash = key.hashCode();
 	int index = (hash & 0x7FFFFFFF) % tab.length;
 	for (Entry<K,V> e = tab[index], prev = null ; e != null ; prev = e, e = e.next) {
@@ -475,7 +475,7 @@ public class Hashtable<K,V>
      * Clears this hashtable so that it contains no keys. 
      */
     public synchronized void clear() {
-	Entry tab[] = table;
+	Entry[] tab = table;
 	modCount++;
 	for (int index = tab.length; --index >= 0; )
 	    tab[index] = null;
@@ -1053,8 +1053,8 @@ public class Hashtable<K,V>
     }
 
    
-    private static Enumeration emptyEnumerator = new EmptyEnumerator();
-    private static Iterator emptyIterator = new EmptyIterator();
+    private static final Enumeration emptyEnumerator = new EmptyEnumerator();
+    private static final Iterator emptyIterator = new EmptyIterator();
 
     /**
      * A hashtable enumerator class for empty hash tables, specializes

@@ -5,6 +5,7 @@ import external.instrumented.java.util.Collections;
 import external.instrumented.java.util.HashSet;
 import external.instrumented.java.util.Set;
 import external.jpf_test_cases.MyRandom;
+import log.RecordTimeInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -101,12 +102,32 @@ public class MTSetTest extends Thread {
 
     @Test
     public void test() throws InterruptedException {
+//        RecordTimeInfo.recordInfo("MTSet",
+//                "记录原始测试用例生成和执行的时间:",true);
         try {
             MTSetTest.main(null);
         } catch (Exception e) {
             System.out.println("here");
             fail();
         }
+//        for (int i = 0; i < 30; i++) {
+//            long start = System.currentTimeMillis();
+//            try {
+//                MTSetTest.main(null);
+//                long end = System.currentTimeMillis();
+//                String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+//                if (i != 29){
+//                    RecordTimeInfo.recordInfo("MTSet", timeInfo, true);
+//                }else {
+//                    RecordTimeInfo.recordInfo("MTSet", timeInfo, true);
+//                }
+//            } catch (Exception e) {
+//                System.out.println("here");
+//                fail();
+//            }
+//
+//        }
+
     }
 }
 //@The following comments are auto-generated to save options for testing the current file

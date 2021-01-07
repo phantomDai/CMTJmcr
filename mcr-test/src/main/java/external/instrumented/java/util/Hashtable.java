@@ -107,7 +107,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
     /**
      * The hash table data.
      */
-    private transient Entry table[];
+    private transient Entry[] table;
 
     /**
      * The total number of entries in the hash table.
@@ -269,7 +269,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
         throw new NullPointerException();
     }
 
-    Entry tab[] = table;
+    Entry[] tab = table;
     for (int i = tab.length ; i-- > 0 ;) {
         for (Entry e = tab[i] ; e != null ; e = e.next) {
         if (e.value.equals(value)) {
@@ -308,7 +308,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
      * @see     #contains(Object)
      */
     public synchronized boolean containsKey(Object key) {
-    Entry tab[] = table;
+    Entry[] tab = table;
     int hash = key.hashCode();
     int index = (hash & 0x7FFFFFFF) % tab.length;
     for (Entry e = tab[index] ; e != null ; e = e.next) {
@@ -330,7 +330,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
      * @see     #put(Object, Object)
      */
     public synchronized Object get(Object key) {
-    Entry tab[] = table;
+    Entry[] tab = table;
     int hash = key.hashCode();
     int index = (hash & 0x7FFFFFFF) % tab.length;
     for (Entry e = tab[index] ; e != null ; e = e.next) {
@@ -350,10 +350,10 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
      */
     protected void rehash() {
     int oldCapacity = table.length;
-    Entry oldMap[] = table;
+    Entry[] oldMap = table;
 
     int newCapacity = oldCapacity * 2 + 1;
-    Entry newMap[] = new Entry[newCapacity];
+    Entry[] newMap = new Entry[newCapacity];
 
     modCount++;
     threshold = (int)(newCapacity * loadFactor);
@@ -395,7 +395,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
     }
 
     // Makes sure the key is not already in the hashtable.
-    Entry tab[] = table;
+    Entry[] tab = table;
     int hash = key.hashCode();
     int index = (hash & 0x7FFFFFFF) % tab.length;
     for (Entry e = tab[index] ; e != null ; e = e.next) {
@@ -432,7 +432,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
      * @throws  NullPointerException  if the key is <code>null</code>.
      */
     public synchronized Object remove(Object key) {
-    Entry tab[] = table;
+    Entry[] tab = table;
     int hash = key.hashCode();
     int index = (hash & 0x7FFFFFFF) % tab.length;
     for (Entry e = tab[index], prev = null ; e != null ; prev = e, e = e.next) {
@@ -473,7 +473,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
      * Clears this hashtable so that it contains no keys. 
      */
     public synchronized void clear() {
-    Entry tab[] = table;
+    Entry[] tab = table;
     modCount++;
     for (int index = tab.length; --index >= 0; )
         tab[index] = null;
@@ -627,7 +627,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
                 return false;
             Map.Entry entry = (Map.Entry)o;
             Object key = entry.getKey();
-            Entry tab[] = table;
+            Entry[] tab = table;
             int hash = key.hashCode();
             int index = (hash & 0x7FFFFFFF) % tab.length;
 
@@ -642,7 +642,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
                 return false;
             Map.Entry entry = (Map.Entry)o;
             Object key = entry.getKey();
-            Entry tab[] = table;
+            Entry[] tab = table;
             int hash = key.hashCode();
             int index = (hash & 0x7FFFFFFF) % tab.length;
 
@@ -771,7 +771,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
             return h;  // Returns zero
 
         loadFactor = -loadFactor;  // Mark hashCode computation in progress
-        Entry tab[] = table;
+        Entry[] tab = table;
         for (int i = 0; i < tab.length; i++)
             for (Entry e = tab[i]; e != null; e = e.next)
                 h += e.key.hashCode() ^ e.value.hashCode();
@@ -943,7 +943,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
     public boolean hasMoreElements() {
         Entry e = entry;
         int i = index;
-        Entry t[] = table;
+        Entry[] t = table;
         /* Use locals for faster loop iteration */
         while (e == null && i > 0) {
         e = t[--i];
@@ -956,7 +956,7 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
     public Object nextElement() {
         Entry et = entry;
         int i = index;
-        Entry t[] = table;
+        Entry[] t = table;
         /* Use locals for faster loop iteration */
         while (et == null && i > 0) {
         et = t[--i];
@@ -1014,8 +1014,8 @@ public class Hashtable extends Dictionary implements Map, Cloneable,
     }
 
 
-    private static EmptyEnumerator emptyEnumerator = new EmptyEnumerator();
-    private static EmptyIterator emptyIterator = new EmptyIterator();
+    private static final EmptyEnumerator emptyEnumerator = new EmptyEnumerator();
+    private static final EmptyIterator emptyIterator = new EmptyIterator();
 
     /**
      * A hashtable enumerator class for empty hash tables, specializes

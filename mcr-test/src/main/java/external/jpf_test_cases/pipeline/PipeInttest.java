@@ -5,7 +5,7 @@ package external.jpf_test_cases.pipeline;
 public class PipeInttest {
   static Pipeline pipe;
   static boolean stopCalled = false;
-  static public void main (String argv[]) {
+  static public void main (String[] argv) {
     pipe = new Pipeline(6);
 
     // abstract : i with signs

@@ -203,7 +203,7 @@ public class WeakHashMap extends AbstractMap implements Map {
      */
     public WeakHashMap() {
         this.loadFactor = DEFAULT_LOAD_FACTOR;
-        threshold = (int)(DEFAULT_INITIAL_CAPACITY);
+        threshold = DEFAULT_INITIAL_CAPACITY;
         table = new Entry[DEFAULT_INITIAL_CAPACITY];
     }
   
@@ -587,7 +587,7 @@ public class WeakHashMap extends AbstractMap implements Map {
             ;
 
         modCount++;
-        Entry tab[] = table;
+        Entry[] tab = table;
         for (int i = 0; i < tab.length; ++i) 
             tab[i] = null;
         size = 0;
@@ -611,7 +611,7 @@ public class WeakHashMap extends AbstractMap implements Map {
 	if (value==null) 
             return containsNullValue();
 
-	Entry tab[] = getTable();
+	Entry[] tab = getTable();
         for (int i = tab.length ; i-- > 0 ;)
             for (Entry e = tab[i] ; e != null ; e = e.next)
                 if (value.equals(e.value))
@@ -623,7 +623,7 @@ public class WeakHashMap extends AbstractMap implements Map {
      * Special-case code for containsValue with null argument
      */
     private boolean containsNullValue() {
-	Entry tab[] = getTable();
+	Entry[] tab = getTable();
         for (int i = tab.length ; i-- > 0 ;)
             for (Entry e = tab[i] ; e != null ; e = e.next)
                 if (e.value==null)
@@ -674,8 +674,7 @@ public class WeakHashMap extends AbstractMap implements Map {
             if (k1 == k2 || (k1 != null && k1.equals(k2))) {
                 Object v1 = getValue();
                 Object v2 = e.getValue();
-                if (v1 == v2 || (v1 != null && v1.equals(v2))) 
-                    return true;
+                return v1 == v2 || (v1 != null && v1.equals(v2));
             }
             return false;
         }
@@ -834,7 +833,7 @@ public class WeakHashMap extends AbstractMap implements Map {
             return c.toArray();
         }
 
-        public Object[] toArray(Object a[]) {
+        public Object[] toArray(Object[] a) {
             Collection c = new ArrayList(size());
             for (Iterator i = iterator(); i.hasNext(); )
                 c.add(i.next());
@@ -882,7 +881,7 @@ public class WeakHashMap extends AbstractMap implements Map {
             return c.toArray();
         }
 
-        public Object[] toArray(Object a[]) {
+        public Object[] toArray(Object[] a) {
             Collection c = new ArrayList(size());
             for (Iterator i = iterator(); i.hasNext(); )
                 c.add(i.next());
@@ -941,7 +940,7 @@ public class WeakHashMap extends AbstractMap implements Map {
             return c.toArray();
         }
 
-        public Object[] toArray(Object a[]) {
+        public Object[] toArray(Object[] a) {
             Collection c = new ArrayList(size());
             for (Iterator i = iterator(); i.hasNext(); )
                 c.add(new AbstractMap.SimpleEntry((Map.Entry) i.next()));

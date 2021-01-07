@@ -15,7 +15,6 @@ import org.junit.runner.RunWith;
 import java.io.*;
 
 
-
 @RunWith(JUnit4MCRRunner.class)
 /**
  *
@@ -49,17 +48,17 @@ public class PingPong {
     public void doWork() {
         String newLine = System.getProperty("line.separator");
         try {
-            out.writeBytes("Number Of Threads: " + this.threadsNumber + " Number Of Bugs: ");
+            out.writeBytes("Number Of Threads: " + threadsNumber + " Number Of Bugs: ");
         } catch (IOException e) {
             e.printStackTrace(System.err);
         }
-        this.bug.doWork();
+        bug.doWork();
     }
 
 
     public static void main(String[] args) {
         File output = new File("output.txt");
-
+        long start = System.currentTimeMillis();
         DataOutputStream out = null;
         try {
             FileOutputStream os = new FileOutputStream(output);
@@ -75,24 +74,16 @@ public class PingPong {
                     "bugged program utilized with:" + newLine + newLine);
 
             out.writeBytes("Few Threads: " + newLine + newLine);
+            long testcase = System.currentTimeMillis();
+            String testCaseInfo = "生成测试用例的时间:" + (testcase - start);
+            RecordTimeInfo.recordInfo("PingPong", testCaseInfo, false);
             PingPong fewThreads = new PingPong();
             setup(out, 5); //initialize the value since it can't have constructor
             fewThreads.doWork();
-//            out.writeBytes(newLine + "************************************" + newLine + newLine);
-//            out.writeBytes("Average Threads: " + newLine + newLine);
-//            ProgramRunner averageThreads = new ProgramRunner(out, 40);
-//            averageThreads.doWork();
-//            out.writeBytes(newLine + "************************************" + newLine + newLine);
-//            out.writeBytes("A Lot Of Threads: " + newLine + newLine);
-//            ProgramRunner aLotOfThreads = new ProgramRunner(out, 120);
-//            aLotOfThreads.doWork();
-//            out.writeBytes(newLine + "************************************" + newLine + newLine);
 
         } catch (IOException e) {
             e.printStackTrace(System.err);
         }
-
-
     }
     private static void setup(DataOutputStream out2, int i) {
 		// TODO Auto-generated method stub
@@ -104,11 +95,20 @@ public class PingPong {
 
 	@Test
   	public void test() {
-        long star = System.currentTimeMillis();
-        PingPong.main(new String[]{});
-        long end = System.currentTimeMillis();
-        String timeInfo = "执行原始测试用例的时间是:" + String.valueOf(end - star);
-        RecordTimeInfo.recordInfo("PingPong", timeInfo, false);
+        RecordTimeInfo.recordInfo("PingPong",
+                "记录原始测试用例生成和执行的时间:",true);
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            PingPong.main(new String[]{});
+            long end = System.currentTimeMillis();
+            String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+            if (i != 29){
+                RecordTimeInfo.recordInfo("PingPong", timeInfo, true);
+            }else {
+                RecordTimeInfo.recordInfo("PingPong", timeInfo, true);
+            }
+        }
+
 
     }
 

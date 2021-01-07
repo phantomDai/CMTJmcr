@@ -72,7 +72,7 @@ public abstract class EnumSet<E extends Enum<E>> extends AbstractSet<E>
      */
     final Enum[] universe;
 
-    private static Enum[] ZERO_LENGTH_ENUM_ARRAY = new Enum[0];
+    private static final Enum[] ZERO_LENGTH_ENUM_ARRAY = new Enum[0];
 
     EnumSet(Class<E>elementType, Enum[] universe) {
         this.elementType = elementType;
@@ -390,7 +390,7 @@ public abstract class EnumSet<E extends Enum<E>> extends AbstractSet<E>
 
         SerializationProxy(EnumSet<E> set) {
             elementType = set.elementType;
-            elements = (Enum[]) set.toArray(ZERO_LENGTH_ENUM_ARRAY);
+            elements = set.toArray(ZERO_LENGTH_ENUM_ARRAY);
         }
 
         private Object readResolve() {

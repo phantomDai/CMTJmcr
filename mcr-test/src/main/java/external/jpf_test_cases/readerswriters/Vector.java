@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 public
 class Vector {
-    protected Object elementData[];
+    protected Object[] elementData;
 
     protected int elementCount;
 
@@ -60,7 +60,7 @@ class Vector {
      * @param   anArray   the array into which the components get copied.
      * @since   JDK1.0
      */
-    public final synchronized void copyInto(Object anArray[]) {
+    public final synchronized void copyInto(Object[] anArray) {
         int i = elementCount;
         while (i-- > 0) {
             anArray[i] = elementData[i];
@@ -77,7 +77,7 @@ class Vector {
     public final synchronized void trimToSize() {
         int oldCapacity = elementData.length;
         if (elementCount < oldCapacity) {
-            Object oldData[] = elementData;
+            Object[] oldData = elementData;
             elementData = new Object[elementCount];
             arraycopy(oldData, 0, elementData, 0, elementCount); // System
         }
@@ -94,7 +94,7 @@ class Vector {
     public final synchronized void ensureCapacity(int minCapacity) {
         int oldCapacity = elementData.length;
         if (minCapacity > oldCapacity) {
-            Object oldData[] = elementData;
+            Object[] oldData = elementData;
             int newCapacity = (capacityIncrement > 0) ?
                 (oldCapacity + capacityIncrement) : (oldCapacity * 2);
             if (newCapacity < minCapacity) {

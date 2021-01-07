@@ -163,7 +163,7 @@ public abstract class AbstractCollection implements Collection {
      *         is not a supertype of the runtime type of every element in this
      *         collection.
      */
-    public Object[] toArray(Object a[]) {
+    public Object[] toArray(Object[] a) {
         int size = size();
         if (a.length < size)
             a = (Object[])java.lang.reflect.Array.newInstance(

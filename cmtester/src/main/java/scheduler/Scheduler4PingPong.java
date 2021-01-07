@@ -1,8 +1,6 @@
 package scheduler;
 
-import com.mycompany.cmtester.CMTester;
 import strategy.Strategy;
-import strategy.Strategy4Critical;
 import strategy.Strategy4PingPong;
 
 import java.util.HashMap;
@@ -46,14 +44,14 @@ public class Scheduler4PingPong {
                     // 变化的逻辑是：
                     //如果活跃线程不为空，而且暂停线程不为空，从队列里选择一个线程释放choose()函数内部逻辑
                     if (!livingThreadInfos.isEmpty() && !pausedThreadInfos.isEmpty()) {
-                        if (count <= 6) {
+                        if (count <= 7) {
                             if (pausedThreadInfos.size() > 4) {
                                 ThreadInfo threadInfo = choose();
                                 pausedThreadInfos.remove(threadInfo);
                                 count++;
                                 threadInfo.getPausingSemaphore().release();
                             }
-                        }else if (count>6){
+                        }else if (count>7){
                             if (pausedThreadInfos.size() != 0){
                                 ThreadInfo threadInfo = pausedThreadInfos.iterator().next();
                                 pausedThreadInfos.remove(threadInfo);
@@ -129,7 +127,7 @@ public class Scheduler4PingPong {
     public static ThreadInfo choose() {
         ThreadInfo choice = null;
         Strategy strategy4PingPong = new Strategy4PingPong();
-        choice = strategy4PingPong.choose("MP2", pausedThreadInfos);
+        choice = strategy4PingPong.choose("MP5", pausedThreadInfos);
         return choice;
     }
 }

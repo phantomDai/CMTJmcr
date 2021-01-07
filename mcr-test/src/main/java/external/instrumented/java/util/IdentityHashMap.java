@@ -678,7 +678,7 @@ public class IdentityHashMap extends AbstractMap implements Map,
         try { 
             IdentityHashMap t = (IdentityHashMap)super.clone();
             t.entrySet = null;
-            t.table = (Object[])(table.clone());
+            t.table = table.clone();
             return t;
         } catch (CloneNotSupportedException e) { 
             throw new InternalError();
@@ -1103,7 +1103,7 @@ public class IdentityHashMap extends AbstractMap implements Map,
                 c.add(new AbstractMap.SimpleEntry((Map.Entry) i.next()));
             return c.toArray();
         }
-        public Object[] toArray(Object a[]) {
+        public Object[] toArray(Object[] a) {
             Collection c = new ArrayList(size());
             for (Iterator i = iterator(); i.hasNext(); )
                 c.add(new AbstractMap.SimpleEntry((Map.Entry) i.next()));

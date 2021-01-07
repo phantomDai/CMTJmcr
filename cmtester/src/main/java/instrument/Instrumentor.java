@@ -15,6 +15,13 @@ public class Instrumentor {
     public static String EVENT_RECIEVER2 = "scheduler/Scheduler4Acc";
     public static String EVENT_RECIEVER3 = "scheduler/Scheduler4Air";
     public static String EVENT_RECIEVER4 = "scheduler/Scheduler4PingPong";
+    public static String EVENT_RECIEVER5 = "scheduler/Scheduler4MTSet";
+    public static String EVENT_RECIEVER6 = "scheduler/Scheduler4Dekker";
+    public static String EVENT_RECIEVER7 = "scheduler/Scheduler4Lamport";
+    public static String EVENT_RECIEVER8 = "scheduler/Scheduler4Peterson";
+    public static String EVENT_RECIEVER9 = "scheduler/Scheduler4RVExample";
+    public static String EVENT_RECIEVER10 = "scheduler/Scheduler4LinkedList";
+    public static String EVENT_RECIEVER11 = "scheduler/Scheduler4Lottery";
     //每测一个程序都需要在这里创建一个新的常量，然后再下面的逻辑中进行配置（根据不同的程序名字调用不同的ClassTransformer）
 
     /**
@@ -103,6 +110,181 @@ public class Instrumentor {
                 ClassReader classReader = new ClassReader(classfileBuffer);
                 ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
                 ClassVisitor myClassTransformer = new ClassTransformer4PingPong(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/mtSet")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4MTSet(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/dekker")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4Dekker(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/lamport")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4Lamport(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/peterson")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4Peterson(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/rvExample")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4RVExample(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/linkedList")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4LinkedList(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/lottery")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4Lottery(classWriter);
                 classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
                 classfileBuffer = classWriter.toByteArray();
                 File dir = new File("out");

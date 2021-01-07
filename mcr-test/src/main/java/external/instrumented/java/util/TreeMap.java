@@ -217,9 +217,8 @@ public class TreeMap extends AbstractMap
      * @since 1.2
      */
     public boolean containsValue(Object value) {
-        return (root==null ? false :
-                (value==null ? valueSearchNull(root)
-                             : valueSearchNonNull(root, value)));
+        return (root != null && (value == null ? valueSearchNull(root)
+                : valueSearchNonNull(root, value)));
     }
 
     private boolean valueSearchNull(Entry n) {
@@ -907,7 +906,7 @@ public class TreeMap extends AbstractMap
             return last;
         }
 
-        private transient Set entrySet = new EntrySetView();
+        private final transient Set entrySet = new EntrySetView();
 
         public Set entrySet() {
             return entrySet;

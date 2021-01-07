@@ -699,8 +699,8 @@ public abstract class AbstractList extends AbstractCollection implements List {
 }
 
 class SubList extends AbstractList {
-    private AbstractList l;
-    private int offset;
+    private final AbstractList l;
+    private final int offset;
     private int size;
     private int expectedModCount;
 
@@ -794,7 +794,7 @@ class SubList extends AbstractList {
                 "Index: "+index+", Size: "+size);
 
         return new ListIterator() {
-            private ListIterator i = l.listIterator(index+offset);
+            private final ListIterator i = l.listIterator(index+offset);
 
             public boolean hasNext() {
                 return nextIndex() < size;

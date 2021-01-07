@@ -693,8 +693,8 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 }
 
 class SubList<E> extends AbstractList<E> {
-    private AbstractList<E> l;
-    private int offset;
+    private final AbstractList<E> l;
+    private final int offset;
     private int size;
     private int expectedModCount;
 
@@ -788,7 +788,7 @@ class SubList<E> extends AbstractList<E> {
                 "Index: "+index+", Size: "+size);
 
         return new ListIterator<E>() {
-            private ListIterator<E> i = l.listIterator(index+offset);
+            private final ListIterator<E> i = l.listIterator(index+offset);
 
             public boolean hasNext() {
                 return nextIndex() < size;

@@ -679,7 +679,7 @@ public class IdentityHashMap<K,V>
         try {
             IdentityHashMap<K,V> t = (IdentityHashMap<K,V>) super.clone();
             t.entrySet = null;
-            t.table = (Object[])table.clone();
+            t.table = table.clone();
             return t;
         } catch (CloneNotSupportedException e) {
             throw new InternalError();

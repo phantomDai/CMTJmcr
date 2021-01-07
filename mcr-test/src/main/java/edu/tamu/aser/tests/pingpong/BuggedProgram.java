@@ -15,16 +15,16 @@ import java.util.Iterator;
 public class BuggedProgram {
 
 
-    private DataOutputStream output;
+    private final DataOutputStream output;
 
 
-    private int threadNumber;
+    private final int threadNumber;
 
 
     private PP pingPongPlayer;
 
 
-    private int bugAppearanceNumber = 0;
+    private final int bugAppearanceNumber = 0;
 
 
     /**

@@ -185,7 +185,7 @@ public class DerbyTest
     
 	@Test
 	public void test() throws InterruptedException {
-		DerbyTest.main(new String[]{});
+		DerbyTest.main(new String[]{"2","2"});
 	}
 
 }

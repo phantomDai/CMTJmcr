@@ -246,7 +246,7 @@ public class TreeSet<E>
 	    // FIXME(VFORCE) Work-around for bug in compiler
 	    c instanceof SortedSet &&
             m instanceof TreeMap) {
-            SortedSet<Map.Entry<E, Object>> set = (SortedSet<Map.Entry<E, Object>>) (SortedSet) c;
+            SortedSet<Map.Entry<E, Object>> set = (SortedSet<Map.Entry<E, Object>>) c;
             TreeMap<E,Object> map = (TreeMap<E, Object>) m;
             Comparator<? super E> cc = (Comparator<E>) set.comparator();
             Comparator<? super E> mc = map.comparator();

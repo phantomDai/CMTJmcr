@@ -8,7 +8,7 @@ package external.jpf_test_cases.replicatedcasestudies;
 //import java.util.Enumeration;
 
 final class SynchronizedCollection {
-  private Collection theCollection;
+  private final Collection theCollection;
 
   public SynchronizedCollection(Collection  c)
   {

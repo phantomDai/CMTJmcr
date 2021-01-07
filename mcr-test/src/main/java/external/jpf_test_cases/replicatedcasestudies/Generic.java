@@ -4,7 +4,7 @@ package external.jpf_test_cases.replicatedcasestudies;
 //import ca.replicatedworkers.Configuration;
 
 public class Generic {
-  public static void main( String arg[] )
+  public static void main(String[] arg)
   {
     ReplicatedWorkers theInstance;
     Configuration theConfig;

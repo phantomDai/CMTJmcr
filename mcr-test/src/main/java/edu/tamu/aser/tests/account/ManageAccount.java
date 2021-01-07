@@ -43,7 +43,7 @@ public class ManageAccount extends Thread {
 		for (int j = 0; j < num; j++) {
 			if (ManageAccount.accounts[j] != null) {
 				ManageAccount.accounts[j].print();
-				;// print it
+                // print it
 			}
 		}
 	}

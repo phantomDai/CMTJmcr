@@ -678,7 +678,7 @@ public class HashMap<K,V>
         }
 
         public K getKey() {
-            return HashMap.<K>unmaskNull(key);
+            return HashMap.unmaskNull(key);
         }
 
         public V getValue() {
@@ -700,8 +700,7 @@ public class HashMap<K,V>
             if (k1 == k2 || (k1 != null && k1.equals(k2))) {
                 Object v1 = getValue();
                 Object v2 = e.getValue();
-                if (v1 == v2 || (v1 != null && v1.equals(v2))) 
-                    return true;
+                return v1 == v2 || (v1 != null && v1.equals(v2));
             }
             return false;
         }
@@ -926,7 +925,7 @@ public class HashMap<K,V>
      */
     public Set<Map.Entry<K,V>> entrySet() {
         Set<Map.Entry<K,V>> es = entrySet;
-        return (es != null ? es : (entrySet = (Set<Map.Entry<K,V>>) (Set) new EntrySet()));
+        return (es != null ? es : (entrySet = (Set<Map.Entry<K,V>>) new EntrySet()));
     }
 
     private class EntrySet extends AbstractSet/*<Map.Entry<K,V>>*/ {

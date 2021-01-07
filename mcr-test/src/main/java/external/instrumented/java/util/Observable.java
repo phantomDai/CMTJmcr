@@ -44,7 +44,7 @@ package external.instrumented.java.util;
  */
 public class Observable {
     private boolean changed = false;
-    private Vector obs;
+    private final Vector obs;
    
     /** Construct an Observable with zero Observers. */
 

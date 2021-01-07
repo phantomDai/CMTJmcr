@@ -1218,7 +1218,7 @@ public class GenericObjectPool extends BaseObjectPool implements ObjectPool {
 			try {
 				pair = (ObjectTimestampPair) (_pool.removeFirst());
 			} catch (NoSuchElementException e) {
-				; /* ignored */
+				/* ignored */
 			}
 			_numActive++;
 		}

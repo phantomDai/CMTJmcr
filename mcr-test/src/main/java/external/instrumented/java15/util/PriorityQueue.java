@@ -645,7 +645,7 @@ public class PriorityQueue<E> extends AbstractQueue<E>
 
         // Read in all elements in the proper order.
         for (int i=1; i<=size; i++)
-            queue[i] = (E) s.readObject();
+            queue[i] = s.readObject();
     }
 
 }

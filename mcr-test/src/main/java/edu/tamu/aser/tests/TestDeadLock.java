@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 public class TestDeadLock {
 
     private int field = 0;
-    private Object mutex1 = new Object();
-    private Object mutex2 = new Object();
+    private final Object mutex1 = new Object();
+    private final Object mutex2 = new Object();
 
     public void increment1() {
         synchronized (mutex1) {

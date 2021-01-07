@@ -649,7 +649,7 @@ public final class PoolUtils {
             this.key = key;
         }
 
-        public Object borrowObject() throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject() throws Exception {
             return keyedPool.borrowObject(key);
         }
 
@@ -669,7 +669,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject() throws Exception, IllegalStateException {
+        public void addObject() throws Exception {
             keyedPool.addObject(key);
         }
 
@@ -681,7 +681,7 @@ public final class PoolUtils {
             return keyedPool.getNumActive(key);
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             keyedPool.clear();
         }
 
@@ -717,7 +717,7 @@ public final class PoolUtils {
             this.pool = pool;
         }
 
-        public Object borrowObject(final Object key) throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject(final Object key) throws Exception {
             return pool.borrowObject();
         }
 
@@ -737,7 +737,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject(final Object key) throws Exception, IllegalStateException {
+        public void addObject(final Object key) throws Exception {
             pool.addObject();
         }
 
@@ -757,11 +757,11 @@ public final class PoolUtils {
             return pool.getNumActive();
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             pool.clear();
         }
 
-        public void clear(final Object key) throws Exception, UnsupportedOperationException {
+        public void clear(final Object key) throws Exception {
             pool.clear();
         }
 
@@ -801,7 +801,7 @@ public final class PoolUtils {
             this.type = type;
         }
 
-        public Object borrowObject() throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject() throws Exception {
             final Object obj = pool.borrowObject();
             if (type.isInstance(obj)) {
                 return obj;
@@ -834,7 +834,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject() throws Exception, IllegalStateException, UnsupportedOperationException {
+        public void addObject() throws Exception {
             pool.addObject();
         }
 
@@ -846,7 +846,7 @@ public final class PoolUtils {
             return pool.getNumActive();
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             pool.clear();
         }
 
@@ -887,7 +887,7 @@ public final class PoolUtils {
             this.type = type;
         }
 
-        public Object borrowObject(final Object key) throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject(final Object key) throws Exception {
             Object obj = keyedPool.borrowObject(key);
             if (type.isInstance(obj)) {
                 return obj;
@@ -920,7 +920,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject(final Object key) throws Exception, IllegalStateException, UnsupportedOperationException {
+        public void addObject(final Object key) throws Exception {
             keyedPool.addObject(key);
         }
 
@@ -940,11 +940,11 @@ public final class PoolUtils {
             return keyedPool.getNumActive();
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             keyedPool.clear();
         }
 
-        public void clear(final Object key) throws Exception, UnsupportedOperationException {
+        public void clear(final Object key) throws Exception {
             keyedPool.clear(key);
         }
 
@@ -1067,7 +1067,7 @@ public final class PoolUtils {
             lock = new Object();
         }
 
-        public Object borrowObject() throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject() throws Exception {
             synchronized (lock) {
                 return pool.borrowObject();
             }
@@ -1093,7 +1093,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject() throws Exception, IllegalStateException, UnsupportedOperationException {
+        public void addObject() throws Exception {
             synchronized (lock) {
                 pool.addObject();
             }
@@ -1111,7 +1111,7 @@ public final class PoolUtils {
             }
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             synchronized (lock) {
                 pool.clear();
             }
@@ -1154,7 +1154,7 @@ public final class PoolUtils {
             lock = new Object();
         }
 
-        public Object borrowObject(final Object key) throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject(final Object key) throws Exception {
             synchronized (lock) {
                 return keyedPool.borrowObject(key);
             }
@@ -1180,7 +1180,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject(final Object key) throws Exception, IllegalStateException, UnsupportedOperationException {
+        public void addObject(final Object key) throws Exception {
             synchronized (lock) {
                 keyedPool.addObject(key);
             }
@@ -1210,13 +1210,13 @@ public final class PoolUtils {
             }
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             synchronized (lock) {
                 keyedPool.clear();
             }
         }
 
-        public void clear(final Object key) throws Exception, UnsupportedOperationException {
+        public void clear(final Object key) throws Exception {
             synchronized (lock) {
                 keyedPool.clear(key);
             }
@@ -1396,7 +1396,7 @@ public final class PoolUtils {
             this.factor = new ErodingFactor(factor);
         }
 
-        public Object borrowObject() throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject() throws Exception {
             return pool.borrowObject();
         }
 
@@ -1432,7 +1432,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject() throws Exception, IllegalStateException, UnsupportedOperationException {
+        public void addObject() throws Exception {
             pool.addObject();
         }
 
@@ -1444,7 +1444,7 @@ public final class PoolUtils {
             return pool.getNumActive();
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             pool.clear();
         }
 
@@ -1484,7 +1484,7 @@ public final class PoolUtils {
             this.erodingFactor = erodingFactor;
         }
 
-        public Object borrowObject(final Object key) throws Exception, NoSuchElementException, IllegalStateException {
+        public Object borrowObject(final Object key) throws Exception {
             return keyedPool.borrowObject(key);
         }
 
@@ -1529,7 +1529,7 @@ public final class PoolUtils {
             }
         }
 
-        public void addObject(final Object key) throws Exception, IllegalStateException, UnsupportedOperationException {
+        public void addObject(final Object key) throws Exception {
             keyedPool.addObject(key);
         }
 
@@ -1549,11 +1549,11 @@ public final class PoolUtils {
             return keyedPool.getNumActive(key);
         }
 
-        public void clear() throws Exception, UnsupportedOperationException {
+        public void clear() throws Exception {
             keyedPool.clear();
         }
 
-        public void clear(final Object key) throws Exception, UnsupportedOperationException {
+        public void clear(final Object key) throws Exception {
             keyedPool.clear(key);
         }
 

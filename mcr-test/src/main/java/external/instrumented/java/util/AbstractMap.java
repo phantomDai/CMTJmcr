@@ -370,7 +370,7 @@ public abstract class AbstractMap implements Map {
         keySet = new AbstractSet() {
         public Iterator iterator() {
             return new Iterator() {
-            private Iterator i = entrySet().iterator();
+            private final Iterator i = entrySet().iterator();
 
             public boolean hasNext() {
                 return i.hasNext();
@@ -427,7 +427,7 @@ public abstract class AbstractMap implements Map {
         values = new AbstractCollection() {
         public Iterator iterator() {
             return new Iterator() {
-            private Iterator i = entrySet().iterator();
+            private final Iterator i = entrySet().iterator();
 
             public boolean hasNext() {
                 return i.hasNext();

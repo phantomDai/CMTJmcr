@@ -161,7 +161,7 @@ public interface ObjectPool {
      *
      * @throws UnsupportedOperationException if this implementation does not support the operation
      */
-    void clear() throws Exception, UnsupportedOperationException;
+    void clear() throws Exception;
 
     /**
      * Close this pool, and free any resources associated with it.

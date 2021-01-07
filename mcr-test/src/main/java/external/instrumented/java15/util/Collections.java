@@ -410,7 +410,7 @@ public class Collections {
     public static void shuffle(List<?> list) {
         shuffle(list, r);
     }
-    private static Random r = new Random();
+    private static final Random r = new Random();
 
     /**
      * Randomly permute the specified list using the specified source of
@@ -441,7 +441,7 @@ public class Collections {
             for (int i=size; i>1; i--)
                 swap(list, i-1, rnd.nextInt(i));
         } else {
-            Object arr[] = list.toArray();
+            Object[] arr = list.toArray();
 
             // Shuffle array
             for (int i=size; i>1; i--)
@@ -601,7 +601,7 @@ public class Collections {
      */
     public static <T> T min(Collection<? extends T> coll, Comparator<? super T> comp) {
         if (comp==null)
-            return (T)min((Collection<SelfComparable>) (Collection) coll);
+            return (T)min((Collection<SelfComparable>) coll);
 
 	Iterator<? extends T> i = coll.iterator();
 	T candidate = i.next();
@@ -671,7 +671,7 @@ public class Collections {
      */
     public static <T> T max(Collection<? extends T> coll, Comparator<? super T> comp) {
         if (comp==null)
-            return (T)max((Collection<SelfComparable>) (Collection) coll);
+            return (T)max((Collection<SelfComparable>) coll);
 
 	Iterator<? extends T> i = coll.iterator();
 	T candidate = i.next();
@@ -743,7 +743,7 @@ public class Collections {
         if (list instanceof RandomAccess || list.size() < ROTATE_THRESHOLD)
             rotate1((List)list, distance);
         else
-            rotate2((List)list, distance);
+            rotate2(list, distance);
     }
 
     private static <T> void rotate1(List<T> list, int distance) {
@@ -1004,7 +1004,7 @@ public class Collections {
 
 	public Iterator<E> iterator() {
 	    return new Iterator<E>() {
-		Iterator<? extends E> i = c.iterator();
+		final Iterator<? extends E> i = c.iterator();
 
 		public boolean hasNext() {return i.hasNext();}
 		public E next() 	 {return i.next();}
@@ -1095,7 +1095,7 @@ public class Collections {
 	                     extends UnmodifiableSet<E>
 	                     implements SortedSet<E>, Serializable {
 	private static final long serialVersionUID = -4929149591599911165L;
-        private SortedSet<E> ss;
+        private final SortedSet<E> ss;
 
 	UnmodifiableSortedSet(SortedSet<E> s) {super(s); ss = s;}
 
@@ -1171,7 +1171,7 @@ public class Collections {
 
 	public ListIterator<E> listIterator(final int index) {
 	    return new ListIterator<E>() {
-		ListIterator<? extends E> i = list.listIterator(index);
+		final ListIterator<? extends E> i = list.listIterator(index);
 
 		public boolean hasNext()     {return i.hasNext();}
 		public E next()		     {return i.next();}
@@ -1334,11 +1334,11 @@ public class Collections {
 	    private static final long serialVersionUID = 7854390611657943733L;
 
             UnmodifiableEntrySet(Set<? extends Map.Entry<? extends K, ? extends V>> s) {
-                super((Set<Map.Entry<K,V>>)(Set)s);
+                super((Set<Map.Entry<K,V>>) s);
             }
             public Iterator<Map.Entry<K,V>> iterator() {
                 return new Iterator<Map.Entry<K,V>>() {
-		    Iterator<? extends Map.Entry<? extends K, ? extends V>> i = c.iterator();
+		    final Iterator<? extends Map.Entry<? extends K, ? extends V>> i = c.iterator();
 
                     public boolean hasNext() {
                         return i.hasNext();
@@ -1424,7 +1424,7 @@ public class Collections {
              * Map Entry when asked to perform an equality check.
              */
             private static class UnmodifiableEntry<K,V> implements Map.Entry<K,V> {
-                private Map.Entry<? extends K, ? extends V> e;
+                private final Map.Entry<? extends K, ? extends V> e;
 
                 UnmodifiableEntry(Map.Entry<? extends K, ? extends V> e) {this.e = e;}
 
@@ -1474,7 +1474,7 @@ public class Collections {
 	  implements SortedMap<K,V>, Serializable {
 	private static final long serialVersionUID = -8806743815996713206L;
 
-        private SortedMap<K, ? extends V> sm;
+        private final SortedMap<K, ? extends V> sm;
 
 	UnmodifiableSortedMap(SortedMap<K, ? extends V> m) {super(m); sm = m;}
 
@@ -1713,7 +1713,7 @@ public class Collections {
     {
 	private static final long serialVersionUID = 8695801310862127406L;
 
-        private SortedSet<E> ss;
+        private final SortedSet<E> ss;
 
 	SynchronizedSortedSet(SortedSet<E> s) {
             super(s);
@@ -1948,7 +1948,7 @@ public class Collections {
 	// use serialVersionUID from JDK 1.2.2 for interoperability
 	private static final long serialVersionUID = 1978198479659022715L;
 
-	private Map<K,V> m;     // Backing Map
+	private final Map<K,V> m;     // Backing Map
         Object      mutex;	// Object on which to synchronize
 
 	SynchronizedMap(Map<K,V> m) {
@@ -2007,7 +2007,7 @@ public class Collections {
 	public Set<Map.Entry<K,V>> entrySet() {
             synchronized(mutex) {
                 if (entrySet==null)
-                    entrySet = new SynchronizedSet<Map.Entry<K,V>>((Set<Map.Entry<K,V>>)m.entrySet(), mutex);
+                    entrySet = new SynchronizedSet<Map.Entry<K,V>>(m.entrySet(), mutex);
                 return entrySet;
             }
 	}
@@ -2090,7 +2090,7 @@ public class Collections {
     {
 	private static final long serialVersionUID = -8798146769416483793L;
 
-        private SortedMap<K,V> sm;
+        private final SortedMap<K,V> sm;
 
 	SynchronizedSortedMap(SortedMap<K,V> m) {
             super(m);
@@ -2446,7 +2446,7 @@ public class Collections {
 
         public ListIterator<E> listIterator(final int index) {
             return new ListIterator<E>() {
-                ListIterator<E> i = list.listIterator(index);
+                final ListIterator<E> i = list.listIterator(index);
 
                 public boolean hasNext()     { return i.hasNext(); }
                 public E next()              { return i.next(); }
@@ -2668,7 +2668,7 @@ public class Collections {
 
             public Iterator<Map.Entry<K,V>> iterator() {
                 return new Iterator<Map.Entry<K,V>>() {
-                    Iterator<Map.Entry<K, V>> i = s.iterator();
+                    final Iterator<Map.Entry<K, V>> i = s.iterator();
 
                     public boolean hasNext() { return i.hasNext(); }
                     public void remove()     { i.remove(); }
@@ -2760,8 +2760,8 @@ public class Collections {
              * Map Entry when asked to perform an equality check.
              */
             private static class CheckedEntry<K,V> implements Map.Entry<K,V> {
-                private Map.Entry<K, V> e;
-                private Class<V> valueType;
+                private final Map.Entry<K, V> e;
+                private final Class<V> valueType;
 
                 CheckedEntry(Map.Entry<K, V> e, Class<V> valueType) {
                     this.e = e;
@@ -2837,7 +2837,7 @@ public class Collections {
     {
         private static final long serialVersionUID = 1599671320688067438L;
 
-        private SortedMap<K, V> sm;
+        private final SortedMap<K, V> sm;
 
         CheckedSortedMap(SortedMap<K, V> m,
                          Class<K> keyType, Class<V> valueType) {
@@ -3017,9 +3017,9 @@ public class Collections {
 
 	public Object get(Object key)              {return null;}
 
-        public Set<Object> keySet()                {return Collections.<Object>emptySet();}
+        public Set<Object> keySet()                {return Collections.emptySet();}
 
-        public Collection<Object> values()         {return Collections.<Object>emptySet();}
+        public Collection<Object> values()         {return Collections.emptySet();}
 
         public Set<Map.Entry<Object,Object>> entrySet() {
 	    return Collections.emptySet();
@@ -3343,7 +3343,7 @@ public class Collections {
          *
          * @serial
          */
-        private Comparator<T> cmp;
+        private final Comparator<T> cmp;
  
         ReverseComparator2(Comparator<T> cmp) {
             assert cmp != null;
@@ -3366,7 +3366,7 @@ public class Collections {
      */
     public static <T> Enumeration<T> enumeration(final Collection<T> c) {
 	return new Enumeration<T>() {
-	    Iterator<T> i = c.iterator();
+	    final Iterator<T> i = c.iterator();
 
 	    public boolean hasMoreElements() {
 		return i.hasNext();

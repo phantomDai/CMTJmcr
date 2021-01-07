@@ -21,7 +21,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
      * element of this array represents the  presence of universe[64*j +i]
      * in this set.
      */
-    private long elements[];
+    private long[] elements;
 
     // Redundant - maintained for performance
     private int size = 0;
@@ -345,7 +345,7 @@ class JumboEnumSet<E extends Enum<E>> extends EnumSet<E> {
 
     public EnumSet<E> clone() {
         JumboEnumSet<E> result = (JumboEnumSet<E>) super.clone();
-        result.elements = (long[]) result.elements.clone();
+        result.elements = result.elements.clone();
         return result;
     }
 }

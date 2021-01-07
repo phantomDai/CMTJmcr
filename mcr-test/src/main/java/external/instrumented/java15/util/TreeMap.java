@@ -218,9 +218,8 @@ public class TreeMap<K,V>
      * @since 1.2
      */
     public boolean containsValue(Object value) {
-        return (root==null ? false :
-                (value==null ? valueSearchNull(root)
-                             : valueSearchNonNull(root, value)));
+        return (root != null && (value == null ? valueSearchNull(root)
+                : valueSearchNonNull(root, value)));
     }
 
     private boolean valueSearchNull(Entry n) {
@@ -912,7 +911,7 @@ public class TreeMap<K,V>
             return last;
         }
 
-        private transient Set<Map.Entry<K,V>> entrySet = new EntrySetView();
+        private final transient Set<Map.Entry<K,V>> entrySet = new EntrySetView();
 
         public Set<Map.Entry<K,V>> entrySet() {
             return entrySet;
@@ -1091,7 +1090,7 @@ public class TreeMap<K,V>
      */
     private int compare(K k1, K k2) {
         return (comparator==null ? ((Comparable</*-*/K>)k1).compareTo(k2)
-                                 : comparator.compare((K)k1, (K)k2));
+                                 : comparator.compare(k1, k2));
     }
 
     /**

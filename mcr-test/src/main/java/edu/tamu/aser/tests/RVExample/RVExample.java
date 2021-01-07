@@ -1,6 +1,8 @@
 package edu.tamu.aser.tests.RVExample;
 
 import static org.junit.Assert.*;
+
+import log.RecordTimeInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import edu.tamu.aser.reex.JUnit4MCRRunner;
@@ -10,7 +12,7 @@ public class RVExample {
 
 	private static int x;
 	private static int y;
-	private static Object lock = new Object();
+	private static final Object lock = new Object();
 	
 	public static void main(String[] args) {	
 		Thread t1 = new Thread(new Runnable() {
@@ -62,14 +64,26 @@ public class RVExample {
 
 	@Test
 	public void test() throws InterruptedException {
-		try {
-			x = 0;
-			y = 0;
+		RecordTimeInfo.recordInfo("RVExample","记录原始测试用例生成和执行的时间:",true);
+		for (int i = 0; i < 1; i++) {
+			long start = System.currentTimeMillis();
+			try {
+				x = 0;
+				y = 0;
 //			lock = new Object();
-			RVExample.main(null);
-		} catch (Exception e) {
-			System.out.println("here");
-			fail();
+				RVExample.main(null);
+			} catch (Exception e) {
+				System.out.println("here");
+				fail();
+			}
+			long end = System.currentTimeMillis();
+			String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+			if (i != 29){
+				RecordTimeInfo.recordInfo("RVExample", timeInfo, true);
+			}else {
+				RecordTimeInfo.recordInfo("RVExample", timeInfo, true);
+			}
 		}
+
 	}
 }

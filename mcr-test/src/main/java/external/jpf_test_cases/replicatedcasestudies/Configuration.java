@@ -5,13 +5,13 @@ package external.jpf_test_cases.replicatedcasestudies;
 public class Configuration 
 { 
   public final static int EXCLUSIVE = 1, CONCURRENT = 2, NONE = 3;
-  private int theResultSemantics;
+  private final int theResultSemantics;
 
   public final static int SYNCHRONOUS = 1, ASYNCHRONOUS = 2;
-  private int theExecuteSemantics;
+  private final int theExecuteSemantics;
 
   public final static int ALLVALUES = 1, SOMEVALUES = 2;
-  private int theSubProblemSemantics;
+  private final int theSubProblemSemantics;
  
   public Configuration() 
   {

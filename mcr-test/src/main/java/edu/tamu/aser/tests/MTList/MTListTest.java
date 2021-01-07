@@ -79,7 +79,7 @@ public class MTListTest extends Thread {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         List al1 = Collections.synchronizedList(new LinkedList());
         List al2 = Collections.synchronizedList(new LinkedList());
         al1.add(new SimpleObject(MyRandom.nextInt(3)));

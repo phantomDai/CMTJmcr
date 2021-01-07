@@ -247,12 +247,12 @@ abstract public class ResourceBundle {
      * This variable would be better named "cache", but we keep the old
      * name for compatibility with some workarounds for bug 4212439.
      */
-    private static SoftCache cacheList = new SoftCache(INITIAL_CACHE_SIZE, CACHE_LOAD_FACTOR);
+    private static final SoftCache cacheList = new SoftCache(INITIAL_CACHE_SIZE, CACHE_LOAD_FACTOR);
 
     /**
      * Queue for reference objects referring to class loaders.
      */
-    private static ReferenceQueue referenceQueue = new ReferenceQueue();
+    private static final ReferenceQueue referenceQueue = new ReferenceQueue();
 
     /**
      * The parent bundle of this bundle.
@@ -520,7 +520,7 @@ abstract public class ResourceBundle {
      * class has no reason to keep class loaders alive.
      */
     private static final class LoaderReference extends WeakReference {
-        private ResourceCacheKey cacheKey;
+        private final ResourceCacheKey cacheKey;
 
         LoaderReference(Object referent, ReferenceQueue q, ResourceCacheKey key) {
             super(referent, q);

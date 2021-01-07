@@ -56,7 +56,7 @@ public class StackObjectPool extends BaseObjectPool implements ObjectPool {
      * @see #StackObjectPool(PoolableObjectFactory)
      */
     public StackObjectPool() {
-        this((PoolableObjectFactory)null,DEFAULT_MAX_SLEEPING,DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,DEFAULT_MAX_SLEEPING,DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -72,7 +72,7 @@ public class StackObjectPool extends BaseObjectPool implements ObjectPool {
      * @see #StackObjectPool(PoolableObjectFactory, int)
      */
     public StackObjectPool(int maxIdle) {
-        this((PoolableObjectFactory)null,maxIdle,DEFAULT_INIT_SLEEPING_CAPACITY);
+        this(null,maxIdle,DEFAULT_INIT_SLEEPING_CAPACITY);
     }
 
     /**
@@ -90,7 +90,7 @@ public class StackObjectPool extends BaseObjectPool implements ObjectPool {
      * @see #StackObjectPool(PoolableObjectFactory, int, int)
      */
     public StackObjectPool(int maxIdle, int initIdleCapacity) {
-        this((PoolableObjectFactory)null,maxIdle,initIdleCapacity);
+        this(null,maxIdle,initIdleCapacity);
     }
 
     /**
