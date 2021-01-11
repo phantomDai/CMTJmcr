@@ -1,5 +1,6 @@
 package algorithm.mp;
 
+import algorithm.mp.utls.GetAllSharedVars;
 import constants.Constants;
 
 import java.util.ArrayList;
@@ -23,110 +24,105 @@ import java.util.Set;
 public class MP5 extends MP implements MetamorphicPattern{
     @Override
     public List<String> followUpSeq(List<String> followSeq) {
+
         return sortSeq(followSeq);
     }
 
+    @Override
     public List<String> followUpSeqWithoutSort(List<String> sourceSeq){
+        //识别原始测试序列中的目标变量
+        String targetVar = getTargetVar(sourceSeq);
+        return getFollowSeq(sourceSeq, targetVar);
+//        return getFollowSeq(sourceSeq,"edu.tamu.aser.tests.lottery.BuggyProgram.randomNumber");
+    }
 
-        //存放衍生测试用例的执行序列
-        List<String> followUpEvent = new ArrayList<>();
+    /**
+     * 识别原始测试序列中的目标变量，该变量在一个线程中具有读写事件，再另一个线程中具有写事件
+     * @param sourceSeq
+     * @return
+     */
+    private String getTargetVar(List<String> sourceSeq){
+        Set<String> allVars = GetAllSharedVars.getAllSharedvars(sourceSeq);
+        String targetVar = "";
+        flag: for (String var : allVars){
+            //是否找到需求的变量的标志
+            boolean flag1 = false;
+            boolean flag2 = false;
 
-        //存放所有的共享变量
-        Set<String> allSheeredVar = new HashSet<String>();
-
-        for (String line : sourceSeq){
-            allSheeredVar.add(line.split(BLANK)[3]);
-        }
-
-        //改蜕变模式涉及到两个线程
-        String T1 = "1";
-        String T2 = "2";
-
-        //记录线程1和2的事件的关键未知
-        int countT1 = -1; //紧邻写事件的读事件索引
-        int countT2 = -1;
-
-        //观察线程1和2的读写事件是否包含先读后写的情况
-        boolean foundFlagWrite1T1 = false;
-        boolean foundFlagWrite2T1 = false;
-        boolean foundFlagWriteT2 = false;
-        boolean foundFlagTargetVar = false;
-        String targetSheeredVar = ""; //具有读写事件的变量
-
-        for (String var : allSheeredVar){
-            //首先遍历第一个线程的读写事件，观察是否存在先读后写的情况
             for (int i = 0; i < sourceSeq.size(); i++) {
-                String tempTID = sourceSeq.get(i).split(BLANK)[1];
-                String sheeredVar = sourceSeq.get(i).split(BLANK)[3];
-                String tempEvent = sourceSeq.get(i).split(BLANK)[4];
+                //判断第一个线程是否包含第一个读
+                if (sourceSeq.get(i).split(BLANK)[1].equals("1") &&
+                        sourceSeq.get(i).split(BLANK)[3].equals(var) &&
+                        sourceSeq.get(i).split(BLANK)[4].equals(READ)){
+                    flag1 = true;
 
-                if (tempTID.equals(T1) && sheeredVar.equals(var)
-                        && tempEvent.equals(WRITE)){
-                    //找到线程1的第一个写事件，然后判断下一个事件是否为写事件
-                    foundFlagWrite1T1 = true;
-                    countT1 = i;
-                    for (int j = (countT1 + 1); j < sourceSeq.size(); j++) {
-                        if (foundFlagWrite1T1 == true && foundFlagWrite2T1 == true){
-                            break;
-                        }
-                        if (sourceSeq.get(j).split(BLANK)[1].equals(T1) &&
+                    //判断第一个线程是否包含第二个读
+                    for (int j = i; j < sourceSeq.size(); j++) {
+                        if (sourceSeq.get(j).split(BLANK)[1].equals("1") &&
                                 sourceSeq.get(j).split(BLANK)[3].equals(var) &&
-                                sourceSeq.get(j).split(BLANK)[4].equals(WRITE)){
-                            countT2 = j;
-                            foundFlagWrite2T1 = true;
+                                sourceSeq.get(j).split(BLANK)[4].equals(READ)){
+                            flag2 = true;
+                            //判断第二个线程是否包含一个写
+                            for (int k = j; k < sourceSeq.size(); k++) {
+                                if (sourceSeq.get(k).split(BLANK)[1].equals("2") &&
+                                        sourceSeq.get(k).split(BLANK)[3].equals(var) &&
+                                        sourceSeq.get(k).split(BLANK)[4].equals(WRITE)){
+                                    targetVar = var;
+                                    break;
+                                }
+                            }
                         }
                     }
-                }else {
-                    continue;
                 }
-                if (foundFlagWrite1T1 == true && foundFlagWrite2T1 == true){
+            }
+        }
+        return targetVar;
+    }
+
+    private List<String> getFollowSeq(List<String> sourceSeq, String targetVar) {
+        List<String> followSeq = new ArrayList<>();
+        //判断是否完成任务
+        boolean isDone = false;
+        //判断衍生序列中是否已经有线程2
+        boolean flag2 = false;
+        for (int i = 0; i < sourceSeq.size(); i++) {
+            if (sourceSeq.get(i).split(BLANK)[1].equals("1") &&
+                    sourceSeq.get(i).split(BLANK)[3].equals(targetVar)){
+                followSeq.add(sourceSeq.get(i));
+                //加入2线程的写事件
+                if (sourceSeq.get(i).split(BLANK)[4].equals(WRITE)){
+                    if (!flag2){
+                        for (int j = i; j < sourceSeq.size(); j++) {
+                            if (sourceSeq.get(j).split(BLANK)[1].equals("2") &&
+                                    sourceSeq.get(j).split(BLANK)[3].equals(targetVar)){
+                                followSeq.add(sourceSeq.get(j));
+                                if (sourceSeq.get(j).split(BLANK)[4].equals(WRITE)){
+                                    flag2 = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //写完2线程的写事件再写一个1线程的读事件
+                if (flag2){
+                    for (int j = i + 1; j < sourceSeq.size(); j++) {
+                        if (sourceSeq.get(j).split(BLANK)[3].equals(targetVar) &&
+                                sourceSeq.get(j).split(BLANK)[4].equals(WRITE)){
+                            followSeq.add(sourceSeq.get(j));
+                            isDone = true;
+                            break;
+                        }
+                    }
+                }
+                if (isDone){
                     break;
                 }
             }
-            if (foundFlagWrite1T1 == true && foundFlagWrite2T1 == true){
-                targetSheeredVar = var;
-                foundFlagTargetVar = true;
-                break;
-            }else {
-                foundFlagWrite1T1 = false;
-                foundFlagWrite2T1 = false;
-            }
         }
-        for (int i = 0; i <sourceSeq.size(); i++) {
-            if (sourceSeq.get(i).split(BLANK)[1].equals(T2) &&
-                    sourceSeq.get(i).split(BLANK)[3].equals(targetSheeredVar) &&
-                    sourceSeq.get(i).split(BLANK)[4].equals(WRITE)){
-                countT2 = i;
-                break;
-            }else {
-                continue;
-            }
-        }
-        //将countT1之前的事件加入到衍生事件中，将countT2之前的T2线程的事件加入到衍生事件中
-        for (int i = 0; i <= countT1; i++) {
-            followUpEvent.add(sourceSeq.get(i));
-        }
-
-        for (int i = 0; i <= countT2; i++) {
-            if (sourceSeq.get(i).split(BLANK)[1].equals(T2)){
-                followUpEvent.add(sourceSeq.get(i));
-            }
-        }
-
-        for (int i = (countT1 + 1); i < sourceSeq.size(); i++) {
-            if (i <= countT2){
-                if (!sourceSeq.get(i).split(BLANK)[1].equals(T2)){
-                    followUpEvent.add(sourceSeq.get(i));
-                }else {
-                    continue;
-                }
-            }else {
-                followUpEvent.add(sourceSeq.get(i));
-            }
-        }
-        return followUpEvent;
+        return followSeq;
     }
-
     public static void main(String[] args){
         MetamorphicPattern mp = new MP5();
         List<String> sourceSeq = getsourceSeq(Constants.SOURCEEVENT_PATH);

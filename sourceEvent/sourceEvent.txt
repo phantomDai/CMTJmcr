@@ -1,48 +1,6 @@
-46 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
+18 2 Company.java:45 edu.tamu.aser.tests.HierarchyExample.Company.parent READ Company.java.setParent
 
-47 1 Bank.java:84 null READ Bank.java.Service
+19 2 Company.java:48 edu.tamu.aser.tests.HierarchyExample.Company.parent WRITE Company.java.setParent
 
-48 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
-
-49 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
-
-50 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
-
-51 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
-
-55 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
-
-56 1 Bank.java:84 null READ Bank.java.Service
-
-57 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
-
-58 1 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
-
-59 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
-
-60 1 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
-
-66 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
-
-67 2 Bank.java:84 jdk.net.ExtendedSocketOptions.SO_FLOW_SLA READ Bank.java.Service
-
-68 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
-
-69 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
-
-70 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
-
-71 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
-
-75 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Bank.accounts READ Bank.java.Service
-
-76 2 Bank.java:84 jdk.net.ExtendedSocketOptions.SO_FLOW_SLA READ Bank.java.Service
-
-77 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance READ Bank.java.Service
-
-78 2 Bank.java:84 edu.tamu.aser.tests.sunsAccount.Account.Balance WRITE Bank.java.Service
-
-79 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total READ Bank.java.Service
-
-80 2 Bank.java:85 edu.tamu.aser.tests.sunsAccount.Bank.Bank_Total WRITE Bank.java.Service
+35 0 Company.java:120 edu.tamu.aser.tests.HierarchyExample.Company.parent READ Company.java.main
 

@@ -88,13 +88,13 @@ public class MP3 extends MP implements MetamorphicPattern{
                     sourceSeq.get(i).split(BLANK)[3].equals(targetVar)){
                 followSeq.add(sourceSeq.get(i));
                 //加入2线程的写事件
-                if (sourceSeq.get(i).split(BLANK)[4].equals(READ)){
+                if (sourceSeq.get(i).split(BLANK)[4].equals(WRITE)){
                     if (!flag2){
                         for (int j = i; j < sourceSeq.size(); j++) {
                             if (sourceSeq.get(j).split(BLANK)[1].equals("2") &&
                                     sourceSeq.get(j).split(BLANK)[3].equals(targetVar)){
                                 followSeq.add(sourceSeq.get(j));
-                                if (sourceSeq.get(j).split(BLANK)[4].equals(WRITE)){
+                                if (sourceSeq.get(j).split(BLANK)[4].equals(READ)){
                                     flag2 = true;
                                     break;
                                 }
@@ -106,7 +106,7 @@ public class MP3 extends MP implements MetamorphicPattern{
                 //写完2线程的写事件再写一个1线程的读事件
                 if (flag2){
                     for (int j = i + 1; j < sourceSeq.size(); j++) {
-                        if (sourceSeq.get(j).split(BLANK)[4].equals(READ)){
+                        if (sourceSeq.get(j).split(BLANK)[4].equals(WRITE)){
                             followSeq.add(sourceSeq.get(j));
                             isDone = true;
                             break;

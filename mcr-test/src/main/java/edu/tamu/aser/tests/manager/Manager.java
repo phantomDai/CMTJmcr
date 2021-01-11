@@ -28,7 +28,7 @@ public class Manager
         int init_req_counter;
         if ( arg.length == 2)
         {
-            init_req_counter=request_counter = 100;
+            init_req_counter=request_counter = 2;
         }
         else if (arg.length != 3){
             System.out.println("ERROR - wrong number of arguments");
@@ -107,7 +107,7 @@ public class Manager
                 "记录原始测试用例生成和执行的时间:",true);
         for (int i = 0; i < 1; i++) {
             long start = System.currentTimeMillis();
-            Manager.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output", "2","100"});
+            Manager.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output", "2","10"});
             long end = System.currentTimeMillis();
             String timeInfo = "执行原始测试用例的时间为:" + (end - start);
             if (i != 29){

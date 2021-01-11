@@ -1,19 +1,16 @@
-package edu.tamu.aser.tests.sunsAccount;
+package test.sunsAccount;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
-import edu.tamu.aser.tests.linkedList.BugTester;
 import log.RecordTimeInfo;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import java.util.*;
+
+import java.util.Random;
 
 /*
  * The Bank class is a demo for a multi-threaded system which manages accounts
  * while keeping track of their internal balance. The chance for error is very low
  * although possible for the lack of synchronization.
  */
-@RunWith(JUnit4MCRRunner.class)
+
 public class Bank{
 
 	// Total balance as recorded in bank.
@@ -87,22 +84,5 @@ public class Bank{
 		Bank_Total += sum;
 	}
 
-	@Test
-	public void test(){
-//		RecordTimeInfo.recordInfo("SunsAccount", "记录原始测试用例生成和执行的时间:",true);
-		for (int i = 0; i < 1; i++) {
-			long start = System.currentTimeMillis();
-			Bank.main(null);
-			long end = System.currentTimeMillis();
-			String timeInfo = "执行原始测试用例的时间为:" + (end - start);
-			if (i != 29){
-				RecordTimeInfo.recordInfo("SunsAccount", timeInfo, true);
-			}else {
-				RecordTimeInfo.recordInfo("SunsAccount", timeInfo, true);
-			}
-		}
-
-	}
-	
 }
 

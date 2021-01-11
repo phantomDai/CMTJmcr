@@ -25,8 +25,8 @@ public class MP4 extends MP implements MetamorphicPattern{
     public List<String> followUpSeqWithoutSort(List<String> sourceSeq){
         //识别原始测试序列中的目标变量
         String targetVar = getTargetVar(sourceSeq);
-//        return getFollowSeq(sourceSeq, targetVar);
-        return getFollowSeq(sourceSeq,"edu.tamu.aser.tests.lottery.BuggyProgram.randomNumber");
+        return getFollowSeq(sourceSeq, targetVar);
+//        return getFollowSeq(sourceSeq,"edu.tamu.aser.tests.lottery.BuggyProgram.randomNumber");
     }
 
     /**

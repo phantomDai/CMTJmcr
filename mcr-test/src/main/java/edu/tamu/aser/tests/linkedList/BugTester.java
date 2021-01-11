@@ -79,7 +79,7 @@ public class BugTester
 
 	@Test
 	public void test(){
-//		RecordTimeInfo.recordInfo("LinkedList", "记录原始测试用例生成和执行的时间:",true);
+		RecordTimeInfo.recordInfo("LinkedList", "记录原始测试用例生成和执行的时间:",true);
 		for (int i = 0; i < 1; i++) {
 			long start = System.currentTimeMillis();
 			BugTester.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output","1"});

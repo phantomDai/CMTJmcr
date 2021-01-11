@@ -1,81 +1,42 @@
-1: thread 13 8 .13 2 READ Bank.java.main
-2: thread 13 11 _.11 896191715_  WRITE
-3: thread 13 15 .13 2 READ Bank.java.main
-4: thread 13 19 _.11 896191715_ READ Bank.java.main
-5: thread 13 22 896191715_.0 1690652363_  WRITE
-6: thread 13 15 .13 2 READ Bank.java.main
-7: thread 13 19 _.11 896191715_ READ Bank.java.main
-8: thread 13 22 896191715_.1 1696583317_  WRITE
-9: thread 13 15 .13 2 READ Bank.java.main
-10: thread 13 30 _.14 1217183250_ READ Bank.java.main
-11: thread 13 36 .13 2 READ Bank.java.main
-12: thread 13 37 _.11 896191715_ READ Bank.java.main
-13: thread 13 38 896191715_.0 1690652363_ READ Bank.java.main
-14: thread 13 39 START
-15: thread 13 36 .13 2 READ Bank.java.main
-16: thread 13 37 _.11 896191715_ READ Bank.java.main
-17: thread 13 38 896191715_.1 1696583317_ READ Bank.java.main
-18: thread 13 39 START
-19: thread 13 36 .13 2 READ Bank.java.main
-20: thread 13 44 .13 2 READ Bank.java.main
-21: thread 13 45 _.11 896191715_ READ Bank.java.main
-22: thread 13 46 896191715_.0 1690652363_ READ Bank.java.main
-23: thread 13 44 .13 2 READ Bank.java.main
-24: thread 13 45 _.11 896191715_ READ Bank.java.main
-25: thread 13 46 896191715_.1 1696583317_ READ Bank.java.main
-26: thread 13 44 .13 2 READ Bank.java.main
-27: thread 13 50 _.14 1217183250_ READ Bank.java.main
-28: thread 13 58 _.14 1217183250_ READ Bank.java.main
-29: thread 13 62 .13 2 READ Bank.java.main
-30: thread 13 63 _.11 896191715_ READ Bank.java.main
-31: thread 13 64 896191715_.0 1690652363_ READ Bank.java.main
-32: thread 13 66 1690652363.15 0 READ Bank.java.main
-33: thread 13 62 .13 2 READ Bank.java.main
-34: thread 13 63 _.11 896191715_ READ Bank.java.main
-35: thread 13 64 896191715_.1 1696583317_ READ Bank.java.main
-36: thread 13 66 1696583317.15 0 READ Bank.java.main
-37: thread 13 62 .13 2 READ Bank.java.main
-38: thread 13 68 _.14 1217183250_ READ Bank.java.main
-39: thread 13 73 .10 0 READ Bank.java.main
-40: thread 13 89 .10 0 READ Bank.java.main
-41: thread 13 92 _.14 1217183250_ READ Bank.java.main
-42: thread 14 223 1690652363_.35 808562983_ READ Account.java.run
-43: thread 14 216 1690652363_.35 808562983_ READ Account.java.Action
-44: thread 14 218 .34 300 READ Account.java.Action
-45: thread 14 220 1690652363.33 0 READ Account.java.Action
-46: thread 14 108 _.11 896191715_ READ Bank.java.Service
-47: thread 14 109 896191715_.0 1690652363_ READ Bank.java.Service
-48: thread 14 111 1690652363.15 0 READ Bank.java.Service
-49: thread 14 111 1690652363.15 -214  WRITE
-50: thread 14 112 .10 0 READ Bank.java.Service
-51: thread 14 112 .10 -214  WRITE
-52: thread 14 216 1690652363_.35 808562983_ READ Account.java.Action
-53: thread 14 218 .34 300 READ Account.java.Action
-54: thread 14 220 1690652363.33 0 READ Account.java.Action
-55: thread 14 108 _.11 896191715_ READ Bank.java.Service
-56: thread 14 109 896191715_.0 1690652363_ READ Bank.java.Service
-57: thread 14 111 1690652363.15 -214 READ Bank.java.Service
-58: thread 14 111 1690652363.15 -95  WRITE
-59: thread 14 112 .10 -214 READ Bank.java.Service
-60: thread 14 112 .10 -95  WRITE
-61: thread 14 231 _.14 1217183250_ READ Account.java.run
-62: thread 15 223 1696583317_.35 108071681_ READ Account.java.run
-63: thread 15 216 1696583317_.35 108071681_ READ Account.java.Action
-64: thread 15 218 .34 300 READ Account.java.Action
-65: thread 15 220 1696583317.33 1 READ Account.java.Action
-66: thread 15 108 _.11 896191715_ READ Bank.java.Service
-67: thread 15 109 896191715_.1 1696583317_ READ Bank.java.Service
-68: thread 15 111 1696583317.15 0 READ Bank.java.Service
-69: thread 15 111 1696583317.15 58  WRITE
-70: thread 15 112 .10 -95 READ Bank.java.Service
-71: thread 15 112 .10 -37  WRITE
-72: thread 15 216 1696583317_.35 108071681_ READ Account.java.Action
-73: thread 15 218 .34 300 READ Account.java.Action
-74: thread 15 220 1696583317.33 1 READ Account.java.Action
-75: thread 15 108 _.11 896191715_ READ Bank.java.Service
-76: thread 15 109 896191715_.1 1696583317_ READ Bank.java.Service
-77: thread 15 111 1696583317.15 58 READ Bank.java.Service
-78: thread 15 111 1696583317.15 -90  WRITE
-79: thread 15 112 .10 -37 READ Bank.java.Service
-80: thread 15 112 .10 -185  WRITE
-81: thread 15 231 _.14 1217183250_ READ Account.java.run
+1: thread 13 116 _.10 1229325914_ READ Company.java.main
+2: thread 13 118 1229325914_.0 411719321_ READ Company.java.main
+3: thread 13 13 411719321_.1 116866458_  WRITE
+4: thread 13 122 _.10 1229325914_ READ Company.java.main
+5: thread 13 123 1229325914_.1 1590635293_ READ Company.java.main
+6: thread 13 13 1590635293_.1 288640370_  WRITE
+7: thread 13 132 START
+8: thread 13 133 START
+9: thread 14 258 _.10 1229325914_ READ Company.java.run
+10: thread 14 259 1229325914_.0 411719321_ READ Company.java.run
+11: thread 14 258 _.10 1229325914_ READ Company.java.run
+12: thread 14 259 1229325914_.1 1590635293_ READ Company.java.run
+13: thread 14 411719321 LOCK
+14: thread 14 1590635293 LOCK
+15: thread 14 22 1590635293.4 true READ Company.java.isActive
+16: thread 14 1590635293 UNLOCK
+17: thread 14 48 1590635293_.8 347832515_ READ Company.java.setParent
+18: thread 14 54 411719321_.6 0_ READ Company.java.setParent
+19: thread 14 60 411719321_.6 1590635293_  WRITE
+20: thread 14 411719321 UNLOCK
+21: thread 13 134 JOIN
+22: thread 15 252 _.10 1229325914_ READ Company.java.run
+23: thread 15 253 1229325914_.1 1590635293_ READ Company.java.run
+24: thread 15 1590635293 LOCK
+25: thread 15 1590635293 LOCK
+26: thread 15 82 1590635293_.8 347832515_ READ Company.java.isChildrenInactive
+27: thread 15 411719321 LOCK
+28: thread 15 22 411719321.4 true READ Company.java.isActive
+29: thread 15 411719321 UNLOCK
+30: thread 15 1590635293 UNLOCK
+31: thread 15 1590635293 UNLOCK
+32: thread 13 136 JOIN
+33: thread 13 141 _.10 1229325914_ READ Company.java.main
+34: thread 13 142 1229325914_.0 411719321_ READ Company.java.main
+35: thread 13 143 411719321_.6 1590635293_ READ Company.java.main
+36: thread 13 141 _.10 1229325914_ READ Company.java.main
+37: thread 13 142 1229325914_.1 1590635293_ READ Company.java.main
+38: thread 13 1590635293 LOCK
+39: thread 13 22 1590635293.4 true READ Company.java.isActive
+40: thread 13 1590635293 UNLOCK
+41: thread 13 157 _.16 2013733909_ READ Company.java.main
+42: thread 13 199 .13 false READ Company.java.main

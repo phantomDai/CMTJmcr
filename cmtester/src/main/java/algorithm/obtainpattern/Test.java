@@ -63,13 +63,13 @@ public class Test {
     public static void main(String[] args){
         Test test = new Test();
 //        test.getUsableMPs();
-        RecordTimeInfo.recordInfo("Lottery", "开始记录匹配规则需要的时间:", true);
+        RecordTimeInfo.recordInfo("Counter", "开始记录匹配规则需要的时间:", true);
         for (int i = 0; i < 30; i++) {
             long start = System.currentTimeMillis();
             test.getUsableMPs();
             long end = System.currentTimeMillis();
             String timeInfo = "匹配场景用到的时间:" + String.valueOf(end - start);
-            RecordTimeInfo.recordInfo("Lottery", timeInfo, true);
+            RecordTimeInfo.recordInfo("Counter", timeInfo, true);
         }
     }
 }
