@@ -1,6 +1,32 @@
-18 2 Company.java:45 edu.tamu.aser.tests.HierarchyExample.Company.parent READ Company.java.setParent
+14 1 AirlineTickets.java:57 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTickets.java.run
 
-19 2 Company.java:48 edu.tamu.aser.tests.HierarchyExample.Company.parent WRITE Company.java.setParent
+16 1 AirlineTickets.java:58 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTickets.java.run
 
-35 0 Company.java:120 edu.tamu.aser.tests.HierarchyExample.Company.parent READ Company.java.main
+17 1 AirlineTickets.java:58 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold WRITE AirlineTickets.java.run
+
+18 1 AirlineTickets.java:59 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTickets.java.run
+
+20 1 AirlineTickets.java:61 edu.tamu.aser.tests.airline.AirlineTickets.stopSales READ AirlineTickets.java.run
+
+21 1 AirlineTickets.java:62 edu.tamu.aser.tests.airline.AirlineTickets.stopSales WRITE AirlineTickets.java.run
+
+24 2 AirlineTickets.java:57 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTickets.java.run
+
+26 2 AirlineTickets.java:58 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTickets.java.run
+
+27 2 AirlineTickets.java:58 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold WRITE AirlineTickets.java.run
+
+28 2 AirlineTickets.java:59 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTickets.java.run
+
+30 2 AirlineTickets.java:61 edu.tamu.aser.tests.airline.AirlineTickets.stopSales READ AirlineTickets.java.run
+
+31 2 AirlineTickets.java:64 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTickets.java.run
+
+32 2 AirlineTickets.java:64 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold WRITE AirlineTickets.java.run
+
+35 0 AirlineTicketsTest.java:116 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTicketsTest.java.testSoldInvarient
+
+39 0 AirlineTicketsTest.java:141 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTicketsTest.java.testSoldInvarient
+
+45 0 AirlineTicketsTest.java:171 edu.tamu.aser.tests.airline.AirlineTickets.numberOfSeatsSold READ AirlineTicketsTest.java.testSoldInvarient
 

@@ -1,6 +1,8 @@
 package edu.tamu.aser.tests.critical;
 
 import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.lottery.BuggyProgram;
+import log.RecordTimeInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -43,6 +45,18 @@ public class CriticalTest {
 
     @Test
     public void test() {
-        main(new String[]{});
+//            RecordTimeInfo.recordInfo("Critical", "记录原始测试用例生成和执行的时间:",true);
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            main(new String[]{});
+            long end = System.currentTimeMillis();
+            String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+            if (i != 29){
+                RecordTimeInfo.recordInfo("Critical", timeInfo, true);
+            }else {
+                RecordTimeInfo.recordInfo("Critical", timeInfo, true);
+            }
+        }
+
     }
 }

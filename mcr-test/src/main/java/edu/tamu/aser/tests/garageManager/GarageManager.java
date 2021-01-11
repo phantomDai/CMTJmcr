@@ -1,6 +1,8 @@
 package edu.tamu.aser.tests.garageManager;
 
 import edu.tamu.aser.reex.JUnit4MCRRunner;
+import edu.tamu.aser.tests.lottery.BuggyProgram;
+import log.RecordTimeInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -542,7 +544,6 @@ public class GarageManager
     public static void main(String[] args)
     {
         GarageManager bos = new GarageManager();
-
         bos.GetParametersFromUser(args);
         bos.TakeWorkersFromAgency();
         bos.GiveTasksToWorkers();
@@ -550,6 +551,18 @@ public class GarageManager
 
     @Test
     public void test(){
-        GarageManager.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output", "lot"});
+         RecordTimeInfo.recordInfo("GarageManager", "记录原始测试用例生成和执行的时间:",true);
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            GarageManager.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output", "lot"});
+            long end = System.currentTimeMillis();
+            String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+            if (i != 29){
+                RecordTimeInfo.recordInfo("GarageManager", timeInfo, true);
+            }else {
+                RecordTimeInfo.recordInfo("GarageManager", timeInfo, true);
+            }
+        }
+
     }
  }

@@ -9,9 +9,6 @@ package test.critical;
 public class CriticalTest {
 
     public static void main(String[] args) {
-        long startime = System.currentTimeMillis();
-        System.out.println(startime);
-
         Thread t1, t2;
 
         Critical t = new Critical();
@@ -30,11 +27,6 @@ public class CriticalTest {
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-
-        long endtime = System.currentTimeMillis();
-        System.out.println(endtime);
-        System.out.println(endtime-startime);
-
     }
 
 

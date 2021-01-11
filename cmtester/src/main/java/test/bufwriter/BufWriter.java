@@ -1,4 +1,4 @@
-package edu.tamu.aser.tests.bufwriter;
+package test.bufwriter;
 
 /**
  * Title:
@@ -8,18 +8,12 @@ package edu.tamu.aser.tests.bufwriter;
  * @author
  * @version 1.0
  */
-import edu.tamu.aser.reex.JUnit4MCRRunner;
-import edu.tamu.aser.tests.counter.Counter;
-import log.RecordTimeInfo;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
 
 import java.io.*;
-import java.util.*;
+import java.util.Random;
 
-import static org.junit.Assert.fail;
 
-@RunWith(JUnit4MCRRunner.class)
 public class BufWriter extends Thread {
   public static void main (String[] args)
   {
@@ -115,25 +109,24 @@ public class BufWriter extends Thread {
     return;
   }
 
-  @Test
   public void test(){
 //      RecordTimeInfo.recordInfo("BufWriter", "记录原始测试用例生成和执行的时间:",true);
-      for (int i = 0; i < 1; i++) {
-          long start = System.currentTimeMillis();
-          try {
-              BufWriter.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output", "little"});
-          } catch (Exception e) {
-              System.out.println("here");
-              fail();
-          }
-          long end = System.currentTimeMillis();
-          String timeInfo = "执行原始测试用例的时间为:" + (end - start);
-          if (i != 29){
-              RecordTimeInfo.recordInfo("BufWriter", timeInfo, true);
-          }else {
-              RecordTimeInfo.recordInfo("BufWriter", timeInfo, true);
-          }
-      }
+//      for (int i = 0; i < 1; i++) {
+//          long start = System.currentTimeMillis();
+//          try {
+//              BufWriter.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output", "little"});
+//          } catch (Exception e) {
+//              System.out.println("here");
+//              fail();
+//          }
+//          long end = System.currentTimeMillis();
+//          String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+//          if (i != 29){
+//              RecordTimeInfo.recordInfo("BufWriter", timeInfo, true);
+//          }else {
+//              RecordTimeInfo.recordInfo("BufWriter", timeInfo, true);
+//          }
+//      }
 //      BufWriter.main(new String[]{"/Users/phantom/javaDir/CMTJmcr/output/output", "little"});
   }
 

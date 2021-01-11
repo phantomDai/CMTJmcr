@@ -1,16 +1,13 @@
-package edu.tamu.aser.tests.HierarchyExample;
+package test.HierarchyExample;
 
-import edu.tamu.aser.reex.JUnit4MCRRunner;
-import edu.tamu.aser.tests.garageManager.GarageManager;
 import log.RecordTimeInfo;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@RunWith(JUnit4MCRRunner.class)
+
 public class Company {
 
 	String name;
@@ -126,20 +123,4 @@ public class Company {
 		assert b; 
 	}
 
-	@Test
-	public void test(){
-//		RecordTimeInfo.recordInfo("Company", "记录原始测试用例生成和执行的时间:",true);
-		for (int i = 0; i < 1; i++) {
-			long start = System.currentTimeMillis();
-			Company.main(null);
-			long end = System.currentTimeMillis();
-			String timeInfo = "执行原始测试用例的时间为:" + (end - start);
-			if (i != 29){
-				RecordTimeInfo.recordInfo("Company", timeInfo, true);
-			}else {
-				RecordTimeInfo.recordInfo("Company", timeInfo, true);
-			}
-		}
-
-	}
 }

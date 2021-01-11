@@ -24,6 +24,8 @@ public class Instrumentor {
     public static String EVENT_RECIEVER11 = "scheduler/Scheduler4Lottery";
     public static String EVENT_RECIEVER12 = "scheduler/Scheduler4SunsAccount";
     public static String EVENT_RECIEVER13 = "scheduler/Scheduler4Counter";
+    public static String EVENT_RECIEVER14 = "scheduler/Scheduler4Company";
+    public static String EVENT_RECIEVER15 = "scheduler/Scheduler4BufWriter";
     //每测一个程序都需要在这里创建一个新的常量，然后再下面的逻辑中进行配置（根据不同的程序名字调用不同的ClassTransformer）
 
     /**
@@ -337,6 +339,56 @@ public class Instrumentor {
                 ClassReader classReader = new ClassReader(classfileBuffer);
                 ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
                 ClassVisitor myClassTransformer = new ClassTransformer4Counter(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/HierarchyExample")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4Company(classWriter);
+                classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
+                classfileBuffer = classWriter.toByteArray();
+                File dir = new File("out");
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+
+                File classFile = new File(dir, className.replace("/", ".") + ".class");
+
+                try {
+                    classFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    FileOutputStream fos = new FileOutputStream(classFile);
+                    fos.write(classfileBuffer);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else if (className.contains("test/HierarchyExample")){
+                ClassReader classReader = new ClassReader(classfileBuffer);
+                ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_FRAMES);
+                ClassVisitor myClassTransformer = new ClassTransformer4Company(classWriter);
                 classReader.accept(myClassTransformer,ClassReader.EXPAND_FRAMES);
                 classfileBuffer = classWriter.toByteArray();
                 File dir = new File("out");

@@ -2,6 +2,7 @@ package edu.tamu.aser.tests.account;
 
 
 import edu.tamu.aser.reex.JUnit4MCRRunner;
+import log.RecordTimeInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,7 +37,19 @@ public class Account2ThreadDandWTest extends Failable {
 
     @Test
     public void test2ThreadDepositAndWithdrawAndCheckInvariant() throws Exception {
-        performDepositsAndWithdrawalsAndCheckInvariant(2);
+//        RecordTimeInfo.recordInfo("Account", "记录原始测试用例生成和执行的时间:",true);
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            performDepositsAndWithdrawalsAndCheckInvariant(2);
+            long end = System.currentTimeMillis();
+            String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+            if (i != 29){
+                RecordTimeInfo.recordInfo("Account", timeInfo, true);
+            }else {
+                RecordTimeInfo.recordInfo("Account", timeInfo, true);
+            }
+        }
+
     }
 
     public void performRingTransfersAndCheckInvariant(int numOfThreads) throws Exception {

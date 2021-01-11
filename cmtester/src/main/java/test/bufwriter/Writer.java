@@ -1,4 +1,4 @@
-package edu.tamu.aser.tests.bufwriter;
+package test.bufwriter;
 
 /**
  * Title:

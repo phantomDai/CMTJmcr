@@ -1,42 +1,47 @@
-1: thread 13 116 _.10 1229325914_ READ Company.java.main
-2: thread 13 118 1229325914_.0 411719321_ READ Company.java.main
-3: thread 13 13 411719321_.1 116866458_  WRITE
-4: thread 13 122 _.10 1229325914_ READ Company.java.main
-5: thread 13 123 1229325914_.1 1590635293_ READ Company.java.main
-6: thread 13 13 1590635293_.1 288640370_  WRITE
-7: thread 13 132 START
-8: thread 13 133 START
-9: thread 14 258 _.10 1229325914_ READ Company.java.run
-10: thread 14 259 1229325914_.0 411719321_ READ Company.java.run
-11: thread 14 258 _.10 1229325914_ READ Company.java.run
-12: thread 14 259 1229325914_.1 1590635293_ READ Company.java.run
-13: thread 14 411719321 LOCK
-14: thread 14 1590635293 LOCK
-15: thread 14 22 1590635293.4 true READ Company.java.isActive
-16: thread 14 1590635293 UNLOCK
-17: thread 14 48 1590635293_.8 347832515_ READ Company.java.setParent
-18: thread 14 54 411719321_.6 0_ READ Company.java.setParent
-19: thread 14 60 411719321_.6 1590635293_  WRITE
-20: thread 14 411719321 UNLOCK
-21: thread 13 134 JOIN
-22: thread 15 252 _.10 1229325914_ READ Company.java.run
-23: thread 15 253 1229325914_.1 1590635293_ READ Company.java.run
-24: thread 15 1590635293 LOCK
-25: thread 15 1590635293 LOCK
-26: thread 15 82 1590635293_.8 347832515_ READ Company.java.isChildrenInactive
-27: thread 15 411719321 LOCK
-28: thread 15 22 411719321.4 true READ Company.java.isActive
-29: thread 15 411719321 UNLOCK
-30: thread 15 1590635293 UNLOCK
-31: thread 15 1590635293 UNLOCK
-32: thread 13 136 JOIN
-33: thread 13 141 _.10 1229325914_ READ Company.java.main
-34: thread 13 142 1229325914_.0 411719321_ READ Company.java.main
-35: thread 13 143 411719321_.6 1590635293_ READ Company.java.main
-36: thread 13 141 _.10 1229325914_ READ Company.java.main
-37: thread 13 142 1229325914_.1 1590635293_ READ Company.java.main
-38: thread 13 1590635293 LOCK
-39: thread 13 22 1590635293.4 true READ Company.java.isActive
-40: thread 13 1590635293 UNLOCK
-41: thread 13 157 _.16 2013733909_ READ Company.java.main
-42: thread 13 199 .13 false READ Company.java.main
+1: thread 13 141 26729216_.5 1031405455_  WRITE
+2: thread 13 144 26729216_.5 1031405455_ READ AirlineTicketsTest.java.makeBookings
+3: thread 13 304 1031405455.32 2 READ AirlineTickets.java.makeBookings
+4: thread 13 306 1031405455.32 2 READ AirlineTickets.java.makeBookings
+5: thread 13 307 267512184_.0 1103988628_  WRITE
+6: thread 13 309 267512184_.0 1103988628_ READ AirlineTickets.java.makeBookings
+7: thread 13 310 START
+8: thread 13 306 1031405455.32 2 READ AirlineTickets.java.makeBookings
+9: thread 13 307 267512184_.1 867863973_  WRITE
+10: thread 13 309 267512184_.1 867863973_ READ AirlineTickets.java.makeBookings
+11: thread 13 310 START
+12: thread 13 306 1031405455.32 2 READ AirlineTickets.java.makeBookings
+13: thread 13 311 267512184_.0 1103988628_ READ AirlineTickets.java.makeBookings
+14: thread 14 315 1031405455.11 0 READ AirlineTickets.java.run
+15: thread 14 316 1031405455.12 1 READ AirlineTickets.java.run
+16: thread 14 319 1031405455.11 0 READ AirlineTickets.java.run
+17: thread 14 319 1031405455.11 1  WRITE
+18: thread 14 320 1031405455.11 1 READ AirlineTickets.java.run
+19: thread 14 321 1031405455.12 1 READ AirlineTickets.java.run
+20: thread 14 323 1031405455.31 false READ AirlineTickets.java.run
+21: thread 14 326 1031405455.31 true  WRITE
+22: thread 13 313 JOIN
+23: thread 13 311 267512184_.1 867863973_ READ AirlineTickets.java.makeBookings
+24: thread 15 315 1031405455.11 1 READ AirlineTickets.java.run
+25: thread 15 316 1031405455.12 1 READ AirlineTickets.java.run
+26: thread 15 319 1031405455.11 1 READ AirlineTickets.java.run
+27: thread 15 319 1031405455.11 2  WRITE
+28: thread 15 320 1031405455.11 2 READ AirlineTickets.java.run
+29: thread 15 321 1031405455.12 1 READ AirlineTickets.java.run
+30: thread 15 323 1031405455.31 true READ AirlineTickets.java.run
+31: thread 15 328 1031405455.11 2 READ AirlineTickets.java.run
+32: thread 15 328 1031405455.11 1  WRITE
+33: thread 13 313 JOIN
+34: thread 13 168 26729216_.5 1031405455_ READ AirlineTicketsTest.java.testSoldInvarient
+35: thread 13 169 1031405455.11 1 READ AirlineTicketsTest.java.testSoldInvarient
+36: thread 13 168 26729216_.5 1031405455_ READ AirlineTicketsTest.java.testSoldInvarient
+37: thread 13 173 1031405455.12 1 READ AirlineTicketsTest.java.testSoldInvarient
+38: thread 13 241 26729216_.5 1031405455_ READ AirlineTicketsTest.java.testSoldInvarient
+39: thread 13 242 1031405455.11 1 READ AirlineTicketsTest.java.testSoldInvarient
+40: thread 13 241 26729216_.5 1031405455_ READ AirlineTicketsTest.java.testSoldInvarient
+41: thread 13 243 1031405455.12 1 READ AirlineTicketsTest.java.testSoldInvarient
+42: thread 13 269 _.13 214568713_ READ AirlineTicketsTest.java.testSoldInvarient
+43: thread 13 274 _.13 208702913_ READ AirlineTicketsTest.java.testSoldInvarient
+44: thread 13 277 26729216_.5 1031405455_ READ AirlineTicketsTest.java.testSoldInvarient
+45: thread 13 278 1031405455.11 1 READ AirlineTicketsTest.java.testSoldInvarient
+46: thread 13 350 _.33 641142161_ READ RecordTimeInfo.java.recordInfo
+47: thread 13 351 _.34 272010035_ READ RecordTimeInfo.java.recordInfo

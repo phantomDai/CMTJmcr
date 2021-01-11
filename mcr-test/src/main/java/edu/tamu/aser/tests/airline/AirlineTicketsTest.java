@@ -6,6 +6,7 @@ import junit.framework.Assert;
 
 import static org.junit.Assert.fail;
 
+import log.RecordTimeInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -27,14 +28,38 @@ public class AirlineTicketsTest {
     
     // @Test
     public void test2ThreadsFullInvarient() throws Exception {
-        makeBookings(2);
-        testSoldInvarient();
+        RecordTimeInfo.recordInfo("Airline", "记录原始测试用例生成和执行的时间:",true);
+        for (int i = 0; i < 1; i++) {
+            long start = System.currentTimeMillis();
+            makeBookings(2);
+            testSoldInvarient();
+            long end = System.currentTimeMillis();
+            String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+            if (i != 29){
+                RecordTimeInfo.recordInfo("Account", timeInfo, true);
+            }else {
+                RecordTimeInfo.recordInfo("Account", timeInfo, true);
+            }
+        }
+
     }
 
      @Test
     public void test2ThreadsNotTooMany() throws Exception {
-        makeBookings(2);
-        testSoldInvarient();
+//         RecordTimeInfo.recordInfo("Airline", "记录原始测试用例生成和执行的时间:",true);
+         for (int i = 0; i < 1; i++) {
+             long start = System.currentTimeMillis();
+             makeBookings(2);
+             testSoldInvarient();
+             long end = System.currentTimeMillis();
+             String timeInfo = "执行原始测试用例的时间为:" + (end - start);
+             if (i != 29){
+                 RecordTimeInfo.recordInfo("Airline", timeInfo, true);
+             }else {
+                 RecordTimeInfo.recordInfo("Airline", timeInfo, true);
+             }
+         }
+
     }
 
     // @Test
